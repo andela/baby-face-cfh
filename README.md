@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andela/baby-face-cfh.svg?branch=master)](https://travis-ci.org/andela/baby-face-cfh)
+--------
 [![Coverage Status](https://coveralls.io/repos/github/andela/baby-face-cfh/badge.svg?branch=master)](https://coveralls.io/github/andela/baby-face-cfh?branch=master)
 
 Cards for Humanity - [http://cfh.io](http://cfh.io)
