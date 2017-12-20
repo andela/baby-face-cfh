@@ -46,14 +46,14 @@ gulp.task('nodemon', () => {
     },
     watch: ['app', 'config'],
   })
-})
+});
 
 gulp.task('mochaTest', () => {
   return gulp.src(paths.test)
     .pipe(mocha({
       reporter: 'spec',
     }))
-})
+});
 
 gulp.task('bower', () => {
   return bower();
