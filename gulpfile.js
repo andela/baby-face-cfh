@@ -1,12 +1,12 @@
 const  gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   eslint = require('gulp-eslint'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
   sass = require('gulp-sass'),
   mocha = require('gulp-mocha'),
   nodemon = require('gulp-nodemon'),
-  bower = require('gulp-bower');
+  bower = require('gulp-bower'),
+  browserSync = require('browser-sync').create(),
+  reload = browserSync.reload;
 
   paths = {
     css: ['public/css/**'],
@@ -32,7 +32,8 @@ gulp.task('sass', () => {
     .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/css'));
+    .pipe(gulp.dest('public/css'))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('nodemon', () => {
@@ -88,20 +89,23 @@ gulp.task('angularBootstrap', () => {
     .pipe(gulp.dest('./public/lib/angular-bootstrap'));
 });
 
-gulp.task('transfer-bower', ['angular', 'bootstrap', 'jquery', 'underscore', 'angularUiUtils', 'angularBootstrap']);
-
 gulp.task('watch', () => {
-  gulp.watch(paths.jade);
-  gulp.watch(paths.scripts, ['eslint']);
-  gulp.watch(paths.html);
+  gulp.watch(paths.jade).on('change', reload);
+  gulp.watch(paths.scripts, ['eslint']).on('change', reload);
+  gulp.watch(paths.html).on('change', reload);
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.css, ['sass']);
+  gulp.watch(paths.css, ['sass']).on('change', reload);
 });
 
+// Bower task
 gulp.task('install', ['bower']);
 
-gulp.task('build', ['sass', 'transfer-bower']);
+// Build task
+gulp.task('build', ['sass', 'angular', 'bootstrap', 'jquery', 'underscore',
+  'angularUiUtils', 'angularBootstrap']);
 
+// Test task
 gulp.task('test', ['mochaTest']);
 
+// Default task
 gulp.task('default', ['nodemon', 'watch']);
