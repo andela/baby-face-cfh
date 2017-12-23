@@ -128,7 +128,7 @@ gulp.task('install', ['bower']);
 gulp.task('build', ['sass', 'babel', 'move-public', 'move-jade', 'move-json', 'move-bower']);
 
 // Re-build task after changes
-gulp.task('rebuild', ['sass', 'babel', 'move-jade', 'move-json']);
+gulp.task('rebuild', ['sass', 'babel', 'move-public', 'move-jade', 'move-json']);
 
 // Test task
 gulp.task('test', ['mochaTest']);

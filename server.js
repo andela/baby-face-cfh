@@ -1,12 +1,15 @@
-require('dotenv').config();
 /**
  * Module dependencies.
  */
+import dotenv from 'dotenv';
+
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
     logger = require('mean-logger'),
     io = require('socket.io');
+
+dotenv.config();
 
 /**
  * Main application entry file.
