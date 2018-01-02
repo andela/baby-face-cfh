@@ -1,3 +1,5 @@
+import validate from './middlewares/validation';
+
 const async = require('async');
 
 module.exports = function(app, passport, auth) {
@@ -9,9 +11,8 @@ module.exports = function(app, passport, auth) {
     app.get('/signout', users.signout);
 
     //Setting up the users api
-    app.post('/users', users.create);
     app.post('/users/avatars', users.avatars);
-    app.post('/api/auth/signup', users.create);
+    app.post('/api/auth/signup', validate.signupInputs, users.create);
 
     // Donation Routes
     app.post('/donations', users.addDonation);
