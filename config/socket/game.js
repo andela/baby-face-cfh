@@ -260,9 +260,10 @@ Game.prototype.shuffleCards = function(cards) {
 };
 
 Game.prototype.dealAnswers = function(maxAnswers) {
+  var self = this;
   maxAnswers = maxAnswers || 10;
   var storeAnswers = function(err, data) {
-    this.answers = data;
+    self.answers = data;
   };
   for (var i = 0; i < this.players.length; i++) {
     while (this.players[i].hand.length < maxAnswers) {

@@ -70,6 +70,7 @@
               </ul>
             </div>
             <div class="form-actions">
+              <p ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
               <button id="sign-up-btn-other" type='submit' ng-click="signup(user)">Sign Up</button>
             </div>
           </form>

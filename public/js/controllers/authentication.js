@@ -1,7 +1,11 @@
 angular.module('mean.system')
   .controller('AuthenticationController', [
-    '$scope', '$http', '$location', '$window', '$log', ($scope, $http, $location, $window, $log) => {
+    '$scope', '$http', '$location', '$window', ($scope, $http, $location, $window) => {
       $scope.user = {};
+
+      $scope.serverErrorMessage = '';
+
+      $scope.serverErrorExists = () => $scope.serverErrorMessage.length > 0;
 
       $scope.signup = () => {
         const newUser = {
@@ -18,8 +22,7 @@ angular.module('mean.system')
             $window.location.reload();
           }, (error) => {
             const { data: { message } } = error;
-            $log.error(message);
-            $location.search(`error=${message}`);
+            $scope.serverErrorMessage = message;
           });
       };
     }

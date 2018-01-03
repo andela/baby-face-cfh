@@ -18,7 +18,7 @@ class ValidationController {
    */
   static signupInputs(req, res, next) {
     if (!validator.isLength(req.body.name, { min: 6 }) ||
-    !validator.isAlphanumeric(req.body.name)) {
+      !validator.isAlphanumeric(req.body.name)) {
       return res.status(400).send({
         status: 'Fail',
         message: 'Name must be atleast 6 alphanumeric characters',
