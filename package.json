@@ -24,11 +24,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
-=======
-    "bcryptjs": "~1.0.4",
->>>>>>> 3f29639a30e7fd88f5ea1c259246e8893f53503b
     "bower": "~1.3.8",
     "browser-sync": "^2.19.0",
     "connect-flash": "~0.1.1",
@@ -45,10 +41,6 @@
     "gulp-mocha": "^4.3.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-sass": "^3.1.0",
-<<<<<<< HEAD
-=======
-    "gulp-sourcemaps": "^2.6.1",
->>>>>>> 3f29639a30e7fd88f5ea1c259246e8893f53503b
     "jade": "~0.35.0",
     "jsonwebtoken": "^8.1.0",
     "mean-logger": "~0.0.1",
