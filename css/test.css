@@ -1,0 +1,192 @@
+body {
+    -webkit-transition: ease-in 500ms !important;
+    -moz-transition: ease-in 500ms !important;
+    transition: ease-in 500ms !important;
+}
+
+a,
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    box-shadow: 0 6px 3px -3px rgba(0, 0, 0, 0.26);
+}
+
+.navbar-nav a:hover {
+    border-bottom: 2px solid rgba(0, 182, 254, 0.43);
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.active a {
+    border-bottom: 2px solid #00B5FE;
+}
+
+.title {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-bottom: 10px;
+    color: rgba(0, 0, 0, 0.69);
+    text-transform: capitalize;
+    font-weight: bolder;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.btn-blue {
+    background: #00B5FE;
+    color: white;
+    box-shadow: 0 6px 3px -3px rgba(0, 0, 0, 0.26);
+}
+
+.btn-blue:hover {
+    background: #00B5FE;
+    box-shadow: 0 0px 1px black;
+}
+
+.dropdown {
+    -webkit-transition: ease-in 500ms !important;
+    -moz-transition: ease-in 500ms !important;
+    transition: ease-in 500ms !important;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.card {
+    margin-top: 20px;
+    border: none;
+}
+
+.card-body {
+    box-shadow: 0 20px 10px -10px rgba(0, 0, 0, 0.26);
+    -webkit-transition: ease-in .4s !important;
+    -moz-transition: ease-in .4s !important;
+    transition: ease-in .4s !important;
+    text-align: left;
+}
+
+.card-title {
+    margin-top: 0;
+    text-transform: capitalize;
+}
+
+.card-header {
+    text-align: center;
+    background: #00B5FE;
+    color: white;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, .7)
+}
+
+.card-body:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.26);
+}
+
+.market {
+    background: rgba(211, 211, 211, 0.11);
+    margin-top: 50px;
+}
+
+.container {
+    padding: 0
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+#marketReport,
+#marketPrice {
+    -webkit-transition: ease-in .4s !important;
+    -moz-transition: ease-in .4s !important;
+    transition: ease-in .4s !important;
+    padding: 30px 0;
+}
+
+#marketReport:hover,
+#marketPrice:hover {
+    background: rgba(146, 146, 146, 0.11);
+}
+
+.banner {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding: 20px 20px 20px 0;
+}
+
+.banner-image img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px auto;
+}
+
+.footer {
+    background: #252525;
+    color: white;
+    padding-top: 20px;
+    height: auto;
+}
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer li {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+}
+
+.social {
+    padding: 10px;
+    word-spacing: .5em;
+    font-size: 12px;
+}
+
+.social .fa {
+    font-size: 14px;
+}
+
+@media screen and (min-width: 801px) {
+    .logo {
+        width: 50%;
+        height: 50%;
+    }
+    #carouselControls {
+        margin-top: 70px;
+    }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1324px) {
+    #carouselControls {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .logo {
+        width: 100%;
+        height: 100%;
+    }
+    #carouselControls {
+        margin-top: 60px;
+    }
+}

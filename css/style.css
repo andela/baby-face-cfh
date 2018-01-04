@@ -1,0 +1,274 @@
+
+  .custom-navbar {
+    background-color: transparent;
+    margin-bottom: 0;
+    color: #e3e3e3;
+  }
+  .custom-navbar .navbar-brand,
+  .custom-navbar .navbar-nav > li > a {
+    color: #e3e3e3;
+  }
+  .custom-navbar .btn {
+    color: #f3f3f3;
+  }
+  
+  .sticky.navbar {
+    border-radius: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+  .sticky .show-is-sticky,
+  .sticky .show-not-sticky {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    /* visibility: hidden; */
+    display: none;
+  }
+  .sticky .show-not-sticky {
+    opacity: 1;
+    display: block;
+    /* visibility: visible; */
+  }
+  .sticky.is-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  .sticky.is-sticky.navbar {
+    background-color: #1e7ebe;
+  }
+  .sticky.is-sticky .show-is-sticky {
+    opacity: 1;
+    display: block;
+  }
+  .sticky.is-sticky .show-not-sticky {
+    opacity: 0;
+    display: none;
+  }
+.bg-not-sticky-navbar {
+  background-color: #1e7ebe;
+}
+  .btn-orange {
+    background-color: orange;
+  }
+
+  .pl-100 {
+    padding-left: 100px;
+  }
+  
+  .header {
+    background:linear-gradient(90deg, rgba(37, 26, 2, 0.7), rgba(39, 27, 2, 0.5)),
+    url('../1.jpg') no-repeat center center;
+    background-size: cover;
+    padding-top: 50px;
+    min-height: 450px;
+    max-width: 100%;
+    padding-bottom: 50px;
+  }
+
+  .warning{
+    font-size: 1rem;
+  }
+  .btn {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.315);
+    -webkit-transition: 500ms ease-in-out;
+    -moz-transition: 500ms ease-in-out;
+    transition: 500ms ease-in-out;
+  }
+
+  .btn:hover {
+    box-shadow: none;
+  }
+
+  .subtitle {
+    /* font-family: 'Luckiest Guy', cursive; */
+    font-family: 'Sigmar One', cursive;
+    /* font-family: 'Bowlby One SC', cursive;  */
+    font-size: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    padding: 0;
+    margin: 0;
+    color: #000;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+  }
+
+  .little {
+    font-size: 1rem;
+    
+  }
+
+  .navbar-brand {
+    font-family: 'Sigmar One', cursive;
+  }
+
+  .footer {
+    background-color: #666
+    /* width: 100%; */
+  }
+.legal{
+  color: rgb(197, 195, 195);
+}
+  .footer .nav .nav-link {
+    color: rgb(197, 195, 195);
+    line-height: .5rem;
+  }
+  .footer .nav .nav-link:hover {
+    color: white;
+  }
+  .footer .social-icons {
+    word-spacing: .5rem;
+  }
+
+  .footer .social-icons .social-link {
+    color: white;
+  }
+
+  .footer .social-icons .social-link:hover {
+    color: rgb(180, 179, 179);
+  }
+
+  body, .container-fluid {
+    margin: 0;
+    padding: 0;
+  }
+
+  .donate{
+    background:linear-gradient(180deg, rgba(5, 150, 207, 0.9), rgba(5, 150, 207, 0.8), rgba(5, 150, 207, 0.7)),
+    url('../general_water.jpg') no-repeat center center;
+    background-size: cover;
+  }
+  .ribbon {
+    font-family: 'Bowlby One SC', cursive; 
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+    font-size: 1.5rem;
+    width: 100%;
+  }
+
+  .hovered {
+    cursor: pointer;
+  }
+  .ribbon-blue {
+    background-color: #1e7ebe;
+  }
+  .ribbon-orange {
+    background-color: orange;
+  }
+
+  .text-orange{
+    color: orange;
+  }
+  .cash {
+    font-size: 5rem;
+    font-style: italic;
+    line-height: 6rem;
+  }
+
+  .charity{
+    /* font-family: 'Bowlby One SC', cursive;  */
+    /* font-family: 'Luckiest Guy', cursive; */
+    font-size: 1rem;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.322);
+    font-weight: 700;
+    font-family: Roboto;
+    background-color: rgba(255, 255, 255, 0.623)
+  }
+
+  .title {
+    font-family: 'Bowlby One SC', cursive; 
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+    font-size: 2rem;
+  }
+  .charity-inner{
+    /* background-color: #ffffff */
+  }
+  .how-to-play{
+    background:linear-gradient(180deg, rgba(207, 160, 5, 0.9), rgba(207, 160, 5, 0.8), rgba(207, 160, 5, 0.7)),
+    url('../pick_a_card.jpg') no-repeat center center;
+    background-size: cover;
+    padding-bottom: 20px;
+    /* min-height: 500px; */
+  }
+
+  .step-box{
+    background-color: #ffffff;
+    padding-top: 100px !important;
+    min-height: 300px;
+    text-align: center;
+    -webkit-box-shadow: 0 10px 6px -6px #00000080;
+    -moz-box-shadow: 0 10px 6px -6px #00000080;
+         box-shadow: 0 10px 6px -6px #00000080;
+  }
+
+  /* form */
+
+  .form-wrapper{
+    -webkit-box-shadow: 0 10px 6px -6px #00000080;
+    -moz-box-shadow: 0 10px 6px -6px #00000080;
+         box-shadow: 0 10px 6px -6px #00000080;
+    border-radius: 10px;
+    background: white;
+  }
+  .signup-wrapper {
+    background:linear-gradient(90deg, rgba(207, 160, 5, 0.9), rgba(207, 160, 5, 0.8), rgba(207, 160, 5, 0.7)),
+    url('../pick_a_card.jpg') center center;
+    background-size: cover;
+  }
+  .form {
+    margin: 10px auto;
+    max-width: 550px;
+    padding: 20px 12px 10px 20px;
+    font: 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  }
+  
+  .form li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin: 10px 0 0 0;
+  }
+  
+  .form label {
+    margin: 20px 0 3px 0;
+    padding: 0px;
+    display: block;
+    font-weight: 600;
+    color: #353333;
+  }
+  .form input[type='text'],
+  .form input[type='password'],
+  .form input[type='email'],
+  textarea,
+  select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid lightgray;
+    padding: 12px;
+    margin: 0px;
+    border-radius: 10px;
+    font-size: 16px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    outline: none;
+  }
+  
+  .form input[type='text']:focus,
+  .form input[type='password']:focus,
+  .form input[type='email']:focus,
+  textarea:focus,
+  select:focus {
+    border: 2px solid #1e7ebe;
+  }
