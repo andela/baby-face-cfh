@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 import babel from 'gulp-babel';
-import sourcemaps from 'gulp-sourcemaps';
 import eslint from 'gulp-eslint';
 import sass from 'gulp-sass';
 import mocha from 'gulp-mocha';
@@ -34,11 +33,8 @@ gulp.task('lint', () => gulp.src(paths.lint)
   .pipe(eslint.formatEach()));
 
 gulp.task('sass', () => gulp.src(paths.sass)
-  .pipe(sourcemaps.init())
   .pipe(sass().on('error', sass.logError))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('public/css'))
-  .pipe(reload({ stream: true })));
+  .pipe(gulp.dest('public/css')));
 
 gulp.task('nodemon', () => {
   nodemon({
@@ -56,6 +52,7 @@ gulp.task('nodemon', () => {
 gulp.task('mochaTest', () => gulp.src(paths.test)
   .pipe(mocha({
     reporter: 'spec',
+    timeout: 10000,
   }))
   .pipe(exit()));
 
