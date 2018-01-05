@@ -130,6 +130,45 @@ exports.create = (req, res) => {
   }
 };
 
+exports.login = (req, res) => {
+  if (req.body.email && req.body.password) {
+    User.findOne({
+      email: req.body.email,
+    }, (error, existingUser) => {
+      if (error) {
+        return res.status(500).send({
+          status: 'Error',
+          message: error,
+        });
+      }
+      if (existingUser) {
+        if (!existingUser.authenticate(req.body.password)) {
+          return res.status(401).send({
+            status: 'Fail',
+            message: 'Incorrect email or password',
+          });
+        }
+        return res.status(200).send({
+          status: 'Success',
+          message: 'User logged in',
+          data: {
+            token: jwt.generateToken(existingUser),
+          }
+        });
+      }
+      return res.status(401).send({
+        status: 'Fail',
+        message: 'Incorrect email or password',
+      });
+    });
+  } else {
+    return res.status(400).send({
+      status: 'Fail',
+      message: 'Incomplete login details',
+    });
+  }
+};
+
 /**
  * Assign avatar to user
  */

@@ -65,15 +65,20 @@ angular.module('mean.directives', [])
       templateUrl: '/views/timer.html',
       link: function(scope, elem, attr){}
     };
-  }).directive('landing', function() {
+  }).directive('landing', ['$location', function($location) {
     return {
       restrict: 'EA',
       link: function(scope, elem, attr) {
         scope.showOptions = true;
+        scope.signOut = () => {
+          localStorage.removeItem('token');
+          $location.path('/');
+          window.location.reload();
+        }
 
         if (scope.$$childHead.global.authenticated === true) {
           scope.showOptions = false;
         }
       }
     };
-  });
+  }]);
