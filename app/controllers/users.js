@@ -1,6 +1,8 @@
 /**
  * Module dependencies.
  */
+import jwt from '../../config/jwt';
+
 var mongoose = require('mongoose'),
   User = mongoose.model('User');
 var avatars = require('./avatars').all();
@@ -24,9 +26,13 @@ exports.signin = function(req, res) {
 };
 
 /**
- * Show sign up form
+ * Function to check if a user is signed in already
+ *
+ * @param {any} req - The request object
+ * @param {any} res - The response object
+ * @returns {func} Redirect to respective page
  */
-exports.signup = function(req, res) {
+exports.signup = (req, res) => {
   if (!req.user) {
     res.redirect('/#!/signup');
   } else {
@@ -59,13 +65,13 @@ exports.checkAvatar = function(req, res) {
     User.findOne({
       _id: req.user._id
     })
-    .exec(function(err, user) {
-      if (user.avatar !== undefined) {
-        res.redirect('/#!/');
-      } else {
-        res.redirect('/#!/choose-avatar');
-      }
-    });
+      .exec(function(err, user) {
+        if (user.avatar !== undefined) {
+          res.redirect('/#!/');
+        } else {
+          res.redirect('/#!/choose-avatar');
+        }
+      });
   } else {
     // If user doesn't even exist, redirect to /
     res.redirect('/');
@@ -74,36 +80,53 @@ exports.checkAvatar = function(req, res) {
 };
 
 /**
- * Create user
+ * Function to create a new user
+ *
+ * @param {any} req - The request object
+ * @param {any} res - The response object
+ * @returns {any} - token and redirect to home page
  */
-exports.create = function(req, res) {
+exports.create = (req, res) => {
   if (req.body.name && req.body.password && req.body.email) {
     User.findOne({
       email: req.body.email
-    }).exec(function(err,existingUser) {
+    }, (err, existingUser) => {
       if (!existingUser) {
-        var user = new User(req.body);
+        const user = new User(req.body);
         // Switch the user's avatar index to an actual avatar url
         user.avatar = avatars[user.avatar];
         user.provider = 'local';
-        user.save(function(err) {
+        user.save((err, newUser) => {
           if (err) {
-            return res.render('/#!/signup?error=unknown', {
-              errors: err.errors,
-              user: user
+            return res.status(500).send({
+              status: 'Error',
+              message: err.errors,
             });
           }
-          req.logIn(user, function(err) {
+          req.logIn(user, (err, next) => {
             if (err) return next(err);
-            return res.redirect('/#!/');
+            const token = jwt.generateToken(newUser);
+            return res.status(201).send({
+              status: 'Success',
+              message: 'User created',
+              data: {
+                token,
+              }
+            });
           });
         });
       } else {
-        return res.redirect('/#!/signup?error=existinguser');
+        return res.status(409).send({
+          status: 'Fail',
+          message: 'User already exist',
+        });
       }
     });
   } else {
-    return res.redirect('/#!/signup?error=incomplete');
+    return res.status(400).send({
+      status: 'Fail',
+      message: 'Incomplete signup details',
+    });
   }
 };
 
@@ -117,10 +140,10 @@ exports.avatars = function(req, res) {
     User.findOne({
       _id: req.user._id
     })
-    .exec(function(err, user) {
-      user.avatar = avatars[req.body.avatar];
-      user.save();
-    });
+      .exec(function(err, user) {
+        user.avatar = avatars[req.body.avatar];
+        user.save();
+      });
   }
   return res.redirect('/#!/app');
 };
@@ -132,21 +155,21 @@ exports.addDonation = function(req, res) {
       User.findOne({
         _id: req.user._id
       })
-      .exec(function(err, user) {
+        .exec(function(err, user) {
         // Confirm that this object hasn't already been entered
-        var duplicate = false;
-        for (var i = 0; i < user.donations.length; i++ ) {
-          if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
-            duplicate = true;
+          var duplicate = false;
+          for (var i = 0; i < user.donations.length; i++ ) {
+            if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
+              duplicate = true;
+            }
           }
-        }
-        if (!duplicate) {
-          console.log('Validated donation');
-          user.donations.push(req.body);
-          user.premium = 1;
-          user.save();
-        }
-      });
+          if (!duplicate) {
+            console.log('Validated donation');
+            user.donations.push(req.body);
+            user.premium = 1;
+            user.save();
+          }
+        });
     }
   }
   res.send();
