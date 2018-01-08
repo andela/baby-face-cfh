@@ -67,12 +67,12 @@ angular
     }
   ])
   .controller('ScrollAfix', ($scope, $location, $anchorScroll) => {
-    $scope.scrollTo = function (id) {
+    $scope.scrollTo = (id) => {
       $location.hash(id);
       $anchorScroll();
-      setTimeout(function(){
+      setTimeout(() => {
         window.scrollTo(window.pageXOffset, window.pageYOffset - 55);
-        },100);
+      }, 100);
     };
   });
 

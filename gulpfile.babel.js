@@ -14,7 +14,13 @@ const { reload } = browserSync,
     css: ['public/css/**'],
     html: ['public/views/**'],
     jade: ['app/views/**'],
-    lint: ['gulpfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js', '!node_modules/**'],
+    lint: [
+      'gulpfile.js',
+      'public/js/**/*.js',
+      'test/**/*.js',
+      'app/**/*.js',
+      '!node_modules/**'
+    ],
     sass: ['public/css/common.scss'],
     scripts: ['public/js/**', 'app/**/*.js'],
     test: ['./dist/test/**/*.js']
@@ -60,18 +66,14 @@ gulp.task('nodemon', () => {
 gulp.task('reload-html', () => {
   // this will enable nodemon to restart before reloading the file that changed
   setTimeout(() => {
-    gulp.src([
-      'public/views/**',
-    ]).pipe(livereload());
+    gulp.src(['public/views/**']).pipe(livereload());
   }, 1000);
 });
 
 gulp.task('reload-css', () => {
   // this will enable nodemon to restart before reloading the file that changed
   setTimeout(() => {
-    gulp.src([
-      './public/css',
-    ]).pipe(livereload());
+    gulp.src(['./public/css']).pipe(livereload());
   }, 1000);
 });
 
@@ -87,35 +89,51 @@ gulp.task('mochaTest', () =>
 gulp.task('bower', () => bower());
 
 gulp.task('angular', () => {
-  gulp.src('bower_components/angular/**/*.js').pipe(gulp.dest('./dist/public/lib/angular'));
+  gulp
+    .src('bower_components/angular/**/*.js')
+    .pipe(gulp.dest('./dist/public/lib/angular'));
 });
 
 gulp.task('bootstrap', () => {
-  gulp.src('bower_components/bootstrap/dist/**/*').pipe(gulp.dest('./dist/public/lib/bootstrap'));
+  gulp
+    .src('bower_components/bootstrap/dist/**/*')
+    .pipe(gulp.dest('./dist/public/lib/bootstrap'));
 });
 
 gulp.task('aos', () => {
-  gulp.src('bower_components/aos/dist/**/*').pipe(gulp.dest('./dist/public/lib/aos'));
+  gulp
+    .src('bower_components/aos/dist/**/*')
+    .pipe(gulp.dest('./dist/public/lib/aos'));
 });
 
 gulp.task('hover', () => {
-  gulp.src('bower_components/hover/css/**/*').pipe(gulp.dest('./dist/public/lib/hover'));
+  gulp
+    .src('bower_components/hover/css/**/*')
+    .pipe(gulp.dest('./dist/public/lib/hover'));
 });
 
 gulp.task('popper', () => {
-  gulp.src('bower_components/popper.js/dist/umd/**/*').pipe(gulp.dest('./dist/public/lib/popper'));
+  gulp
+    .src('bower_components/popper.js/dist/umd/**/*')
+    .pipe(gulp.dest('./dist/public/lib/popper'));
 });
 
 gulp.task('angular-scroll', () => {
-  gulp.src('bower_components/angular-scroll/**/*').pipe(gulp.dest('./dist/public/lib/angular-scroll'));
+  gulp
+    .src('bower_components/angular-scroll/**/*')
+    .pipe(gulp.dest('./dist/public/lib/angular-scroll'));
 });
 
 gulp.task('jquery', () => {
-  gulp.src('bower_components/jquery/**/*').pipe(gulp.dest('./dist/public/lib/jquery'));
+  gulp
+    .src('bower_components/jquery/**/*')
+    .pipe(gulp.dest('./dist/public/lib/jquery'));
 });
 
 gulp.task('underscore', () => {
-  gulp.src('bower_components/underscore/**/*').pipe(gulp.dest('./dist/public/lib/underscore'));
+  gulp
+    .src('bower_components/underscore/**/*')
+    .pipe(gulp.dest('./dist/public/lib/underscore'));
 });
 
 gulp.task('angularUiUtils', () => {
@@ -173,10 +191,23 @@ gulp.task('watch', () => {
 gulp.task('install', ['bower']);
 
 // Build task
-gulp.task('build', ['sass', 'babel', 'move-public', 'move-jade', 'move-json', 'move-bower']);
+gulp.task('build', [
+  'sass',
+  'babel',
+  'move-public',
+  'move-jade',
+  'move-json',
+  'move-bower'
+]);
 
 // Re-build task after changes
-gulp.task('rebuild', ['sass', 'babel', 'move-public', 'move-jade', 'move-json']);
+gulp.task('rebuild', [
+  'sass',
+  'babel',
+  'move-public',
+  'move-jade',
+  'move-json'
+]);
 
 // Test task
 gulp.task('test', ['mochaTest']);
