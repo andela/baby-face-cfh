@@ -1,86 +1,132 @@
 <div id="main-bod">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
-      <div class="mod-contain" id="navver">
-        <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo"> 
-              <span id="first-word">Cards</span>
-              <span id="second-word"> for</span> 
-              <span id="third-word">Humanity</span> 
-            </div> 
-            <div class="col-md-9 wpb-menu-container">
-              <ul class="wpb-main-menu">
-                <li><a href="/">Home</a></li>
-              </ul>
-            </div>
-          </div>      
-        </div>
+  <nav class="navbar bg-not-sticky-navbar navbar-dark fixed-top custom-navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" class="show-is-sticky" width="30"
+          height="30" alt="logo"> Cards For Humanity
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#!/signin">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Fixed Logo & Menu Bar End -->
+  <div class="container-fluid mt-0 ">
+    <div class="row justify-content-center signup-wrapper">
+      <div class="col-lg-4 p-50 form-wrapper mt-100 mb-100" ng-controller="AuthenticationController"> 
+        <form>
+          <ul class="form row p-3">
+            <li class="col-12">
+              <button class="btn btn-block text-white ribbon-blue hovered">
+                <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
+                <span class="pt-5">Sign up with Facebook</span>
+              </button>
+            </li>
+            <li class="col-12">
+              <button class="btn btn-block text-white btn-info hovered">
+                <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign up with Twitter
+              </button>
+            </li>
+            <li class="col-12">
+              <p class="text-center bolder">- or - </p>
+            </li>
+            <li class="col-12">
+              <label>Username</label>
+              <input type="text" ng-model="user.name" required class="col-12" name="moniker" placeholder="johnDoe23" />
+            </li>
+
+            <li class="col-12">
+              <label>Email</label>
+              <input type="email" ng-model="user.email" required class="col-12" name="email" placeholder="example@example.com" />
+            </li>
+
+            <li class="col-12">
+              <label>Password</label>
+              <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
+            </li>
+            <li class=" col-12 ">
+              <p ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
+              <input type="submit" ng-click="signup(user)" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered"
+              />
+            </li>
+          </ul>
+        </form>
       </div>
     </div>
   </div>
-<!-- Fixed Logo & Menu Bar End -->
-
-<!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
-  <div class="background-opacity"></div> 
-  <div class="modified-container">
-    <div class="row" id="main-text"> 
-    <!-- Teaser Text Start -->
-    <div id="landing-logo">
-      <h2 id="slogan">Sign Up with:</h2>
-      <div id="login-buttons">
-        <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
-        <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
-        <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
-        <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
-      </div>
-      <p id="create">Or create a username/password and select an avatar:</p>
-
-      <div class="sign-body" ng-controller="AuthenticationController">
-        <div class="more-sign">
-          <form class="signup form-horizontal">
-            <div class="control-group">
-              <label for="name" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="name" type="text" name="name" placeholder="Full name" ng-model="user.name" required novalidate />
-              </div>
+  <!-- custom footer start -->
+  <footer class="container-fluid text-white">
+    <div class="row footer p-10">
+      <div class="col-12">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-12">
+              <h6 class="text-center legal">Legal stuff</h6>
+              <hr>
+              <p class="text-justify legal">
+                This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity is not affiliated
+                with Cards Against Humanity. In complying with the Creative Commons license of the Cards Against Humanity
+                card game, all proceeds from donations go directly to charity, as managed by crowdrise.
+              </p>
             </div>
-            <div class="control-group">
-              <label for="email" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="email" type="email" name="email" placeholder="Email" ng-model="user.email" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="password" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="password" type="password" name="password" placeholder="Password" ng-model="user.password" required novalidate />
-              </div>
-            </div>
-            <div id="contain-avatars">
-              <ul ng-controller="IndexController" class="avatar-list">
-                <li ng-repeat="avatar in avatars" class="avatars ng-scope">
-                  <input name="avatar" type='radio' value="{{$index}}">
-                    <img ng-src="{{avatar}}">
-                  </input>
+            <div class="col-lg-4 col-md-4 col-sm-5 ">
+              <h6 class="text-center legal">Contributors</h6>
+              <hr>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Nebo Justin</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Damilare Olatunbosun</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Michael Umannah</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Idris Idetunmbi</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Emmanuel Ndukwe</a>
                 </li>
               </ul>
             </div>
-            <div class="form-actions">
-              <p ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
-              <button id="sign-up-btn-other" type='submit' ng-click="signup(user)">Sign Up</button>
+            <div class="col-lg-4 col-md-4 col-sm-5">
+              <h6 class="text-center legal">Policies</h6>
+              <hr>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Privacy Policy</a>
+                </li>
+              </ul>
             </div>
-          </form>
+            <div class="col-12 text-center">
+              <div class="social-icons mt-50">
+                <a href="#" class="social-link">
+                  <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-  </div>
+  </footer>
+  <!-- custom footer ends -->
 </div>
-
-
-
