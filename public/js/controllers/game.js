@@ -1,6 +1,13 @@
 angular.module('mean.system')
-  .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$http', '$dialog', 
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $http, $dialog) => {
+  .controller('GameController', [
+    '$scope',
+    'game',
+    '$timeout',
+    '$location',
+    'MakeAWishFactsService',
+    '$http',
+    '$dialog',
+    ($scope, game, $timeout, $location, MakeAWishFactsService, $http) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -98,33 +105,24 @@ angular.module('mean.system')
         return false;
       };
 
-      $scope.showFirst = (card) => {
-        return game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
-      };
+      $scope.showFirst = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
 
-      $scope.showSecond = (card) => {
-        return game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
-      };
+      $scope.showSecond = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
 
-      $scope.isCzar = () => {
-        return game.czar === game.playerIndex;
-      };
+      $scope.isCzar = () =>
+        game.czar === game.playerIndex;
 
-      $scope.isPlayer = ($index) => {
-        return $index === game.playerIndex;
-      };
+      $scope.isPlayer = $index =>
+        $index === game.playerIndex;
 
-      $scope.isCustomGame = () => {
-        return !(/^\d+$/).test(game.gameID) && game.state === 'awaiting players';
-      };
+      $scope.isCustomGame = () =>
+        !(/^\d+$/).test(game.gameID) && game.state === 'awaiting players';
 
-      $scope.isPremium = ($index) => {
-        return game.players[$index].premium;
-      };
+      $scope.isPremium = $index => game.players[$index].premium;
 
-      $scope.currentCzar = ($index) => {
-        return $index === game.czar;
-      };
+      $scope.currentCzar = $index => $index === game.czar;
 
       $scope.winningColor = ($index) => {
         if (game.winningCardPlayer !== -1 && $index === game.winningCard) {
@@ -140,15 +138,13 @@ angular.module('mean.system')
         }
       };
 
-      $scope.winnerPicked = () => {
-        return game.winningCard !== -1;
-      };
+      $scope.winnerPicked = () => game.winningCard !== -1;
 
       $scope.startGame = () => {
         game.startGame();
       };
 
-      $scope.abandonGame = () => {  
+      $scope.abandonGame = () => {
         game.leaveGame();
         $location.path('/');
       };
@@ -180,15 +176,23 @@ angular.module('mean.system')
           // reset the URL so they don't think they're in the requested room.
             $location.search({});
           } else if ($scope.isCustomGame() && !$location.search().game) {
-          // Once the game ID is set, update the URL if this is a game with friends,
+          // Once the game ID is set,
+          // update the URL if this is a game with friends,
           // where the link is meant to be shared.
             $location.search({ game: game.gameID });
             if (!$scope.modalShown) {
               setTimeout(() => {
                 const link = document.URL;
-                const txt = 'Give the following link to your friends so they can join your game: ';
+                const txt =
+                'Give the following link to your friends' +
+                 'so they can join your game: ';
                 $('#lobby-how-to-play').text(txt);
-                $('#oh-el').css({ 'text-align': 'center', 'font-size': '22px', 'background': 'white', 'color': 'black'}).text(link);
+                $('#oh-el').css({
+                  'text-align': 'center',
+                  'font-size': '22px',
+                  background: 'white',
+                  color: 'black'
+                }).text(link);
               }, 200);
               $scope.modalShown = true;
             }
@@ -198,9 +202,9 @@ angular.module('mean.system')
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
         console.log('joining custom game');
-        game.joinGame('joinGame',$location.search().game);
+        game.joinGame('joinGame', $location.search().game);
       } else if ($location.search().custom) {
-        game.joinGame('joinGame',null,true);
+        game.joinGame('joinGame', null, true);
       } else {
         game.joinGame();
       }
