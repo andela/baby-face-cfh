@@ -7,8 +7,9 @@ import nodemon from 'gulp-nodemon';
 import bower from 'gulp-bower';
 import exit from 'gulp-exit';
 import browserSync from 'browser-sync';
-import livereload from 'gulp-livereload';
+import gulpLoadPlugins from 'gulp-load-plugins';
 
+const plugins = gulpLoadPlugins();
 const { reload } = browserSync,
   paths = {
     css: ['public/css/**'],
@@ -66,14 +67,14 @@ gulp.task('nodemon', () => {
 gulp.task('reload-html', () => {
   // this will enable nodemon to restart before reloading the file that changed
   setTimeout(() => {
-    gulp.src(['public/views/**']).pipe(livereload());
+    gulp.src(['public/views/**']).pipe(plugins.livereload());
   }, 1000);
 });
 
 gulp.task('reload-css', () => {
   // this will enable nodemon to restart before reloading the file that changed
   setTimeout(() => {
-    gulp.src(['./public/css']).pipe(livereload());
+    gulp.src(['./public/css']).pipe(plugins.livereload());
   }, 1000);
 });
 
@@ -178,7 +179,7 @@ gulp.task('move-public', ['sass'], () => {
 });
 
 gulp.task('watch', () => {
-  livereload.listen();
+  plugins.livereload.listen();
   gulp.watch(paths.jade).on('change', reload);
   gulp.watch(paths.scripts, ['lint']).on('change', reload);
   gulp.watch('./public/**/*.css', ['reload-css', 'rebuild']);
