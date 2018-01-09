@@ -18,7 +18,7 @@ $(document).ready(() => {
   $('[data-toggle="sticky-onscroll"]').each(function () {
     const sticky = $(this);
     // insert hidden element to maintain actual top offset on page
-    const stickyWrapper = $('<div>').addClass('sticky-wrapper'); 
+    const stickyWrapper = $('<div>').addClass('sticky-wrapper');
     sticky.before(stickyWrapper);
     sticky.addClass('sticky');
 

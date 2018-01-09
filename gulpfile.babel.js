@@ -7,6 +7,7 @@ import nodemon from 'gulp-nodemon';
 import bower from 'gulp-bower';
 import exit from 'gulp-exit';
 import browserSync from 'browser-sync';
+// eslint-disable-next-line import/no-unresolved
 import livereload from 'gulp-livereload';
 
 const { reload } = browserSync,
