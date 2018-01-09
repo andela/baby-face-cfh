@@ -325,7 +325,7 @@ class Game {
     let temp;
     let randNum;
     while (this.shuffleIndex) {
-      randNum = Math.floor(Math.random() * this.shuffleIndex = this.shuffleIndex - 1);
+      randNum = Math.floor(Math.random() * this.shuffleIndex--);
       temp = cards[randNum];
       cards[randNum] = cards[this.shuffleIndex];
       cards[this.shuffleIndex] = temp;
