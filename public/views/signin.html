@@ -1,9 +1,9 @@
-<div id="main-bod" ng-controller="IndexController">
+<div ng-controller="IndexController">
   <nav class="navbar bg-not-sticky-navbar navbar-dark fixed-top custom-navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" class="show-is-sticky" width="30" height="30" alt="logo">
-        Cards For Humanity        
+        <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" class="show-is-sticky" width="30"
+          height="30" alt="logo"> Cards For Humanity
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -24,110 +24,120 @@
   <!-- Fixed Logo & Menu Bar End -->
 
   <!-- signin form -->
-  <div class="container-fluid ">
-    <div class="row justify-content-center signup-wrapper">
-      <div class="col-lg-4 col-md-6 col-sm-9 mt-100 mb-100 form-wrapper">
-        <div class="sign-error" ng-show="showError() === 'invalid'">
-          Please check your username/password and try again.
-        </div>
-        <form ng-controller="AuthenticationController">
-          <ul class="form row p-3">
-            <li class="col-12">
-              <button class="btn btn-block text-white ribbon-blue hovered">
-                <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
-                <span class="pt-5">Sign in with Facebook</span>
-              </button>
-            </li>
-            <li class="col-12">
-              <button class="btn btn-block text-white btn-info hovered">
-                <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign in with Twitter
-              </button>
-            </li>
-            <li class="col-12">
-              <p class="text-center bolder">- or - </p>
-            </li>
-            <li class="col-12">
-              <label>Email</label>
-              <input type="email" required class="col-12" name="email" placeholder="example@example.com" ng-model="user.email" />
-            </li>
-            <li class="col-12">
-              <label>Password</label>
-              <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
-            </li>
-            <li class=" col-12 ">
-              <p ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
-              <input type="submit" ng-click="login()" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered" />
-            </li>
+  <div class="container-fluid">
+    <div class="row signup-wrapper justify-content-center">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="p-10">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 mr-auto ml-auto mt-100 mb-100 form-wrapper">
+                <div class="text-danger" ng-show="showError() === 'invalid'">
+                  Please check your username/password and try again.
+                </div>
+                <form ng-controller="AuthenticationController">
+                  <ul class="form row p-3">
+                    <li class="col-12">
+                      <button class="btn btn-block text-white ribbon-blue hovered">
+                        <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
+                        <span class="pt-5">Sign in with Facebook</span>
+                      </button>
+                    </li>
+                    <li class="col-12">
+                      <button class="btn btn-block text-white btn-info hovered">
+                        <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign in with Twitter
+                      </button>
+                    </li>
+                    <li class="col-12">
+                      <button class="btn btn-block text-white btn-danger hovered">
+                        <i class="fa fa-google float-left fa-2x" aria-hidden="true"></i> Sign in with Google
+                      </button>
+                    </li>
 
-          </ul>
-        </form>
+                    <li class="col-12">
+                      <label>Email</label>
+                      <input type="email" required class="col-12" name="email" placeholder="example@example.com" ng-model="user.email" />
+                    </li>
+                    <li class="col-12">
+                      <label>Password</label>
+                      <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
+                    </li>
+                    <li class="text-error text-center col-12 mb-20">
+                      <p class=" text-danger" ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
+                      <input type="submit" ng-click="login()" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered" />
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- footer start -->
   <footer class="container-fluid text-white">
-      <div class="row footer p-10">
-        <div class="col-12">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-4 col-sm-12 mt-20">
-                <h6 class="text-center legal">Legal stuff</h6>
-                <hr>
-                <p class="text-justify legal">
-                  This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity is not affiliated
-                  with Cards Against Humanity. In complying with the Creative Commons license of the Cards Against Humanity
-                  card game, all proceeds from donations go directly to charity, as managed by crowdrise.
-                </p>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-5 mt-20">
-                <h6 class="text-center legal">Contributors</h6>
-                <hr>
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a href="https://twitter.com/emasys_nd" class="nav-link">Emmanuel Ndukwe</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="https://twitter.com/Dheavyman" class="nav-link">Nebo Justin</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Damilare Olatunbosun</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Michael Umannah</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="https://twitter.com/idrisadetunmbi" class="nav-link">Idris Adetunmbi</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-5 mt-20">
-                <h6 class="text-center legal">Policies</h6>
-                <hr>
-                <ul class="nav flex-column">
-                  <li class="nav-item text-center">
-                    <a href="#bottom" class="nav-link">Privacy Policy</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-12 text-center">
-                <div class="social-icons mt-50">
-                  <a href="#" class="social-link">
-                    <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="social-link">
-                    <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="social-link">
-                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                  </a>
-                </div>
+    <div class="row footer p-10">
+      <div class="col-12">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-12 mt-20">
+              <h6 class="text-center legal">Legal stuff</h6>
+              <hr>
+              <p class="text-justify legal">
+                This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity is not affiliated
+                with Cards Against Humanity. In complying with the Creative Commons license of the Cards Against Humanity
+                card game, all proceeds from donations go directly to charity, as managed by crowdrise.
+              </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 mt-20">
+              <h6 class="text-center legal">Contributors</h6>
+              <hr>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="https://twitter.com/emasys_nd" class="nav-link">Emmanuel Ndukwe</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/Dheavyman" class="nav-link">Nebo Justin</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/Dammy" class="nav-link">Damilare Olatunbosun</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/michaelumanah" class="nav-link">Michael Umanah</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/idrisadetunmbi" class="nav-link">Idris Adetunmbi</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 mt-20">
+              <h6 class="text-center legal">Policies</h6>
+              <hr>
+              <ul class="nav flex-column">
+                <li class="nav-item text-center">
+                  <a href="#bottom" class="nav-link">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-12 text-center">
+              <div class="social-icons mt-50">
+                <a href="#" class="social-link">
+                  <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- footer ends -->
- 
+    </div>
+  </footer>
+  <!-- footer ends -->
+
 </div>
