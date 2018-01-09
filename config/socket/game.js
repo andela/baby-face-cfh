@@ -155,9 +155,6 @@ class Game {
         this.getAnswers
       ],
       (err, results) => {
-        if (err) {
-          console.log(err);
-        }
         this.questions = [results[0]];
         this.answers = [results[1]];
         this.startGame();
@@ -170,7 +167,7 @@ class Game {
    *
    */
   startGame() {
-    console.log(this.gameID, this.state);
+    // console.log(this.gameID, this.state);
     this.shuffleCards(this.questions);
     this.shuffleCards(this.answers);
     this.stateChoosing(this);
@@ -258,10 +255,10 @@ class Game {
    */
   stateResults() {
     this.state = 'winner has been chosen';
-    console.log(this.state);
+    // console.log(this.state);
     // TODO: do stuff
     let winner = -1;
-    for (let i = 0; i < this.players.length; i++) {
+    for (let i = 0; i < this.players.length; i = i + 1) {
       if (this.players[i].points >= this.pointLimit) {
         winner = i;
       }
@@ -328,7 +325,7 @@ class Game {
     let temp;
     let randNum;
     while (this.shuffleIndex) {
-      randNum = Math.floor(Math.random() * this.shuffleIndex--);
+      randNum = Math.floor(Math.random() * this.shuffleIndex = this.shuffleIndex - 1);
       temp = cards[randNum];
       cards[randNum] = cards[this.shuffleIndex];
       cards[this.shuffleIndex] = temp;
@@ -346,7 +343,7 @@ class Game {
     const storeAnswers = (err, data) => {
       this.answers = data;
     };
-    for (let i = 0; i < this.players.length; i++) {
+    for (let i = 0; i < this.players.length; i = i + 1) {
       while (this.players[i].hand.length < maxAnswers) {
         this.players[i].hand.push(this.answers.pop());
         if (!this.answers.length) {
@@ -382,7 +379,7 @@ class Game {
     if (this.state === 'waiting for players to pick') {
       // Find the player's position in the players array
       const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
-      console.log('player is at index', playerIndex);
+      // console.log('player is at index', playerIndex);
       if (playerIndex !== -1) {
         // Verify that the player hasn't previously picked a card
         let previouslySubmitted = false;
@@ -393,19 +390,19 @@ class Game {
         });
         if (!previouslySubmitted) {
           // Find the indices of the cards in the player's hand (given the card ids)
-          let tableCard = [];
-          for (let i = 0; i < thisCardArray.length; i++) {
+          const tableCard = [];
+          for (let i = 0; i < thisCardArray.length; i = i + 1) {
             let cardIndex = null;
-            for (let j = 0; j < this.players[playerIndex].hand.length; j++) {
+            for (let j = 0; j < this.players[playerIndex].hand.length; j = j + 1) {
               if (this.players[playerIndex].hand[j].id === thisCardArray[i]) {
                 cardIndex = j;
               }
             }
-            console.log('card', i, 'is at index', cardIndex);
+            // console.log('card', i, 'is at index', cardIndex);
             if (cardIndex !== null) {
               tableCard.push(this.players[playerIndex].hand.splice(cardIndex, 1)[0]);
             }
-            console.log('table object at', cardIndex, ':', tableCard);
+            // console.log('table object at', cardIndex, ':', tableCard);
           }
           if (tableCard.length === this.curQuestion.numAnswers) {
             this.table.push({
@@ -413,7 +410,7 @@ class Game {
               player: this.players[playerIndex].socket.id
             });
           }
-          console.log('final table object', this.table);
+          // console.log('final table object', this.table);
           if (this.table.length === this.players.length - 1) {
             clearTimeout(this.choosingTimeout);
             this.stateJudging(this);
@@ -423,7 +420,7 @@ class Game {
         }
       }
     } else {
-      console.log('NOTE:', thisPlayer, 'picked a card during', this.state);
+      // console.log('NOTE:', thisPlayer, 'picked a card during', this.state);
     }
   }
   /**
@@ -436,9 +433,8 @@ class Game {
     const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
     if (playerIndex > -1) {
       return this.players[playerIndex];
-    } else {
-      return {};
     }
+    return {};
   }
   /**
    *
@@ -448,13 +444,13 @@ class Game {
    */
   removePlayer(thisPlayer) {
     const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
-  
+
     if (playerIndex !== -1) {
       // Just used to send the remaining players a notification
       const playerName = this.players[playerIndex].username;
-  
+
       // If this player submitted a card, take it off the table
-      for (let i = 0; i < this.table.length; i++) {
+      for (let i = 0; i < this.table.length; i = i + 1) {
         if (this.table[i].player === thisPlayer) {
           this.table.splice(i, 1);
         }
@@ -480,7 +476,7 @@ class Game {
       } else {
         // Update the czar's position if the removed player is above the current czar
         if (playerIndex < this.czar) {
-          this.czar--;
+          this.czar = this.czar - 1;
         }
         this.sendNotification(`${playerName} has left the game.`);
       }
@@ -515,7 +511,7 @@ class Game {
         this.winnerAutopicked = autopicked;
         this.stateResults(this);
       } else {
-        console.log('WARNING: czar', thisPlayer, 'picked a card that was not on the table.');
+        // console.log('WARNING: czar', thisPlayer, 'picked a card that was not on the table.');
       }
     } else {
       // TODO: Do something?
@@ -528,7 +524,7 @@ class Game {
    *
    */
   killGame() {
-    console.log('Killing game', this.gameID);
+    // console.log('Killing game', this.gameID);
     clearTimeout(this.resultsTimeout);
     clearTimeout(this.choosingTimeout);
     clearTimeout(this.judgingTimeout);
