@@ -6,6 +6,8 @@ import mocha from 'gulp-mocha';
 import nodemon from 'gulp-nodemon';
 import bower from 'gulp-bower';
 import exit from 'gulp-exit';
+// eslint-disable-next-line import/no-unresolved, import/extensions
+
 import livereload from 'gulp-livereload';
 import browserSync from 'browser-sync';
 
