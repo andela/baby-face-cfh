@@ -22,7 +22,62 @@
     </div>
   </nav>
   <!-- Fixed Logo & Menu Bar End -->
-  <div class="container-fluid mt-0 ">
+
+  <!-- sign up form start -->
+  <div class="container-fluid">
+    <div class="row signup-wrapper justify-content-center">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="p-10">
+              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-8 mr-auto ml-auto mt-100 mb-100 form-wrapper">
+                <form ng-controller="AuthenticationController">
+                  <ul class="form row p-3">
+                    <li class="col-12">
+                      <button class="btn btn-block text-white ribbon-blue hovered">
+                        <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
+                        <span class="pt-5">Sign up with Facebook</span>
+                      </button>
+                    </li>
+                    <li class="col-12">
+                      <button class="btn btn-block text-white btn-info hovered">
+                        <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign up with Twitter
+                      </button>
+                    </li>
+                    <li class="col-12">
+                      <button class="btn btn-block text-white btn-danger hovered">
+                        <i class="fa fa-google float-left fa-2x" aria-hidden="true"></i> Sign up with Google
+                      </button>
+                    </li>
+                    <li class="col-12">
+                      <label>Username</label>
+                      <input type="text" ng-model="user.name" required class="col-12" name="moniker" placeholder="johnDoe23" />
+                    </li>
+                    <li class="col-12">
+                      <label>Email</label>
+                      <input type="email" ng-model="user.email" required class="col-12" name="email" placeholder="example@example.com" />
+                    </li>
+                    <li class="col-12">
+                      <label>Password</label>
+                      <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
+                    </li>
+                    <li class=" col-12 mb-20 ">
+                      <p ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
+                      <input type="submit" ng-click="signup(user)" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered"
+                      />
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sign up form end -->
+
+  <!-- <div class="container-fluid mt-0 ">
     <div class="row justify-content-center signup-wrapper">
       <div class="col-lg-4 p-50 form-wrapper mt-100 mb-100" ng-controller="AuthenticationController">
         <form>
@@ -64,7 +119,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- footer start -->
   <footer class="container-fluid text-white">
     <div class="row footer p-10">
@@ -91,10 +146,10 @@
                   <a href="https://twitter.com/Dheavyman" class="nav-link">Nebo Justin</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Damilare Olatunbosun</a>
+                  <a href="https://twitter.com/Dammy" class="nav-link">Damilare Olatunbosun</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Michael Umannah</a>
+                  <a href="https://twitter.com/michaelumanah" class="nav-link">Michael Umanah</a>
                 </li>
                 <li class="nav-item">
                   <a href="https://twitter.com/idrisadetunmbi" class="nav-link">Idris Adetunmbi</a>
