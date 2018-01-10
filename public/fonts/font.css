@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'LCDU';
+	src: url('./LCDU.eot');
+	src: local('LCDU'), url('./LCDU.woff') format('woff'), url('./LCDU.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_522">Text with this font applied</p> */
+.fontsforweb_fontid_522 {
+	font-family: 'LCDU' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */
