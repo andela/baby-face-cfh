@@ -1,96 +1,97 @@
 import validate from './middlewares/validation';
+import users from '../app/controllers/users';
+import answers from '../app/controllers/answers';
+import questions from '../app/controllers/questions';
+import { allJSON } from '../app/controllers/avatars';
+import index from '../app/controllers/index';
 
-const async = require('async');
+// const async = require('async');
 
-module.exports = function(app, passport, auth) {
-    //User Routes
-    const users = require('../app/controllers/users');
-    app.get('/signin', users.signin);
-    app.get('/signup', users.signup);
-    app.get('/chooseavatars', users.checkAvatar);
-    app.get('/signout', users.signout);
+module.exports = (app, passport) => {
+// User Routes
+  app.get('/signin', users.signin);
+  app.get('/signup', users.signup);
+  app.get('/chooseavatars', users.checkAvatar);
+  app.get('/signout', users.signout);
 
-    //Setting up the users api
-    app.post('/users/avatars', users.avatars);
-    app.post('/api/auth/signup', validate.signupInputs, users.create);
-    app.post('/api/auth/login', users.login);
+  // Setting up the users api
+  app.post('/users/avatars', users.avatars);
+  app.post('/api/auth/signup', validate.signupInputs, users.create);
+  app.post('/api/auth/login', users.login);
+  app.post('/api/users/invite', users.sendInvite);
+  app.get('/api/search/:username', users.search);
 
-    // Donation Routes
-    app.post('/donations', users.addDonation);
+  // Donation Routes
+  app.post('/donations', users.addDonation);
 
-    app.post('/users/session', passport.authenticate('local', {
-        failureRedirect: '/signin',
-        failureFlash: 'Invalid email or password.'
-    }), users.session);
+  app.post('/users/session', passport.authenticate('local', {
+    failureRedirect: '/signin',
+    failureFlash: 'Invalid email or password.'
+  }), users.session);
 
-    app.get('/users/me', users.me);
-    app.get('/users/:userId', users.show);
+  app.get('/users/me', users.me);
+  app.get('/users/:userId', users.show);
 
-    //Setting the facebook oauth routes
-    app.get('/auth/facebook', passport.authenticate('facebook', {
-        scope: ['email'],
-        failureRedirect: '/signin'
-    }), users.signin);
+  // Setting the facebook oauth routes
+  app.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['email'],
+    failureRedirect: '/signin'
+  }), users.signin);
 
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Setting the github oauth routes
-    app.get('/auth/github', passport.authenticate('github', {
-        failureRedirect: '/signin'
-    }), users.signin);
+  // Setting the github oauth routes
+  app.get('/auth/github', passport.authenticate('github', {
+    failureRedirect: '/signin'
+  }), users.signin);
 
-    app.get('/auth/github/callback', passport.authenticate('github', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/github/callback', passport.authenticate('github', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Setting the twitter oauth routes
-    app.get('/auth/twitter', passport.authenticate('twitter', {
-        failureRedirect: '/signin'
-    }), users.signin);
+  // Setting the twitter oauth routes
+  app.get('/auth/twitter', passport.authenticate('twitter', {
+    failureRedirect: '/signin'
+  }), users.signin);
 
-    app.get('/auth/twitter/callback', passport.authenticate('twitter', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Setting the google oauth routes
-    app.get('/auth/google', passport.authenticate('google', {
-        failureRedirect: '/signin',
-        scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email'
-        ]
-    }), users.signin);
+  // Setting the google oauth routes
+  app.get('/auth/google', passport.authenticate('google', {
+    failureRedirect: '/signin',
+    scope: [
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'
+    ]
+  }), users.signin);
 
-    app.get('/auth/google/callback', passport.authenticate('google', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/google/callback', passport.authenticate('google', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Finish with setting up the userId param
-    app.param('userId', users.user);
+  // Finish with setting up the userId param
+  app.param('userId', users.user);
 
-    // Answer Routes
-    var answers = require('../app/controllers/answers');
-    app.get('/answers', answers.all);
-    app.get('/answers/:answerId', answers.show);
-    // Finish with setting up the answerId param
-    app.param('answerId', answers.answer);
+  // Answer Routes
+  app.get('/answers', answers.all);
+  app.get('/answers/:answerId', answers.show);
+  // Finish with setting up the answerId param
+  app.param('answerId', answers.answer);
 
-    // Question Routes
-    var questions = require('../app/controllers/questions');
-    app.get('/questions', questions.all);
-    app.get('/questions/:questionId', questions.show);
-    // Finish with setting up the questionId param
-    app.param('questionId', questions.question);
+  // Question Routes
+  app.get('/questions', questions.all);
+  app.get('/questions/:questionId', questions.show);
+  // Finish with setting up the questionId param
+  app.param('questionId', questions.question);
 
-    // Avatar Routes
-    var avatars = require('../app/controllers/avatars');
-    app.get('/avatars', avatars.allJSON);
+  // Avatar Routes
+  app.get('/avatars', allJSON);
 
-    //Home route
-    var index = require('../app/controllers/index');
-    app.get('/play', index.play);
-    app.get('/', index.render);
-
+  // Home route
+  app.get('/play', index.play);
+  app.get('/', index.render);
 };
