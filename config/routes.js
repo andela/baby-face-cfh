@@ -6,10 +6,10 @@ import index from '../app/controllers/index';
 import { requiresLogin } from './middlewares/authorization';
 import createGame from '../app/controllers/game';
 
-const avatars = require('../app/controllers/avatars');
+import { allJSON } from '../app/controllers/avatars';
 
 module.exports = (app, passport) => {
-  // User Routes
+// User Routes
   app.get('/signin', users.signin);
   app.get('/signup', users.signup);
   app.get('/chooseavatars', users.checkAvatar);
@@ -19,6 +19,8 @@ module.exports = (app, passport) => {
   app.post('/users/avatars', users.avatars);
   app.post('/api/auth/signup', validate.signupInputs, users.create);
   app.post('/api/auth/login', users.login);
+  app.post('/api/users/invite', users.sendInvite);
+  app.get('/api/search/:username', users.search);
 
   // Donation Routes
   app.post('/donations', users.addDonation);
@@ -91,7 +93,7 @@ module.exports = (app, passport) => {
   app.param('questionId', questions.question);
 
   // Avatar Routes
-  app.get('/avatars', avatars.allJSON);
+  app.get('/avatars', allJSON);
 
   // Home route
   app.get('/play', index.play);

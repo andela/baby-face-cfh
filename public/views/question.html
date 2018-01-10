@@ -7,7 +7,7 @@
     <div id="startGame" ng-show="game.state === 'awaiting players'">
       <div id="finding-players">Finding Players</div>
       <div id="player-count-container">
-        <div id="player-count">{{game.players.length}} / 6 </div>
+        <div id="player-count">{{game.players.length}} / 12 </div>
         <div id="the-word-players"> Players </div>
       </div>
       <div id="loading-container">
@@ -18,6 +18,10 @@
           Start Game</br>with {{game.players.length}} players
         </div>
       </div>
+      <div class="pull-right">
+          <a class="btn btn-block btn-primary" id="invite-players" ng-click="popModal()">Invite Players</a>
+        </div>
+          
     </div>
     <!-- Game Over Stuff -->
     <div id="game-end-info">
