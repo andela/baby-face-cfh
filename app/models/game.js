@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const GameSchema = new Schema({
-  userId: [],
   gameId: {
     type: String,
   },

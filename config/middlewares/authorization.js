@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
  * @param {any} next - The next route handler
  * @returns {object} Unauthorized response object
  */
-const requiresLogin = (req, res, next) => {
+const authenticate = (req, res, next) => {
   const token = req.body.token || req.query.token ||
     req.headers['x-access-token'];
   if (!token) {
@@ -47,4 +47,4 @@ const user = {
   }
 };
 
-export { requiresLogin, user };
+export { authenticate, user };
