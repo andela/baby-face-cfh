@@ -1,7 +1,7 @@
-<div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
-  <div id="social-bar-container">
-    <player></player>
-  </div>
+<div id="social-bar-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
+  <player></player>
+</div>
+<div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'game in progress'">
   <div id="cards" class='hand'>
 
     <span ng-show="winnerPicked()"></span>
@@ -69,7 +69,7 @@
       <!-- <script type="text/javascript" src="https://apisandbox.crowdrise.com/widgets/donate/project/36715/?callback=userDonationCb"></script> -->
   </div>
 </div>
-<div id="czar-blank-container" ng-show="isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
+<div id="czar-blank-container" ng-show="isCzar() && game.table.length===0 && game.state === 'waiting for players to pick' && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
   <div id="czar-blank-inner">
     You are the Card Czar. <br>
     <span id="smaller-text">Players are choosing their answers. Prepare to select a winner.</span>

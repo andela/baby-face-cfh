@@ -73,7 +73,17 @@ module.exports = function(io) {
       console.log('Rooms on Disconnect ', io.sockets.manager.rooms);
       exitGame(socket);
     });
+
+    socket.on('czar has picked a random card', () => {
+      czarHasPickedRandomCard();
+    })
   });
+
+  const czarHasPickedRandomCard = () => {
+    game.czarHasPickedARandomCard();
+  }
+
+
 
   var joinGame = function(socket,data) {
     var player = new Player(socket);
@@ -150,7 +160,7 @@ module.exports = function(io) {
   };
 
   var fireGame = function(player,socket) {
-    var game;
+    // var game;
     if (gamesNeedingPlayers.length <= 0) {
       gameID += 1;
       var gameIDStr = gameID.toString();

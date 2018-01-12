@@ -143,32 +143,35 @@ Game.prototype.sendUpdate = function() {
   this.io.sockets.in(this.gameID).emit('gameUpdate', this.payload());
 };
 
-Game.prototype.stateChoosing = function(self) {
-  self.state = "waiting for players to pick";
-  // console.log(self.gameID,self.state);
+Game.prototype.czarHasPickedARandomCard = () => {
+  this.state = 'waiting for players to pick';
+  this.choosingTimeout = setTimeout(() => {
+    this.stateJudging(this);
+  }, this.timeLimits.stateChoosing * 1000);
+  this.sendUpdate();
+};
+
+Game.prototype.stateChoosing = (self) => {
+  self.state = 'game in progress';
   self.table = [];
   self.winningCard = -1;
   self.winningCardPlayer = -1;
   self.winnerAutopicked = false;
   self.curQuestion = self.questions.pop();
   if (!self.questions.length) {
-    self.getQuestions(function(err, data) {
+    self.getQuestions((err, data) => {
       self.questions = data;
     });
   }
-  self.round++;
+  self.round += 1;
   self.dealAnswers();
   // Rotate card czar
   if (self.czar >= self.players.length - 1) {
     self.czar = 0;
   } else {
-    self.czar++;
+    self.czar += 1;
   }
   self.sendUpdate();
-
-  self.choosingTimeout = setTimeout(function() {
-    self.stateJudging(self);
-  }, self.timeLimits.stateChoosing*1000);
 };
 
 Game.prototype.selectFirst = function() {

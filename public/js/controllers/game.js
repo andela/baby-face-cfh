@@ -142,10 +142,24 @@ angular.module('mean.system')
       $scope.pickedCards = [];
     });
 
+    $scope.showRandomCardModal = false;
+
+    $scope.onPickRandomCard = () => {
+      game.czarHasPickedRandCard();
+    }
+
     // In case player doesn't pick a card in time, show the table
     $scope.$watch('game.state', function() {
+      console.log('game.state', game.state);
       if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
         $scope.showTable = true;
+      }
+      if (game.state === 'game in progress') {
+        $scope.showRandomCardModal = true
+      }
+      if (game.state === 'waiting for players to pick') {
+        $scope.showRandomCardModal = false;
+        game.decrementTime();
       }
     });
 

@@ -45,12 +45,10 @@ angular.module('mean.system')
     }
   };
 
-  var timeSetViaUpdate = false;
+  var timeSetViaUpdate = true;
   var decrementTime = function() {
     if (game.time > 0 && !timeSetViaUpdate) {
       game.time--;
-    } else {
-      timeSetViaUpdate = false;
     }
     $timeout(decrementTime, 950);
   };
@@ -94,7 +92,7 @@ angular.module('mean.system')
       timeSetViaUpdate = true;
     } else if (newState && data.state === 'waiting for czar to decide') {
       game.time = game.timeLimits.stateJudging - 1;
-      timeSetViaUpdate = true;
+      timeSetViaUpdate = true; 
     } else if (newState && data.state === 'winner has been chosen') {
       game.time = game.timeLimits.stateResults - 1;
       timeSetViaUpdate = true;
@@ -138,7 +136,7 @@ angular.module('mean.system')
       game.state = data.state;
     }
 
-    if (data.state === 'waiting for players to pick') {
+    if (data.state === 'game in progress') {
       game.czar = data.czar;
       game.curQuestion = data.curQuestion;
       // Extending the underscore within the question
@@ -194,6 +192,15 @@ angular.module('mean.system')
     game.time = 0;
     socket.emit('leaveGame');
   };
+
+  game.czarHasPickedRandCard = () => {
+    socket.emit('czar has picked a random card');
+  }
+
+  game.decrementTime = () => {
+    game.time = game.timeLimits.stateChoosing - 1;
+    timeSetViaUpdate = false;
+  }
 
   game.pickCards = function(cards) {
     socket.emit('pickCards',{cards: cards});
