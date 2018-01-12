@@ -157,7 +157,45 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
+  <!-- Start Game Modal -->
+  <div class="modal fade" id="startGameModal" tabindex="-1" role="dialog" aria-labelledby="startGameModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="startGameModalLabel">Notification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure that you are ready to start the game?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Back</button>
+          <button type="button" class="btn btn-primary" ng-click="confirmStartGame()" data-dismiss="modal">Yes, Start</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Incomplete Players notification -->
+  <div class="modal fade" id="incompletePlayersModal" tabindex="-1" role="dialog" aria-labelledby="incompletePlayersModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="incompletePlayersModalLabel">Notification</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Not enough players, return and invite more players
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

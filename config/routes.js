@@ -1,11 +1,12 @@
 import validate from './middlewares/validation';
 import users from '../app/controllers/users';
 import answers from '../app/controllers/answers';
-import questions from '../app/controllers/questions';
-import { allJSON } from '../app/controllers/avatars';
+import * as questions from '../app/controllers/questions';
 import index from '../app/controllers/index';
+import { authenticate } from './middlewares/authorization';
+import createGame from '../app/controllers/game';
 
-// const async = require('async');
+import { allJSON } from '../app/controllers/avatars';
 
 module.exports = (app, passport) => {
 // User Routes
@@ -75,6 +76,9 @@ module.exports = (app, passport) => {
 
   // Finish with setting up the userId param
   app.param('userId', users.user);
+
+  // Game Routes
+  app.post('/api/games/:id/start', authenticate, createGame);
 
   // Answer Routes
   app.get('/answers', answers.all);
