@@ -31,7 +31,7 @@
       "requireReturnType": true,
       "requireParamDescription": false,
       "requireReturnDescription": true,
-      "no-underscore-dangle": [2, { "allow": [] }]
+      // "no-underscore-dangle": [2, { "allow": [] }]
     }],
     "require-jsdoc": ["error", {
         "require": {
