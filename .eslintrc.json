@@ -33,12 +33,7 @@
       "requireReturn": true,
       "requireReturnType": true,
       "requireParamDescription": false,
-<<<<<<< HEAD
-      "requireReturnDescription": true,
-      // "no-underscore-dangle": [2, { "allow": [] }]
-=======
       "requireReturnDescription": true
->>>>>>> 7bbf450a92ff0dfd3dd291d20230e249ecff781b
     }],
     "require-jsdoc": ["error", {
         "require": {
