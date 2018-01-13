@@ -14,7 +14,7 @@ const avatars = require('./avatars').all();
  * @returns {void}
  */
 exports.authCallback = (req, res) => {
-  res.redirect('/chooseavatars');
+  res.redirect('/#!/');
 };
 
 /**
