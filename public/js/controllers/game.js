@@ -167,10 +167,14 @@ angular.module('mean.system')
           $scope.showTable = true;
         }
         if (game.state === 'game in progress') {
-          $scope.showRandomCardModal = true;
+          $('#modal-container').removeAttr('class').addClass('five');
+          $('body').addClass('modal-active');
+          // $scope.showRandomCardModal = true;
         }
-        if (game.state === 'waiting for players to pick') {
-          $scope.showRandomCardModal = false;
+        if (game.state === 'waiting for players to pick' || game.state === 'game dissolved') {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+          // $scope.showRandomCardModal = false;
           game.decrementTime();
         }
       });
