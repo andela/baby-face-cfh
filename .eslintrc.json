@@ -23,9 +23,10 @@
     "consistent-return": 0,
     "no-param-reassign": 0,
     "comma-dangle": 0,
+    "import/no-dynamic-require" : 0,
     "no-console": ["error", { "allow": ["log"] }],
     "curly": ["error", "multi-line"],
-    "import/no-unresolved": [2, { "commonjs": false }],
+    "import/no-unresolved": [2, { "commonjs": false, "caseSensitive": false  }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "no-underscore-dangle": [2, {
       "allow": ["_json", "_id", "_data", "_this", "_findPlayerIndexBySocket"],
