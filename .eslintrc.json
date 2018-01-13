@@ -27,7 +27,7 @@
     "import/no-unresolved": [2, { "commonjs": true }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "no-underscore-dangle": [2, {
-      "allow": true
+      "allow": ["_json"]
       }],
     "valid-jsdoc": ["error", {
       "requireReturn": true,
