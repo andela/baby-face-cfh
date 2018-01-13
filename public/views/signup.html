@@ -34,20 +34,22 @@
                 <form ng-controller="AuthenticationController">
                   <ul class="form row p-3">
                     <li class="col-12">
-                      <button class="btn btn-block text-white ribbon-blue hovered">
+                      <a href="/auth/facebook" class="btn btn-block text-left pb-2 text-white ribbon-blue hovered">
                         <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
-                        <span class="pt-5">Sign up with Facebook</span>
-                      </button>
+                        <span class="pl-3">Sign up with Facebook</span>
+                      </a>
                     </li>
                     <li class="col-12">
-                      <button class="btn btn-block text-white btn-info hovered">
-                        <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign up with Twitter
-                      </button>
+                      <a href="/auth/twitter" class="btn btn-block text-left text-white btn-info hovered">
+                        <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> 
+                        <span class="pl-3">Sign up with Twitter</span>
+                      </a>
                     </li>
                     <li class="col-12">
-                      <button class="btn btn-block text-white btn-danger hovered">
-                        <i class="fa fa-google float-left fa-2x" aria-hidden="true"></i> Sign up with Google
-                      </button>
+                      <a href="/auth/google" class="btn btn-block text-left text-white btn-danger hovered">
+                        <i class="fa fa-google float-left fa-2x" aria-hidden="true"></i> 
+                        <span class="pl-3">Sign up with Google</span>
+                      </a>
                     </li>
                     <li class="col-12">
                       <label>Username</label>
@@ -76,50 +78,7 @@
     </div>
   </div>
   <!-- sign up form end -->
-
-  <!-- <div class="container-fluid mt-0 ">
-    <div class="row justify-content-center signup-wrapper">
-      <div class="col-lg-4 p-50 form-wrapper mt-100 mb-100" ng-controller="AuthenticationController">
-        <form>
-          <ul class="form row p-3">
-            <li class="col-12">
-              <button class="btn btn-block text-white ribbon-blue hovered">
-                <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
-                <span class="pt-5">Sign up with Facebook</span>
-              </button>
-            </li>
-            <li class="col-12">
-              <button class="btn btn-block text-white btn-info hovered">
-                <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign up with Twitter
-              </button>
-            </li>
-            <li class="col-12">
-              <p class="text-center bolder">- or - </p>
-            </li>
-            <li class="col-12">
-              <label>Username</label>
-              <input type="text" ng-model="user.name" required class="col-12" name="moniker" placeholder="johnDoe23" />
-            </li>
-
-            <li class="col-12">
-              <label>Email</label>
-              <input type="email" ng-model="user.email" required class="col-12" name="email" placeholder="example@example.com" />
-            </li>
-
-            <li class="col-12">
-              <label>Password</label>
-              <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
-            </li>
-            <li class=" col-12 ">
-              <p ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
-              <input type="submit" ng-click="signup(user)" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered"
-              />
-            </li>
-          </ul>
-        </form>
-      </div>
-    </div>
-  </div> -->
+  
   <!-- footer start -->
   <footer class="container-fluid text-white">
     <div class="row footer p-10">

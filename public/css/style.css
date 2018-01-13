@@ -461,3 +461,17 @@ height: 50%;
 position: relative;
 margin-top: 10px;
 font-size: 30px;}
+
+.login-button{
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.fontify{
+  font-size: 1rem;  
+  padding-top: 10px !important;
+}
+
+.hovered .fa-2x {
+  font-size: 1.7rem !important;
+}

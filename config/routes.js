@@ -74,6 +74,11 @@ module.exports = (app, passport) => {
     failureRedirect: '/signin'
   }), users.authCallback);
 
+  app.get('/api/auth/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
+
   // Finish with setting up the userId param
   app.param('userId', users.user);
 
