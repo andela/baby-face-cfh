@@ -219,6 +219,15 @@ angular.module('mean.system')
         socket.emit('leaveGame');
       };
 
+      game.czarHasPickedRandCard = () => {
+        socket.emit('czar has picked a random card');
+      };
+
+      game.decrementTime = () => {
+        game.time = game.timeLimits.stateChoosing - 1;
+        timeSetViaUpdate = false;
+      };
+
       game.pickCards = (cards) => {
         socket.emit('pickCards', { cards });
       };

@@ -154,7 +154,7 @@ Game.prototype.sendUpdate = function () {
   this.io.sockets.in(this.gameID).emit('gameUpdate', this.payload());
 };
 
-Game.prototype.czarHasPickedARandomCard = () => {
+Game.prototype.czarHasPickedARandomCard = function () {
   this.state = 'waiting for players to pick';
   this.choosingTimeout = setTimeout(() => {
     this.stateJudging(this);

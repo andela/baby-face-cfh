@@ -141,41 +141,40 @@ angular.module('mean.system')
 
       $scope.winnerPicked = () => game.winningCard !== -1;
 
-<<<<<<< HEAD
-    // Catches changes to round to update when no players pick card
-    // (because game.state remains the same)
-    $scope.$watch('game.round', function() {
-      $scope.hasPickedCards = false;
-      $scope.showTable = false;
-      $scope.winningCardPicked = false;
-      $scope.makeAWishFact = makeAWishFacts.pop();
-      if (!makeAWishFacts.length) {
-        makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-      }
-      $scope.pickedCards = [];
-    });
+      // Catches changes to round to update when no players pick card
+      // (because game.state remains the same)
+      $scope.$watch('game.round', () => {
+        $scope.hasPickedCards = false;
+        $scope.showTable = false;
+        $scope.winningCardPicked = false;
+        $scope.makeAWishFact = makeAWishFacts.pop();
+        if (!makeAWishFacts.length) {
+          makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+        }
+        $scope.pickedCards = [];
+      });
 
-    $scope.showRandomCardModal = false;
+      $scope.showRandomCardModal = false;
 
-    $scope.onPickRandomCard = () => {
-      game.czarHasPickedRandCard();
-    }
+      $scope.onPickRandomCard = () => {
+        game.czarHasPickedRandCard();
+      };
 
-    // In case player doesn't pick a card in time, show the table
-    $scope.$watch('game.state', function() {
-      console.log('game.state', game.state);
-      if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
-        $scope.showTable = true;
-      }
-      if (game.state === 'game in progress') {
-        $scope.showRandomCardModal = true
-      }
-      if (game.state === 'waiting for players to pick') {
-        $scope.showRandomCardModal = false;
-        game.decrementTime();
-      }
-    });
-=======
+      // In case player doesn't pick a card in time, show the table
+      $scope.$watch('game.state', () => {
+        console.log('game.state', game.state);
+        if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
+          $scope.showTable = true;
+        }
+        if (game.state === 'game in progress') {
+          $scope.showRandomCardModal = true;
+        }
+        if (game.state === 'waiting for players to pick') {
+          $scope.showRandomCardModal = false;
+          game.decrementTime();
+        }
+      });
+
       $scope.startGame = () => {
         if (game.players.length >= game.playerMinLimit) {
           $('#startGameModal').modal({
@@ -196,28 +195,6 @@ angular.module('mean.system')
         game.leaveGame();
         $location.path('/');
       };
-
-      // Catches changes to round to update when no players pick card
-      // (because game.state remains the same)
-      $scope.$watch('game.round', () => {
-        $scope.hasPickedCards = false;
-        $scope.showTable = false;
-        $scope.winningCardPicked = false;
-        $scope.makeAWishFact = makeAWishFacts.pop();
-        if (!makeAWishFacts.length) {
-          makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-        }
-        $scope.pickedCards = [];
-      });
-
-      // In case player doesn't pick a card in time, show the table
-      $scope.$watch('game.state', () => {
-        if (game.state === 'waiting for czar to decide' &&
-          $scope.showTable === false) {
-          $scope.showTable = true;
-        }
-      });
->>>>>>> 7bbf450a92ff0dfd3dd291d20230e249ecff781b
 
       $scope.$watch('game.gameID', () => {
         if (game.gameID && game.state === 'awaiting players') {
