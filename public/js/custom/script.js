@@ -2,10 +2,9 @@ AOS.init({
   duration: 1200
 });
 $(document).ready(() => {
- 
-  $( () => {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+  $(() => {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
   const stickyToggle = (sticky, stickyWrapper, scrollElement) => {
     const stickyHeight = sticky.outerHeight();
     const stickyTop = stickyWrapper.offset().top;
