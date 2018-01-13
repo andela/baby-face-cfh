@@ -7,17 +7,23 @@
     <div id="startGame" ng-show="game.state === 'awaiting players'">
       <div id="finding-players">Finding Players</div>
       <div id="player-count-container">
-        <div id="player-count">{{game.players.length}} / 6 </div>
+        <div id="player-count">{{game.players.length}} / 12 </div>
         <div id="the-word-players"> Players </div>
       </div>
       <div id="loading-container">
-        <div id="loading-gif"><img ng-src="../img/loader.gif"/></div>
-      </div>
-      <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
-        <div id='start-game-button'>
-          Start Game</br>with {{game.players.length}} players
+        <div id="loading-gif">
+          <img ng-src="../img/loader.gif" />
         </div>
       </div>
+      <div id="start-game-container" ng-show="(game.playerIndex === 0 || game.joinOverride)">
+        <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white" ng-click="startGame()">
+          Start Game
+        </button>
+      </div>
+      <div class="pull-right">
+        <a class="btn btn-block btn-primary" id="invite-players" ng-click="popModal()">Invite Players</a>
+      </div>
+
     </div>
     <!-- Game Over Stuff -->
     <div id="game-end-info">
@@ -26,7 +32,9 @@
         Our sincere apologies.
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner === game.playerIndex">
-        <div class="game-end-headline">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde it all for youself.
+        <div class="game-end-headline">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you
+        feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde
+        it all for youself.
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner !== game.playerIndex">
         <div class="game-end-headline">Aw, shucks! {{game.players[game.gameWinner].username | upperFirstLetter }} won the game!</div>
@@ -35,4 +43,3 @@
     </div>
   </div>
 </div>
-
