@@ -25,10 +25,11 @@
     "comma-dangle": 0,
     "no-console": ["error", { "allow": ["log"] }],
     "curly": ["error", "multi-line"],
-    "import/no-unresolved": [2, { "commonjs": true }],
+    "import/no-unresolved": [2, { "commonjs": false }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "no-underscore-dangle": [2, {
-      "allow": ["_json", "_id", "_data", "_this"]
+      "allow": ["_json", "_id", "_data", "_this", "_findPlayerIndexBySocket"],
+      "allowAfterThis": true
       }],
     "valid-jsdoc": ["error", {
       "requireReturn": true,

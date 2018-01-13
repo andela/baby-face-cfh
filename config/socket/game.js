@@ -331,7 +331,8 @@ Game.prototype.pickCards = function (thisCardArray, thisPlayer) {
           }
           console.log('card', i, 'is at index', cardIndex);
           if (cardIndex !== null) {
-            tableCard.push(this.players[playerIndex].hand.splice(cardIndex, 1)[0]);
+            tableCard.push(this.players[playerIndex]
+              .hand.splice(cardIndex, 1)[0]);
           }
           console.log('table object at', cardIndex, ':', tableCard);
         }
@@ -394,8 +395,10 @@ Game.prototype.removePlayer = function (thisPlayer) {
         return this.stateChoosing(this);
       } else if (this.state === 'waiting for czar to decide') {
         // If players are waiting on a czar to pick, auto pick.
+        /* eslint-disable */
         this.sendNotification('The Czar left the game! First answer submitted wins!');
-        this.pickWinning(this.table[0].card[0].id, thisPlayer, true);
+        this.pickWinning(this.table[0]
+          .card[0].id, thisPlayer, true);
       }
     } else {
       // Update the czar's position if the removed player is above
