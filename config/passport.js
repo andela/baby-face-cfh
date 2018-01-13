@@ -1,4 +1,4 @@
-let mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
   LocalStrategy = require('passport-local').Strategy,
   TwitterStrategy = require('passport-twitter').Strategy,
   FacebookStrategy = require('passport-facebook').Strategy,
