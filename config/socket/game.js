@@ -331,7 +331,8 @@ Game.prototype.pickCards = function (thisCardArray, thisPlayer) {
           }
           console.log('card', i, 'is at index', cardIndex);
           if (cardIndex !== null) {
-            tableCard.push(this.players[playerIndex].hand.splice(cardIndex, 1)[0]);
+            tableCard.push(this.players[playerIndex]
+              .hand.splice(cardIndex, 1)[0]);
           }
           console.log('table object at', cardIndex, ':', tableCard);
         }
@@ -394,7 +395,8 @@ Game.prototype.removePlayer = function (thisPlayer) {
         return this.stateChoosing(this);
       } else if (this.state === 'waiting for czar to decide') {
         // If players are waiting on a czar to pick, auto pick.
-        this.sendNotification('The Czar left the game! First answer submitted wins!');
+        const msg = 'The Czar left the game! First answer submitted wins!';
+        this.sendNotification(msg);
         this.pickWinning(this.table[0].card[0].id, thisPlayer, true);
       }
     } else {
@@ -431,7 +433,11 @@ Game.prototype.pickWinning = function (thisCard, thisPlayer, autopicked) {
       this.winnerAutopicked = autopicked;
       this.stateResults(this);
     } else {
-      console.log('WARNING: czar', thisPlayer, 'picked a card that was not on the table.');
+      console.log(
+        'WARNING: czar',
+        thisPlayer,
+        'picked a card that was not on the table.'
+      );
     }
   } else {
     // TODO: Do something?
