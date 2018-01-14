@@ -3,7 +3,7 @@ angular
   .directive('player', () => ({
     restrict: 'EA',
     templateUrl: '/views/player.html',
-    link(scope, elem, attr) {
+    link(scope) {
       scope.colors = [
         '#7CE4E8',
         '#FFFFa5',
@@ -23,7 +23,7 @@ angular
   .directive('answers', () => ({
     restrict: 'EA',
     templateUrl: '/views/answers.html',
-    link(scope, elem, attr) {
+    link(scope) {
       scope.$watch('game.state', () => {
         if (scope.game.state === 'winner has been chosen') {
           const curQ = scope.game.curQuestion;
@@ -63,7 +63,8 @@ angular
               curQuestionArr.splice(3, 0, startStyle + cardText + endStyle);
             }
             curQ.text = curQuestionArr.join('');
-            // Clean up the last punctuation mark in the question if there already is one in the answer
+            // Clean up the last punctuation mark in the
+            // question if there already is one in the answer
             if (shouldRemoveQuestionPunctuation) {
               if (
                 curQ.text.indexOf('.', curQ.text.length - 2) ===
@@ -86,19 +87,19 @@ angular
   .directive('question', () => ({
     restrict: 'EA',
     templateUrl: '/views/question.html',
-    link(scope, elem, attr) {}
+    // link(scope, elem, attr) {}
   }))
   .directive('timer', () => ({
     restrict: 'EA',
     templateUrl: '/views/timer.html',
-    link(scope, elem, attr) {}
+    // link(scope, elem, attr) {}
   }))
   .directive('landing', [
     '$location',
     function ($location) {
       return {
         restrict: 'EA',
-        link(scope, elem, attr) {
+        link(scope) {
           scope.showOptions = true;
           scope.signOut = () => {
             localStorage.removeItem('token');
