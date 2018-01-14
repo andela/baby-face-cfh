@@ -425,8 +425,11 @@ Game.prototype.pickWinning = function (thisCard, thisPlayer, autopicked) {
     });
     if (cardIndex !== -1) {
       this.winningCard = cardIndex;
-      const winnerIndex = this._findPlayerIndexBySocket(this.table[cardIndex].player);
-      this.sendNotification(`${this.players[winnerIndex].username} has won the round!`);
+      const winnerIndex = this._findPlayerIndexBySocket(this
+        .table[cardIndex].player);
+      this.sendNotification(`
+      ${this.players[winnerIndex].username} has won the round!
+      `);
       this.winningCardPlayer = winnerIndex;
       this.players[winnerIndex].points += 1;
       clearTimeout(this.judgingTimeout);
