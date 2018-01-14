@@ -59,7 +59,7 @@
               </span>
 
               <span ng-hide="showOptions">
-                <a href="#" class="btn btn-orange text-white btn-lg hvr-grow-shadow">Join Game</a>
+                <a href="#!/app" class="btn btn-orange text-white btn-lg hvr-grow-shadow">Join Game</a>
               </span>
             </div>
           </div>
@@ -117,12 +117,16 @@
             </button>
           </div>
           <div ng-hide="showOptions" class="col-lg-10 col-md-8 col-sm-6 text-center">
-            <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
-              <h5>Play with strangers</h5>
-            </button>
-            <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
-              <h5>Play with friends</h5>
-            </button>
+            <a href="/play">
+              <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+                  <h5>Play with strangers</h5>
+                </button>
+            </a>
+            <a href="/play?custom">
+              <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+                  <h5>Play with friends</h5>
+                </button>
+            </a>
           </div>
           <!-- </div> -->
         </div>

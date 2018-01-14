@@ -199,6 +199,21 @@ angular.module('mean.system')
           }
         }
       });
+      
+      $scope.gameTour = introJs();
+      $scope.gameTour.setOptions({
+       steps: [
+           { 
+             intro: "Hello, I would like to take you on a quick tour of how this game is played."
+          },
+          {
+             element: document.querySelector('#abandon-game-button'),
+             intro: "If you ever decide to the quit or leave the game, you can click this button."
+           }
+         ]
+       });
+        $scope.gameTour.start();
+       
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
         console.log('joining custom game');
