@@ -81,9 +81,7 @@ module.exports = function(io) {
 
   const czarHasPickedRandomCard = () => {
     game.czarHasPickedARandomCard();
-  }
-
-
+  };
 
   var joinGame = function(socket,data) {
     var player = new Player(socket);

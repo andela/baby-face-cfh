@@ -157,25 +157,34 @@ angular.module('mean.system')
       $scope.showRandomCardModal = false;
 
       $scope.onPickRandomCard = () => {
-        game.czarHasPickedRandCard();
+        setTimeout(() => {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+          game.czarHasPickedRandCard();
+        }, 2000);
       };
 
       // In case player doesn't pick a card in time, show the table
       $scope.$watch('game.state', () => {
-        console.log('game.state', game.state);
-        if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
+        if (game.state === 'waiting for czar to decide'
+          && $scope.showTable === false) {
           $scope.showTable = true;
         }
         if (game.state === 'game in progress') {
           $('#modal-container').removeAttr('class').addClass('five');
+          $('.modal label').prop('checked', false);
+          $('.modal input').prop('checked', false);
+          $('.back p').html(game.curQuestion.text);
           $('body').addClass('modal-active');
-          // $scope.showRandomCardModal = true;
         }
-        if (game.state === 'waiting for players to pick' || game.state === 'game dissolved') {
+        if (game.state === 'waiting for players to pick') {
           $('#modal-container').addClass('out');
           $('body').removeClass('modal-active');
-          // $scope.showRandomCardModal = false;
           game.decrementTime();
+        }
+        if (game.state === 'game dissolved') {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
         }
       });
 

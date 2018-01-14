@@ -238,7 +238,6 @@ class Game {
 
   stateResults = () => {
     this.state = 'winner has been chosen';
-    console.log(this.state);
     // TODO: do stuff
     let winner = -1;
     for (let i = 0; i < this.players.length; i += 1) {
