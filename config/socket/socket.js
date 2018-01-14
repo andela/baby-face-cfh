@@ -16,6 +16,10 @@ module.exports = function(io) {
   var gamesNeedingPlayers = [];
   var gameID = 0;
 
+  const czarHasPickedRandomCard = () => {
+    game.czarHasPickedARandomCard();
+  };
+
   io.sockets.on('connection', function (socket) {
     console.log(socket.id +  ' Connected');
     socket.emit('id', {id: socket.id});
@@ -76,12 +80,8 @@ module.exports = function(io) {
 
     socket.on('czar has picked a random card', () => {
       czarHasPickedRandomCard();
-    })
+    });
   });
-
-  const czarHasPickedRandomCard = () => {
-    game.czarHasPickedARandomCard();
-  };
 
   var joinGame = function(socket,data) {
     var player = new Player(socket);
