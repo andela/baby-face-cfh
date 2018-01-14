@@ -5,6 +5,7 @@ angular.module('mean.system').controller('AuthenticationController', [
   '$window',
   ($scope, $http, $location, $window) => {
     const onResponse = (response) => {
+      $scope.showLoader = false;
       const { data: { data } } = response,
         { token } = data;
       $window.localStorage.setItem('token', token);
@@ -13,6 +14,7 @@ angular.module('mean.system').controller('AuthenticationController', [
     };
 
     const onError = (error) => {
+      $scope.showLoader = false;
       const { data: { message } } = error;
       $scope.serverErrorMessage = message;
     };
@@ -24,6 +26,7 @@ angular.module('mean.system').controller('AuthenticationController', [
     $scope.serverErrorExists = () => $scope.serverErrorMessage.length > 0;
 
     $scope.signup = () => {
+      $scope.showLoader = true;
       const newUser = {
         name: $scope.user.name,
         email: $scope.user.email,
@@ -32,7 +35,10 @@ angular.module('mean.system').controller('AuthenticationController', [
       $http.post('/api/auth/signup', newUser).then(onResponse, onError);
     };
 
+    $scope.showLoader = false;
+
     $scope.login = () => {
+      $scope.showLoader = true;
       const userInputs = {
         email: $scope.user.email,
         password: $scope.user.password

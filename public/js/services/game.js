@@ -26,7 +26,6 @@ angular.module('mean.system')
 
       const notificationQueue = [];
       let timeout = false;
-      const _ = null;
       /* eslint-disable */ // this variable will be useful below
       let joinOverrideTimeout = 0;
 
@@ -164,11 +163,11 @@ angular.module('mean.system')
             .replace(/_/g, '<u></u>');
 
           // Set notifications only when entering state
-          if (newState) {
-            if (game.czar === game.playerIndex) {
-              addToNotificationQueue('You\'re the Card Czar! Please choose a random question card!');
-            }
-          }
+          // if (newState) {
+          //   if (game.czar === game.playerIndex) {
+          //     addToNotificationQueue('You\'re the Card Czar! Please choose a random question card!');
+          //   }
+          // }
         } else if (data.state === 'waiting for czar to decide') {
           if (game.czar === game.playerIndex) {
             addToNotificationQueue("Everyone's done. Choose the winner!");
