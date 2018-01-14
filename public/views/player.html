@@ -1,4 +1,4 @@
-<div class="player-container  btn mr-1 mb-3 " ng-repeat="player in game.players" style="background-color:{{colors[player.color]}}">
+<div class="player-container  btn mr-1 mb-3 " ng-repeat="player in game.players" style="background-color:#4E8DBF">
   
   <div id="above-czar-container">
     <div id="avatar_">
@@ -8,10 +8,10 @@
       <img ng-src="{{player.avatar}}" class="img-responsive" width="50" height="50" />
     </div>
     <div id="player-container-inner" class="text-center mt-1">
-      <div id="player-name" class="text-dark">
+      <div id="player-name" class="text-light">
         <p class="player-name bold">{{player.username | upperFirstLetter}}</p>
       </div>
-      <div id="player-score" class="text-dark">
+      <div id="player-score" class="text-light">
         <p class="player-name bolder text-center">{{player.points}}/{{game.pointLimit}}
           <span ng-show="isPlayer($index)" class="player-notif bolder">(you)</span>
         </p>
