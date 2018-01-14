@@ -3,23 +3,23 @@
         "name": "Cards for Humanity"
     },
     "facebook": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://cfh.io/auth/facebook/callback"
+        "clientID": "516786422041514",
+        "clientSecret": "430f901061d285ea2bdf78d32f0b5077",
+        "callbackURL": "http://baby-face-cfh-staging.herokuapp.com/auth/facebook/callback"
     },
     "twitter": {
-        "clientID": "CONSUMER_KEY",
-        "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "http://cfh.io/auth/twitter/callback"
+        "clientID": "Qhp1wadypWlFoFjO3m2byaQ1R",
+        "clientSecret": "ldHx2Gl6wTU2CSe8FNtiNAW1yGzQgZcrW8qhzBjscxEoA6dUuk",
+        "callbackURL": "http://baby-face-cfh-staging.herokuapp.com/auth/facebook/callback"
     },
     "github": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://cfh.io/auth/github/callback"
+        "callbackURL": "http://baby-face-cfh-staging.herokuapp.com/auth/facebook/callback"
     },
     "google": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://cfh.io/auth/google/callback"
+        "clientID": "771447669623-4clst3m2hbqc8gqi65dolfm0lm4053q9.apps.googleusercontent.com",
+        "clientSecret": "glDoJMAvzoSY8XeuEDgoNrfh",
+        "callbackURL": "http://baby-face-cfh-staging.herokuapp.com/auth/facebook/callback"
     }
 }

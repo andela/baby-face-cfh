@@ -5,17 +5,19 @@ html.modal-active, body.modal-active {
 #modal-container {
   position: fixed;
   display: table;
-  top: 21px;
-  left: 350px;
+  top: 5.05rem;
+  left: 15rem;
   transform: scale(0);
   z-index: 1;
+  width: 52.5rem;
+  min-height: 330px;
 }
 
 #modal-container.five {
   transform: scale(1);
 }
 #modal-container.five .modal-background {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.8);
 }
 #modal-container.five .modal-background .modal {
   transform: translateX(-1500px);
@@ -50,7 +52,7 @@ html.modal-active, body.modal-active {
 }
 
 #modal-container.five .modal-background #text-background {
-  animation: fadeIn 0.5s cubic-bezier(1.0, 1.84, 0.4, 1) forwards;
+  /* animation: fadeIn 0.5s cubic-bezier(1.0, 1.84, 0.4, 1) forwards; */
   padding: 18px;
 } 
 #modal-container .modal-background .modal p {
@@ -96,6 +98,11 @@ html.modal-active, body.modal-active {
   -webkit-transition: all 600ms;
   transition: all 600ms;
   z-index: 20;
+  display: inline-table;
+  border: 0;
+  background-color: inherit;
+  vertical-align: top;
+  margin: 0;
 }
 
 #modal-container .modal-background .modal .card div {

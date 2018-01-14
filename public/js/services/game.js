@@ -26,6 +26,8 @@ angular.module('mean.system')
 
       const notificationQueue = [];
       let timeout = false;
+      const _ = null;
+      /* eslint-disable */ // this variable will be useful below
       let joinOverrideTimeout = 0;
 
       const setNotification = () => {
@@ -206,7 +208,7 @@ angular.module('mean.system')
         mode = mode || 'joinGame';
         room = room || '';
         createPrivate = createPrivate || false;
-        const userID = window.user ? user._id : 'unauthenticated';
+        const userID = window.user ? window.user._id : 'unauthenticated';
         socket.emit(mode, {
           userID,
           room,

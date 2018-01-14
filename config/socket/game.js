@@ -19,8 +19,8 @@ const guestNames = [
 ];
 
 /**
- * 
- * 
+ *
+ *
  * @class Game
  */
 class Game {
@@ -125,6 +125,13 @@ class Game {
     });
   }
 
+
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   assignGuestNames = () => {
     this.players.forEach((player) => {
       if (player.username === 'Guest') {
@@ -137,6 +144,13 @@ class Game {
     });
   }
 
+
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   prepareGame = () => {
     this.state = 'game in progress';
     this.io.sockets.in(this.gameID).emit(
@@ -164,6 +178,12 @@ class Game {
     );
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   startGame = () => {
     // console.log(this.gameID, this.state);
     this.shuffleCards(this.questions);
@@ -171,10 +191,22 @@ class Game {
     this.stateChoosing();
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   sendUpdate = () => {
     this.io.sockets.in(this.gameID).emit('gameUpdate', this.payload());
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   czarHasPickedARandomCard = () => {
     this.state = 'waiting for players to pick';
     this.choosingTimeout = setTimeout(() => {
@@ -183,6 +215,12 @@ class Game {
     this.sendUpdate();
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   stateChoosing = () => {
     this.state = 'game in progress';
     this.table = [];
@@ -206,6 +244,13 @@ class Game {
     this.sendUpdate();
   }
 
+
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   selectFirst = () => {
     if (this.table.length) {
       this.winningCard = 0;
@@ -220,6 +265,12 @@ class Game {
     }
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   stateJudging = () => {
     this.state = 'waiting for czar to decide';
     // console.log(self.gameID,self.state);
@@ -236,6 +287,12 @@ class Game {
     }
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   stateResults = () => {
     this.state = 'winner has been chosen';
     // TODO: do stuff
@@ -255,6 +312,12 @@ class Game {
     }, this.timeLimits.stateResults * 1000);
   }
 
+  /**
+   *
+   * @param {object} winner
+   * @returns {void}
+   * @memberOf Game
+   */
   stateEndGame = (winner) => {
     this.state = 'game ended';
     this.gameWinner = winner;
@@ -269,23 +332,47 @@ class Game {
     this.io.sockets.in(this.gameID).emit('saveGameSession', gameSessionData);
   }
 
+  /**
+   * @returns {void}
+   *
+   *
+   * @memberOf Game
+   */
   stateDissolveGame = () => {
     this.state = 'game dissolved';
     this.sendUpdate();
   }
 
+  /**
+   * @returns {void}
+   *
+   * @param {function} cb
+   * @memberOf Game
+   */
   getQuestions = (cb) => {
     questions.allQuestionsForGame((data) => {
       cb(null, data);
     });
   }
 
+  /**
+   * @param {function} cb
+   *
+   * @returns {void}
+   * @memberOf Game
+   */
   getAnswers = (cb) => {
     answers.allAnswersForGame((data) => {
       cb(null, data);
     });
   }
 
+  /**
+   * @param {object} cards
+   * @returns {void}
+   *
+   * @memberOf Game
+   */
   shuffleCards = (cards) => {
     let shuffleIndex = cards.length,
       temp,
@@ -301,6 +388,12 @@ class Game {
     return cards;
   }
 
+  /**
+   * @param {obj} maxAnswers
+   * @returns {void}
+   *
+   * @memberOf Game
+   */
   dealAnswers = (maxAnswers) => {
     maxAnswers = maxAnswers || 10;
     const storeAnswers = (err, data) => {
@@ -316,6 +409,12 @@ class Game {
     }
   }
 
+  /**
+   * @param {object} thisPlayer
+   * @returns {int} playerIndex
+   *
+   * @memberOf Game
+   */
   _findPlayerIndexBySocket = (thisPlayer) => {
     let playerIndex = -1;
     _.each(this.players, (player, index) => {
@@ -326,6 +425,13 @@ class Game {
     return playerIndex;
   }
 
+  /**
+   * @param {array} thisCardArray
+   * @param {object} thisPlayer
+   * @returns {void}
+   *
+   * @memberOf Game
+   */
   pickCards = (thisCardArray, thisPlayer) => {
     // Only accept cards when we expect players to pick a card
     if (this.state === 'waiting for players to pick') {
@@ -377,6 +483,13 @@ class Game {
     }
   }
 
+  /**
+   * @param {object} thisPlayer
+   * @returns {object} playersIndex
+   *
+   *
+   * @memberOf Game
+   */
   getPlayer = (thisPlayer) => {
     const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
     if (playerIndex > -1) {
@@ -385,6 +498,12 @@ class Game {
     return {};
   }
 
+  /**
+   * @param {object} thisPlayer
+   * @returns {void}
+   *
+   * @memberOf Game
+   */
   removePlayer = (thisPlayer) => {
     const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
 
@@ -432,6 +551,15 @@ class Game {
     }
   }
 
+  /**
+   * @param {object} thisCard
+   * @param {object} thisPlayer
+   * @param {boolean} autopicked
+   * @returns {void}
+   *
+   *
+   * @memberOf Game
+   */
   pickWinning = (thisCard, thisPlayer, autopicked) => {
     autopicked = autopicked || false;
     const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
@@ -461,6 +589,12 @@ class Game {
     }
   }
 
+  /**
+   * @returns {void}
+   *
+   *
+   * @memberOf Game
+   */
   killGame = () => {
     console.log('Killing game', this.gameID);
     clearTimeout(this.resultsTimeout);
