@@ -145,6 +145,15 @@ angular.module('mean.system')
           game.state = data.state;
         }
 
+        if (game.state === 'waiting for players to pick'
+          && game.czar !== game.playerIndex) {
+          if (game.curQuestion.numAnswers === 1) {
+            addToNotificationQueue('Select an answer!');
+          } else {
+            addToNotificationQueue('Select TWO answers!');
+          }
+        }
+
         if (data.state === 'game in progress') {
           game.czar = data.czar;
           game.curQuestion = data.curQuestion;
@@ -155,11 +164,7 @@ angular.module('mean.system')
           // Set notifications only when entering state
           if (newState) {
             if (game.czar === game.playerIndex) {
-              addToNotificationQueue('You\'re the Card Czar! Please wait!');
-            } else if (game.curQuestion.numAnswers === 1) {
-              addToNotificationQueue('Select an answer!');
-            } else {
-              addToNotificationQueue('Select TWO answers!');
+              addToNotificationQueue('You\'re the Card Czar! Please choose a random question card!');
             }
           }
         } else if (data.state === 'waiting for czar to decide') {
