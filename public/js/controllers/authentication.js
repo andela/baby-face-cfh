@@ -45,9 +45,5 @@ angular.module('mean.system')
         $location.path('/');
         $window.location.reload();
       };
-
-      $scope.guestTour = () => {
-        localStorage.setItem('guest_tour_status', false);
-      };
     }
   ]);

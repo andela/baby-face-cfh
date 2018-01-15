@@ -258,13 +258,20 @@ angular.module('mean.system')
       });
       // Take tour method: This will run on ng-init
       $scope.takeTour = () => {
-        const tourStatus = localStorage.getItem('tour_status') || localStorage.getItem('guest_tour_status');
+        const tourStatus = localStorage.getItem('tour_status');
         if (tourStatus === 'false') {
           const timeout = setTimeout(() => {
             $scope.gameTour.start();
             clearTimeout(timeout);
           }, 2000);
-          localStorage.removeItem('tour_status') || localStorage.removeItem('guests_tour_status');
+          localStorage.removeItem('tour_status');
+        }
+        const guestTour = localStorage.getItem('token');
+        if (!guestTour) {
+          const timeout = setTimeout(() => {
+            $scope.gameTour.start();
+            clearTimeout(timeout);
+          }, 2000);
         }
       };
       $scope.retakeTour = () => {
