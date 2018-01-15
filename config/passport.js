@@ -6,6 +6,11 @@ const mongoose = require('mongoose'),
   GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
   User = mongoose.model('User'),
   config = require('./config');
+  
+// import test from './env/development';
+
+
+
 
 module.exports = function (passport) {
   // Serialize sessions
