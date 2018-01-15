@@ -28,25 +28,28 @@ angular
         if (scope.game.state === 'winner has been chosen') {
           const curQ = scope.game.curQuestion;
           const curQuestionArr = curQ.text.split('_');
-          const startStyle = `<span style='color: ${
-            scope.colors[scope.game.players[scope.game.winningCardPlayer].color]
-          }'>`;
+          const startStyle =
+              `<span style='color: ${
+                scope.colors[
+                  scope.game.players[scope.game.winningCardPlayer].color
+                ]
+              }'>`;
           const endStyle = '</span>';
           let shouldRemoveQuestionPunctuation = false;
           const removePunctuation = function (cardIndex) {
             let cardText =
-              scope.game.table[scope.game.winningCard].card[cardIndex].text;
+                scope.game.table[scope.game.winningCard].card[cardIndex].text;
             if (
               cardText.indexOf('.', cardText.length - 2) ===
-              cardText.length - 1
+                cardText.length - 1
             ) {
               cardText = cardText.slice(0, cardText.length - 1);
             } else if (
               (cardText.indexOf('!', cardText.length - 2) ===
-                cardText.length - 1 ||
-                cardText.indexOf('?', cardText.length - 2) ===
-                  cardText.length - 1) &&
-              cardIndex === curQ.numAnswers - 1
+                  cardText.length - 1 ||
+                  cardText.indexOf('?', cardText.length - 2) ===
+                    cardText.length - 1) &&
+                cardIndex === curQ.numAnswers - 1
             ) {
               shouldRemoveQuestionPunctuation = true;
             }
@@ -60,20 +63,22 @@ angular
               curQuestionArr.splice(3, 0, startStyle + cardText + endStyle);
             }
             curQ.text = curQuestionArr.join('');
-            // Clean up the last punctuation mark in the question
-            // if there already is one in the answer
+            // Clean up the last punctuation mark in the
+            // question if there already is one in the answer
             if (shouldRemoveQuestionPunctuation) {
               if (
                 curQ.text.indexOf('.', curQ.text.length - 2) ===
-                curQ.text.length - 1
+                  curQ.text.length - 1
               ) {
                 curQ.text = curQ.text.slice(0, curQ.text.length - 2);
               }
             }
           } else {
-            curQ.text += ` ${startStyle}${
-              scope.game.table[scope.game.winningCard].card[0].text
-            }${endStyle}`;
+            curQ.text +=
+                ` ${
+                  startStyle
+                }${scope.game.table[scope.game.winningCard].card[0].text
+                }${endStyle}`;
           }
         }
       });
