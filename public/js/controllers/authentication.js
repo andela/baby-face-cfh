@@ -5,6 +5,7 @@ angular.module('mean.system')
         const { data: { data } } = response,
           { token } = data;
         $window.localStorage.setItem('token', token);
+        $window.localStorage.setItem('tour_status', false);
         $location.path('/');
         $window.location.reload();
       };
@@ -43,6 +44,10 @@ angular.module('mean.system')
         $window.localStorage.removeItem('token');
         $location.path('/');
         $window.location.reload();
+      };
+
+      $scope.guestTour = () => {
+        localStorage.setItem('guest_tour_status', false);
       };
     }
   ]);

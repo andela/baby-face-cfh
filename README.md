@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/andela/baby-face-cfh.svg?branch=master)](https://travis-ci.org/andela/baby-face-cfh)
-[![Coverage Status](https://coveralls.io/repos/github/andela/baby-face-cfh/badge.svg?branch=master)](https://coveralls.io/github/andela/baby-face-cfh?branch=master)
+[![Build Status](https://travis-ci.org/andela/baby-face-cfh.svg?branch=staging)](https://travis-ci.org/andela/baby-face-cfh)
+[![Coverage Status](https://coveralls.io/repos/github/andela/baby-face-cfh/badge.svg?branch=staging)](https://coveralls.io/github/andela/baby-face-cfh?branch=staging)
 [![Hound Status](https://img.shields.io/badge/hound-protected-brightgreen.svg)](https://github.com/andela/baby-face-cfh)
 
 

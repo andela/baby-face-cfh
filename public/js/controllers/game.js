@@ -16,6 +16,7 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
+      $scope.gameTour = introJs();
 
       $scope.pickCard = (card) => {
         if (!$scope.hasPickedCards) {
@@ -37,7 +38,8 @@ angular.module('mean.system')
       };
 
       $scope.pointerCursorStyle = () => {
-        if ($scope.isCzar() && $scope.game.state === 'waiting for czar to decide') {
+        if ($scope.isCzar() &&
+          $scope.game.state === 'waiting for czar to decide') {
           return { cursor: 'pointer' };
         }
         return {};
@@ -141,6 +143,18 @@ angular.module('mean.system')
       $scope.winnerPicked = () => game.winningCard !== -1;
 
       $scope.startGame = () => {
+        if (game.players.length >= game.playerMinLimit) {
+          $('#startGameModal').modal({
+            keyboard: false,
+            backdrop: 'static'
+          });
+          $('#startGameModal').modal('show');
+        } else {
+          $('#incompletePlayersModal').modal('show');
+        }
+      };
+
+      $scope.confirmStartGame = () => {
         game.startGame();
       };
 
@@ -164,7 +178,8 @@ angular.module('mean.system')
 
       // In case player doesn't pick a card in time, show the table
       $scope.$watch('game.state', () => {
-        if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
+        if (game.state === 'waiting for czar to decide' &&
+          $scope.showTable === false) {
           $scope.showTable = true;
         }
       });
@@ -199,21 +214,62 @@ angular.module('mean.system')
           }
         }
       });
-      
-      $scope.gameTour = introJs();
       $scope.gameTour.setOptions({
-       steps: [
-           { 
-             intro: "Hello, I would like to take you on a quick tour of how this game is played."
+        steps: [
+          {
+            intro: 'Hello, I would like to take you on a quick tour of how this game is played.'
           },
           {
-             element: document.querySelector('#abandon-game-button'),
-             intro: "If you ever decide to the quit or leave the game, you can click this button."
-           }
-         ]
-       });
+            element: document.querySelector('#start-game-button'),
+            intro: 'This pane, also called the question box shows the number of players that have joined the game and also provides buttons with which you can start the game or invite your friends.'
+          },
+          {
+            element: document.querySelector('#abandon-game-button'),
+            intro: 'If you ever decide to the quit or leave the game, you can click this button.'
+          },
+          {
+            element: document.querySelector('#donate-game-button'),
+            intro: 'Click this button to make a donation'
+          },
+          {
+            element: document.querySelector('#players-online-onboarding'),
+            intro: 'This is the player card. It shows the username, avatar, and score of players that have joined the current game session..'
+          },
+          {
+            element: document.querySelector('#start-game-button'),
+            intro: 'Click on the play button to start a new game.'
+          },
+          {
+            element: document.querySelector('#start-game-button'),
+            intro: 'Use the Invite Players button to invite your friends.',
+          },
+          {
+            element: document.querySelector('#timer-status-round'),
+            intro: 'A game session lasts for 20 seconds. This pane shows the number of seconds left for a game session to end.'
+          },
+          {
+            element: document.querySelector('#retake-tour-button'),
+            intro: 'If you feel like taking this tour again, you can always click here.'
+          },
+          {
+            intro: 'YES! We are done with the tour. Enjoy your game and remember to donate!.'
+          }
+        ]
+      });
+      // Take tour method: This will run on ng-init
+      $scope.takeTour = () => {
+        const tourStatus = localStorage.getItem('tour_status') || localStorage.getItem('guest_tour_status');
+        if (tourStatus === 'false') {
+          const timeout = setTimeout(() => {
+            $scope.gameTour.start();
+            clearTimeout(timeout);
+          }, 2000);
+          localStorage.removeItem('tour_status') || localStorage.removeItem('guests_tour_status');
+        }
+      };
+      $scope.retakeTour = () => {
         $scope.gameTour.start();
-       
+      };
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
         console.log('joining custom game');

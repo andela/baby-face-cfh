@@ -26,12 +26,14 @@
     "curly": ["error", "multi-line"],
     "import/no-unresolved": [2, { "commonjs": true }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
+    "no-underscore-dangle": [2, {
+      "allowAfterThis": true
+      }],
     "valid-jsdoc": ["error", {
       "requireReturn": true,
       "requireReturnType": true,
       "requireParamDescription": false,
-      "requireReturnDescription": true,
-      "no-underscore-dangle": [2, { "allow": [] }]
+      "requireReturnDescription": true
     }],
     "require-jsdoc": ["error", {
         "require": {
