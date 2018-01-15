@@ -22,7 +22,7 @@ const { reload } = browserSync,
       'app/**/*.js',
       '!node_modules/**'
     ],
-    sass: ['public/css/common.scss'],
+    sass: ['public/css/common.scss', 'public/css/chat.scss'],
     scripts: ['public/js/**', 'app/**/*.js'],
     test: ['./dist/test/**/*.js']
   };
