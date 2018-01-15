@@ -1,36 +1,129 @@
-</script>
-<div id="app-container" ng-controller="GameController">
-  <div id="menu-container">
-    <div id="logo">
-      <span id="first-word">Cards</span>
-      <span id="second-word"> for</span>
-      <span id="third-word">Humanity</span>
+<script src="../js/custom/script.js"></script>
+
+<div id="app-container" ng-controller="GameController" class="game-wrapper">
+  <nav class="navbar bg-not-sticky-navbar navbar-dark fixed-top custom-navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" class="show-is-sticky" width="30"
+          height="30" alt="logo"> Cards For Humanity
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto ">
+          <li>
+            <button class="hovered btn ribbon-orange" >Donate</button>
+          </li>
+          <li class="ml-2">
+            <button class="hovered btn btn-danger" ng-click="abandonGame()">Abandon Game</button>
+          </li>
+          <li class="ml-2">
+            <button class="hovered btn ribbon-orange">Start Tour</button>
+          </li>
+
+        </ul>
+      </div>
     </div>
-    <div id='abandon-game-button' ng-click="abandonGame()">
-      Abandon Game
-    </div>
-    <span id="tweet-container">
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good"
-        data-related="CFH_App">Tweet</a>
-      <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
-    </span>
-  </div>
-  <div id="gameplay-container">
-    <div id="upper-gameplay-container">
-      <div id="menu-timeremaining-container">
-        <div id="menu-container">
-          <span id="menu-button">Menu</span>
-        </div>
-        <div id="timer-container">
-          <timer></timer>
+  </nav>
+
+  <section class="container-fluid ">
+    <div class="row p-1 justify-content-center">
+      <div class="col-lg-2 col-md-3 col-sm-12 mt-80">
+        <div id="menu-timeremaining-container">
+          <div id="menu-container">
+            <!-- <span id="menu-button">Menu</span> -->
+          </div>
+          <div class="text-white bolder text-center">
+            <span id="timer-status-round" ng-hide="game.state === 'winner has been chosen' || game.state === 'waiting for czar to decide'">
+              Time remaining
+            </span>
+            <span id="timer-status-czar-choosing" ng-show="game.state === 'winner has been chosen'"> Next Round In</span>
+            <span id="timer-status-czar-choosing" ng-show="game.state === 'waiting for czar to decide'"> Czar Choosing</span>
+          </div>
+          <div id="timer-container" class="lcd-bg mt-1 text-center">
+            <timer></timer>
+          </div>
         </div>
       </div>
-      <div id="question-container-outer">
+      <div class="col-lg-7 col-md-7 col-sm-12 mt-80 p-0 text-dark">
         <question></question>
       </div>
+      <div class="col-lg-3 col-md-2 col-sm-12 mt-80">
+        <answers></answers>
+      </div>
+
     </div>
-    <answers></answers>
-  </div>
+  </section>
+  <!-- footer start -->
+  <footer class="container-fluid text-white mt-20">
+    <div class="row footer p-10">
+      <div class="col-12">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-12 mt-20">
+              <h6 class="text-center legal">Legal stuff</h6>
+              <hr>
+              <p class="text-justify legal">
+                This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity is not affiliated
+                with Cards Against Humanity. In complying with the Creative Commons license of the Cards Against Humanity
+                card game, all proceeds from donations go directly to charity, as managed by crowdrise.
+              </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 mt-20">
+              <h6 class="text-center legal">Contributors</h6>
+              <hr>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="https://twitter.com/emasys_nd" class="nav-link">Emmanuel Ndukwe</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/Dheavyman" class="nav-link">Nebo Justin</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/Dammy" class="nav-link">Damilare Olatunbosun</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/michaelumanah" class="nav-link">Michael Umanah</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/idrisadetunmbi" class="nav-link">Idris Adetunmbi</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 mt-20">
+              <h6 class="text-center legal">Policies</h6>
+              <hr>
+              <ul class="nav flex-column">
+                <li class="nav-item text-center">
+                  <a href="#bottom" class="nav-link">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-12 text-center">
+              <div class="social-icons mt-50">
+                <a href="#" class="social-link">
+                  <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer ends -->
+  <!-- <div id="gameplay-container">
+      <answers></answers>
+    </div> -->
   <div id="invite-players-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -105,4 +198,6 @@
         </div>
       </div>
     </div>
+    <div>
 </div>
+
