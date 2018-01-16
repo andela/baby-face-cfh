@@ -15,11 +15,11 @@
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
           <li id="donate-game-button">
-            <button class="hovered btn ribbon-orange" >Donate</button>
+            <button class="hovered btn ribbon-orange">Donate</button>
           </li>
-          <li class="ml-2" id="abandon-game-button">           
+          <li class="ml-2" id="abandon-game-button">
             <button class="hovered btn btn-danger" ng-click="abandonGame()">Abandon Game</button>
-           
+
           </li>
           <li class="ml-2" id="retake-tour-button">
             <button class="hovered btn ribbon-orange" ng-click="retakeTour()">Start Tour</button>
@@ -200,26 +200,32 @@
     </div>
   </div>
 
-  <!-- <div id="modal-container" ng-click="onPickRandomCard()"> -->
-  <div id="modal-container">
-    <div class="modal-background">
-      <div class="modal">
-          <p ng-show="isCzar()" style="margin-bottom:2rem;">You are the card czar, please choose a question card at random!</p>
-          <label ng-repeat="i in [0, 1, 2, 3]" ng-show="isCzar()">
-              <input type="checkbox"  />
-              <div class="card">
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-8 col-sm-12">
+        <div id="modal-container">
+          <div class="modal-background">
+            <div class="modal">
+              <p ng-show="isCzar()" style="margin-bottom:2rem;">You are the card czar, please choose a question card at random!</p>
+              <label class="" ng-repeat="i in [0, 1, 2, 3]" ng-show="isCzar()">
+                <input type="checkbox" />
+                <div class="card">
                   <div class="front">
                     <img ng-click="onPickRandomCard()" src="../img/czar-show-random.png" alt="">
                   </div>
                   <div class="back">
-                      <p></p>
-                    </div>
+                    <p></p>
+                  </div>
+                </div>
+              </label>
+              <div ng-hide="isCzar()" id="text-background">
+                <p>Please wait, card czar is picking a random - Horrible! - question card</p>
               </div>
-          </label>
-          <div ng-hide="isCzar()" id="text-background">
-            <p>Please wait, card czar is picking a random - Horrible! - question card</p>
+            </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
 </div>

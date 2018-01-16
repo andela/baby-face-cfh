@@ -176,7 +176,7 @@ angular.module('mean.system')
           $('.modal label').prop('checked', false);
           $('.modal input').prop('checked', false);
           $('.back p').html(game.curQuestion.text);
-          $('body').addClass('modal-active');
+          // $('body').addClass('modal-active');
         }
         if (game.state === 'waiting for players to pick') {
           $('#modal-container').addClass('out');
