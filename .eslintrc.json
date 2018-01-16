@@ -12,8 +12,7 @@
     "$": true,
     "window": true,
     "angular": true,
-    "AOS": true,
-    "IntroJs": true
+    "AOS": true
   },
   "rules": {
     "max-len": [ 1, 80, 2],
