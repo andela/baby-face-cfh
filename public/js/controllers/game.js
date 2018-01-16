@@ -225,7 +225,7 @@ angular.module('mean.system')
           },
           {
             element: document.querySelector('#abandon-game-button'),
-            intro: 'If you ever decide to the quit or leave the game, you can click this button.'
+            intro: 'If you ever decide to quit or leave the game, you can click this button.'
           },
           {
             element: document.querySelector('#donate-game-button'),
@@ -233,19 +233,23 @@ angular.module('mean.system')
           },
           {
             element: document.querySelector('#players-online-onboarding'),
-            intro: 'This is the player card. It shows the username, avatar, and score of players that have joined the current game session..'
+            intro: 'This is the player card. It shows the username, avatar, and score of players that have joined the current game session.'
           },
           {
-            element: document.querySelector('#start-game-button'),
+            element: '#play',
             intro: 'Click on the play button to start a new game.'
           },
           {
-            element: document.querySelector('#start-game-button'),
+            element: '#invite-players',
             intro: 'Use the Invite Players button to invite your friends.',
           },
           {
             element: document.querySelector('#timer-status-round'),
             intro: 'A game session lasts for 20 seconds. This pane shows the number of seconds left for a game session to end.'
+          },
+          {
+            element: '#h-t-p',
+            intro: 'This panel shows the instructions of the game. When the game starts, the answers to the question in the question box above will be shown here.'
           },
           {
             element: document.querySelector('#retake-tour-button'),
