@@ -217,15 +217,18 @@ angular.module('mean.system')
       $scope.gameTour.setOptions({
         steps: [
           {
-            intro: 'Hello, I would like to take you on a quick tour of how this game is played.'
+            intro: 'Hello, I would like to take you on a quick'
+            +' tour of how this game is played.'
           },
           {
             element: document.querySelector('#start-game-button'),
-            intro: 'This pane, also called the question box shows the number of players that have joined the game and also provides buttons with which you can start the game or invite your friends.'
+            intro: 'This pane, also called the question box shows '
+            +'the number of players  that have joined.'
           },
           {
             element: document.querySelector('#abandon-game-button'),
-            intro: 'If you ever decide to quit or leave the game, you can click this button.'
+            intro: 'If you ever decide to quit or leave the game,'
+            +' you can click this button.'
           },
           {
             element: document.querySelector('#donate-game-button'),
@@ -233,7 +236,8 @@ angular.module('mean.system')
           },
           {
             element: document.querySelector('#players-online-onboarding'),
-            intro: 'This is the player card. It shows the username, avatar, and score of players that have joined the current game session.'
+            intro: 'This is the player card. It shows the username, avatar,'
+            +' and score of players that have joined the current game session.'
           },
           {
             element: '#play',
@@ -245,18 +249,23 @@ angular.module('mean.system')
           },
           {
             element: document.querySelector('#timer-status-round'),
-            intro: 'A game session lasts for 20 seconds. This pane shows the number of seconds left for a game session to end.'
+            intro: 'A game session lasts for 20 seconds. This pane '
+            +'shows the number of seconds left for a game session to end.'
           },
           {
             element: '#h-t-p',
-            intro: 'This panel shows the instructions of the game. When the game starts, the answers to the question in the question box above will be shown here.'
+            intro: 'This panel shows the instructions of the game. , '
+            +'When the game starts the answers to the question in '
+            +'the question box above will be shown here.'
           },
           {
             element: document.querySelector('#retake-tour-button'),
-            intro: 'If you feel like taking this tour again, you can always click here.'
+            intro: 'If you feel like taking this tour again,'
+            +' you can always click here.'
           },
           {
-            intro: 'YES! We are done with the tour. Enjoy your game and remember to donate!.'
+            intro: 'YES! We are done with the tour.'
+            +' Enjoy your game and remember to donate!.'
           }
         ]
       });
