@@ -16,8 +16,8 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
-      let intro = introJs();
-
+      /* eslint-disable */
+      $scope.gameTour = introJs();
       $scope.pickCard = (card) => {
         if (!$scope.hasPickedCards) {
           if ($scope.pickedCards.indexOf(card.id) < 0) {
@@ -214,7 +214,7 @@ angular.module('mean.system')
           }
         }
       });
-      intro.setOptions({
+      $scope.gameTour.setOptions({
         steps: [
           {
             intro: 'Hello, I would like to take you on a quick'
@@ -274,7 +274,7 @@ angular.module('mean.system')
         const tourStatus = localStorage.getItem('tour_status');
         if (tourStatus === 'false') {
           const timeout = setTimeout(() => {
-            intro.start();
+            $scope.gameTour.start();
             clearTimeout(timeout);
           }, 2000);
           localStorage.removeItem('tour_status');
@@ -282,13 +282,13 @@ angular.module('mean.system')
         const guestTour = localStorage.getItem('token');
         if (!guestTour) {
           const timeout = setTimeout(() => {
-            intro.start();
+            $scope.gameTour.start();
             clearTimeout(timeout);
           }, 2000);
         }
       };
       $scope.retakeTour = () => {
-        intro.start();
+        $scope.gameTour.start();
       };
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
