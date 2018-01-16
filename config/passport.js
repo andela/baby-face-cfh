@@ -6,11 +6,6 @@ const mongoose = require('mongoose'),
   GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
   User = mongoose.model('User'),
   config = require('./config');
-  
-// import test from './env/development';
-
-
-
 
 module.exports = function (passport) {
   // Serialize sessions
@@ -38,7 +33,7 @@ module.exports = function (passport) {
       usernameField: 'email',
       passwordField: 'password'
     },
-    ((email, password, done) => {
+    (email, password, done) => {
       User.findOne(
         {
           email
@@ -62,7 +57,7 @@ module.exports = function (passport) {
           return done(null, user);
         }
       );
-    })
+    }
   ));
 
   // Use twitter strategy
@@ -71,10 +66,11 @@ module.exports = function (passport) {
       consumerKey:
           process.env.TWITTER_CONSUMER_KEY || config.default.twitter.clientID,
       consumerSecret:
-          process.env.TWITTER_CONSUMER_SECRET || config.default.twitter.clientSecret,
+          process.env.TWITTER_CONSUMER_SECRET ||
+          config.default.twitter.clientSecret,
       callbackURL: config.default.twitter.callbackURL
     },
-    ((token, tokenSecret, profile, done) => {
+    (token, tokenSecret, profile, done) => {
       User.findOne(
         {
           'twitter.id_str': profile.id
@@ -99,7 +95,7 @@ module.exports = function (passport) {
           }
         }
       );
-    })
+    }
   ));
 
   // Use facebook strategy
@@ -110,7 +106,7 @@ module.exports = function (passport) {
           process.env.FB_CLIENT_SECRET || config.default.facebook.clientSecret,
       callbackURL: config.default.facebook.callbackURL
     },
-    ((accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
       User.findOne(
         {
           'facebook.id': profile.id
@@ -139,18 +135,20 @@ module.exports = function (passport) {
           }
         }
       );
-    })
+    }
   ));
 
   // Use github strategy
   passport.use(new GitHubStrategy(
     {
-      clientID: process.env.GITHUB_CLIENT_ID || config.default.github.clientID,
+      clientID:
+          process.env.GITHUB_CLIENT_ID || config.default.github.clientID,
       clientSecret:
-          process.env.GITHUB_CLIENT_SECRET || config.default.github.clientSecret,
+          process.env.GITHUB_CLIENT_SECRET ||
+          config.default.github.clientSecret,
       callbackURL: config.default.github.callbackURL
     },
-    ((accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
       User.findOne(
         {
           'github.id': profile.id
@@ -176,18 +174,20 @@ module.exports = function (passport) {
           }
         }
       );
-    })
+    }
   ));
 
   // Use google strategy
   passport.use(new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID || config.default.google.clientID,
+      clientID:
+          process.env.GOOGLE_CLIENT_ID || config.default.google.clientID,
       clientSecret:
-          process.env.GOOGLE_CLIENT_SECRET || config.default.google.clientSecret,
+          process.env.GOOGLE_CLIENT_SECRET ||
+          config.default.google.clientSecret,
       callbackURL: config.default.google.callbackURL
     },
-    ((accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
       User.findOne(
         {
           'google.id': profile.id
@@ -213,6 +213,6 @@ module.exports = function (passport) {
           }
         }
       );
-    })
+    }
   ));
 };
