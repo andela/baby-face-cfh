@@ -56,7 +56,7 @@ module.exports = function(app, passport, mongoose) {
         app.use(flash());
 
         //dynamic helpers
-        app.use(helpers(config.app.name));
+        app.use(helpers(config.default.app.name));
 
         //use passport session
         app.use(passport.initialize());

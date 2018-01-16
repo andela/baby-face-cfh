@@ -8,8 +8,3 @@ c4h_keys.txt
 bower_components
 package-lock.json
 config/key.js
-config/env/development.json
-config/env/production.json
-config/env/test.json
-config/env/travis.json
-config/env
