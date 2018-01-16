@@ -1,5 +1,6 @@
 angular.module('mean.system')
   .controller('GameController', [
+    '$rootScope',
     '$scope',
     'game',
     '$timeout',
@@ -7,7 +8,10 @@ angular.module('mean.system')
     'MakeAWishFactsService',
     '$http',
     '$dialog',
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $http) => {
+    (
+      $rootScope, $scope, game, $timeout,
+      $location, MakeAWishFactsService, $http
+    ) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -16,6 +20,12 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
+
+      // Listen to the roomFilled event on the root scope
+      // then trigger a modal to tell the user that the room is filled..
+      $rootScope.$on('roomFilled', () => {
+        $('#roomFilled').modal();
+      });
 
       $scope.pickCard = (card) => {
         if (!$scope.hasPickedCards) {
@@ -49,18 +59,25 @@ angular.module('mean.system')
         $scope.showTable = true;
       };
 
+
       $scope.searchUser = () => {
+        $scope.userNotFound = false;
+        $scope.searchResult = '';
         const { username } = $scope;
         if (username && username.length !== 0) {
           $http({
             method: 'GET',
             url: `/api/search/${username}`
           }).then((response) => {
+            $scope.username = null;
             if (response.data.user && response.data.email) {
               $('#searchControl').show();
               $scope.searchResult = response.data.user;
               $scope.email = response.data.email;
             }
+          }, () => {
+            $scope.username = null;
+            $scope.userNotFound = true;
           });
         } else {
           $scope.searchResult = [];
