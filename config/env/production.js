@@ -3,14 +3,14 @@ export default {
     name: 'Cards for Humanity - Development'
   },
   facebook: {
-    clientID: process.env.FB_Prod_clientID,
-    clientSecret: process.env.FB_Prod_clientSecret,
-    callbackURL: process.env.FB_Prod_callbackURL
+    clientID: process.env.FACEBOOK_PROD_CLIENTID,
+    clientSecret: process.env.FACEBOOK_PROD_CLIENT_SECRET,
+    callbackURL: process.env.FACEBOOK_PROD_CALLBACK_URL
   },
   twitter: {
-    clientID: process.env.TW_Prod_clientID,
-    clientSecret: process.env.TW_Prod_clientSecret,
-    callbackURL: process.env.TW_Prod_callbackURL
+    clientID: process.env.TWITTER_PROD_CLIENTID,
+    clientSecret: process.env.TWITTER_PROD_CLIENT_SECRET,
+    callbackURL: process.env.TWITTER_PROD_CALLBACK_URL
   },
   github: {
     clientID: 'APP_ID',
@@ -18,8 +18,8 @@ export default {
     callbackURL: 'http://localhost:3000/auth/github/callback'
   },
   google: {
-    clientID: process.env.Google_Prod_clientID,
-    clientSecret: process.env.Google_Prod_clientSecret,
-    callbackURL: process.env.Google_Prod_callbackURL
+    clientID: process.env.GOOGLE_PROD_CLIENTID,
+    clientSecret: process.env.GOOGLE_PROD_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_PROD_CALLBACK_URL
   }
 };
