@@ -10,14 +10,13 @@ const avatars = require(`${__dirname}/../../app/controllers/avatars.js`).all();
 const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 
 module.exports = function (io) {
-  // let game;
+  let game;
   const allGames = {};
   const allPlayers = {};
   const gamesNeedingPlayers = [];
   let gameID = 0;
 
   const fireGame = function (player, socket) {
-    let game;
     if (gamesNeedingPlayers.length <= 0) {
       gameID += 1;
       const gameIDStr = gameID.toString();
@@ -64,7 +63,7 @@ module.exports = function (io) {
       }
     }
     console.log(socket.id, 'has created unique game', uniqueRoom);
-    const game = new Game(uniqueRoom, io);
+    game = new Game(uniqueRoom, io);
     allPlayers[socket.id] = true;
     game.players.push(player);
     allGames[uniqueRoom] = game;
@@ -78,7 +77,7 @@ module.exports = function (io) {
   const exitGame = function (socket) {
     console.log(socket.id, 'has disconnected');
     if (allGames[socket.gameID]) { // Make sure game exists
-      const game = allGames[socket.gameID];
+      game = allGames[socket.gameID];
       console.log(socket.id, 'has left game', game.gameID);
       delete allPlayers[socket.id];
       if (game.state === 'awaiting players' ||
@@ -103,7 +102,7 @@ module.exports = function (io) {
     console.log(socket.id, 'is requesting room', requestedGameId);
     if (requestedGameId.length && allGames[requestedGameId]) {
       console.log('Room', requestedGameId, 'is valid');
-      const game = allGames[requestedGameId];
+      game = allGames[requestedGameId];
       // Ensure that the same socket doesn't try to join the same game
       // This can happen because we rewrite the browser's URL to reflect
       // the new game ID, causing the view to reload.
@@ -215,8 +214,7 @@ module.exports = function (io) {
     });
 
     socket.on('czar has picked a random card', () => {
-      const game = new Game(gameID, io);
-      game.czarHasPickedRandomCard();
+      game.czarHasPickedARandomCard();
     });
 
     socket.on('startGame', () => {
@@ -229,8 +227,8 @@ module.exports = function (io) {
         if (thisGame.players.length >= thisGame.playerMinLimit) {
           // Remove this game from gamesNeedingPlayers
           // so new players can't join it.
-          gamesNeedingPlayers.forEach((game, index) => {
-            if (game.gameID === socket.gameID) {
+          gamesNeedingPlayers.forEach((gamesNeedingPlayer, index) => {
+            if (gamesNeedingPlayer.gameID === socket.gameID) {
               return gamesNeedingPlayers.splice(index, 1);
             }
           });
