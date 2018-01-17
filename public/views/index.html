@@ -7,10 +7,10 @@
         <nav id="navbar" class="navbar navbar-dark  -navbar navbar-expand-lg" data-toggle="sticky-onscroll">
           <div class="container">
             <a class="navbar-brand text-white hovered show-is-sticky" ng-click="scrollTo('home')">
-              <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" width="30" height="30" alt="logo"> Cards for Humanity
+              <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" width="50" height="50" alt="logo"> Cards for Humanity
             </a>
             <a class="navbar-brand text-white hovered show-not-sticky " ng-click="scrollTo('home')">
-              <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" width="30" height="30" alt="logo">
+              <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" width="50" height="50" alt="logo">
               <span class="">Cards for humanity</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -50,18 +50,31 @@
                 A GAME FOR HORRIBLE PEOPLE
                 <span class="text-orange">DESPERATELY</span> TRYING TO DO GOOD
               </p>
-              <p data-aos="zoom-out" class="lead">
-                Cards for Humanity is a fast-paced online version of the popular card game, Cards Against Humanity, that gives you the opportunity
+              <p data-aos="fade-left" class="lead">
+                Cards for Humanity is a fast-paced online version of the popular card game, <a href="https://cardsagainsthumanity.com/" target="_blank" class="text-orange">Cards Against Humanity</a> , that gives you the opportunity
                 to donate to children in need - all while remaining as despicable and awkward as you naturally are.
               </p>
-              <span ng-show="showOptions">
+              <!-- <span ng-show="showOptions">
                 <a href="#" class="btn btn-orange text-white btn-lg hvr-grow-shadow">Get Started</a>
-              </span>
-
-              <span ng-hide="showOptions">
-                <a href="/#!/app" class="btn btn-orange text-white btn-lg hvr-bob">Play with strangers</a>
-                <a href="/#!/app" class="btn btn-orange text-white btn-lg hvr-bob">Play with friends</a>
-              </span>
+              </span> -->
+              <!-- <div class="col-lg-10 col-md-10 col-sm-10 p-5 mt-20 text-center" data-aos="zoom-in"> -->
+              <div ng-show="showOptions" data-aos="fade-right">
+                <button class="btn btn-lg col-6 btn-orange hvr-float-shadow text-white">
+                  <h5>Play as a guest</h5>
+                </button>
+              </div>
+              <div ng-hide="showOptions" data-aos="fade-right" >
+                <a href="/play">
+                  <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+                    <h5>Play with strangers</h5>
+                  </button>
+                </a>
+                <a href="/play?custom">
+                  <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+                    <h5>Play with friends</h5>
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -84,31 +97,43 @@
       <div class="container">
         <div class="row justify-content-center mb-50 p-2">
           <div class="col-lg-3 col-md-4 col-sm-10 mx-10 mb-2 rounded" data-aos="flip-right">
-            <div class="step-box hvr-rotate p-5 ">
+            <div class="step-box hvr-rotate p-20 ">
               <h6 class="mt-10">
                 Each player begins with and will always have, 10 white answer cards.
               </h6>
+              <p class="step-box-footer mt-100">
+                Card For Humanity&trade;
+              </p>
             </div>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-10 mx-10 mb-2 rounded" data-aos="flip-right">
-            <div class="step-box p-2 hvr-rotate p-5">
+            <div class="step-box hvr-rotate p-20">
               <h6 class="mt-10">
                 For each round, one player is randomly chosen as the Card Czar.
               </h6>
+              <p class="step-box-footer mt-100">
+                Card For Humanity&trade;
+              </p>
             </div>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-10 mx-10 mb-2 rounded" data-aos="flip-right">
-            <div class="step-box p-2 hvr-rotate p-5">
+            <div class="step-box p-20 hvr-rotate">
               <h6 class="mt-10">
                 Everyone else answers the black question card by clicking on the answer card they want to use.
               </h6>
+              <p class="step-box-footer mt-100">
+                Card For Humanity&trade;
+              </p>
             </div>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-10 mx-10 mb-2 rounded" data-aos="flip-right">
-            <div class="step-box p-2 hvr-rotate p-5">
+            <div class="step-box p-20 hvr-rotate">
               <h6 class="mt-10">
                 The Card Czar then picks a favorite answer, and whoever played that answer wins the round.
               </h6>
+              <p class="step-box-footer mt-100">
+                Card For Humanity&trade;
+              </p>
             </div>
           </div>
           <!-- <div class="col-lg-10 col-md-10 col-sm-10 p-5 mt-20 text-center" data-aos="zoom-in"> -->
@@ -194,7 +219,7 @@
                   <a href="https://twitter.com/Dheavyman" class="nav-link">Nebo Justin</a>
                 </li>
                 <li class="nav-item">
-                  <a href="https://twitter.com/Dammy" class="nav-link">Damilare Olatunbosun</a>
+                  <a href="https://twitter.com/Dammyy" class="nav-link">Damilare Olatunbosun</a>
                 </li>
                 <li class="nav-item">
                   <a href="https://twitter.com/michaelumanah" class="nav-link">Michael Umanah</a>

@@ -53,7 +53,7 @@
     "mongoose": "^4.13.7",
     "nodemailer": "^4.4.1",
     "passport": "~0.1.17",
-    "passport-facebook": "~2.0.0",
+    "passport-facebook": "^2.0.0",
     "passport-github": "~0.1.5",
     "passport-google-oauth": "~0.1.5",
     "passport-local": "~0.1.6",

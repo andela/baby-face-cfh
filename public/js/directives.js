@@ -91,20 +91,26 @@ angular
   }))
   .directive('timer', () => ({
     restrict: 'EA',
-    templateUrl: '/views/timer.html',
+    templateUrl: '/views/timer.html'
     // link(scope, elem, attr) {}
   }))
   .directive('landing', [
-    '$location',
-    function ($location) {
+    '$http',
+    function ($http) {
       return {
         restrict: 'EA',
         link(scope) {
+          const onResponse = () => {
+            window.location.reload();
+          };
+
+          const onError = (error) => {
+            console.log(error);
+          };
           scope.showOptions = true;
           scope.signOut = () => {
             localStorage.removeItem('token');
-            $location.path('/');
-            window.location.reload();
+            $http.get('/signout').then(onResponse, onError);
           };
 
           if (scope.$$childHead.global.authenticated === true) {
