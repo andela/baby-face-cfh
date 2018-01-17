@@ -91,7 +91,7 @@ angular
   }))
   .directive('timer', () => ({
     restrict: 'EA',
-    templateUrl: '/views/timer.html',
+    templateUrl: '/views/timer.html'
     // link(scope, elem, attr) {}
   }))
   .directive('chat', () => ({
@@ -99,18 +99,29 @@ angular
     templateUrl: '/views/chat.html',
     // link(scope, elem, attr) {}
   }))
-  .directive('landing', ['$location', $location => ({
-    restrict: 'EA',
-    link(scope) {
-      scope.showOptions = true;
-      scope.signOut = () => {
-        localStorage.removeItem('token');
-        $location.path('/');
-        window.location.reload();
-      };
+  .directive('landing', [
+    '$http',
+    function ($http) {
+      return {
+        restrict: 'EA',
+        link(scope) {
+          const onResponse = () => {
+            window.location.reload();
+          };
 
-      if (scope.$$childHead.global.authenticated === true) {
-        scope.showOptions = false;
-      }
+          const onError = (error) => {
+            console.log(error);
+          };
+          scope.showOptions = true;
+          scope.signOut = () => {
+            localStorage.removeItem('token');
+            $http.get('/signout').then(onResponse, onError);
+          };
+
+          if (scope.$$childHead.global.authenticated === true) {
+            scope.showOptions = false;
+          }
+        }
+      };
     }
-  })]);
+  ]);

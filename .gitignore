@@ -7,3 +7,4 @@ c4h_keys.txt
 .env
 bower_components
 package-lock.json
+config/key.js
