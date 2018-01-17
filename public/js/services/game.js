@@ -1,7 +1,7 @@
 angular.module('mean.system')
   .factory('game', [
-    'socket', '$timeout', '$window', '$http',
-    (socket, $timeout, $window, $http) => {
+    '$rootScope', 'socket', '$timeout', '$window', '$http',
+    ($rootScope, socket, $timeout, $window, $http) => {
       const game = {
         id: null, // This player's socket ID, so we know who this player is
         gameID: null,
@@ -26,8 +26,7 @@ angular.module('mean.system')
 
       const notificationQueue = [];
       let timeout = false;
-      const _ = null;
-      /* eslint-disable */ // this variable will be useful below
+      /* eslint-disable no-unused-vars, no-undef */
       let joinOverrideTimeout = 0;
 
       const setNotification = () => {
@@ -62,6 +61,10 @@ angular.module('mean.system')
 
       socket.on('id', (data) => {
         game.id = data.id;
+      });
+
+      socket.on('roomFilled', () => {
+        socket.emit($('#roomFilled').modal('show'));
       });
 
       socket.on('prepareGame', (data) => {
@@ -205,7 +208,7 @@ angular.module('mean.system')
         mode = mode || 'joinGame';
         room = room || '';
         createPrivate = createPrivate || false;
-        const userID = window.user ? window.user._id : 'unauthenticated';
+        const userID = window.user ? user._id : 'unauthenticated';
         socket.emit(mode, {
           userID,
           room,

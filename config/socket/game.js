@@ -395,10 +395,9 @@ Game.prototype.removePlayer = function (thisPlayer) {
         return this.stateChoosing(this);
       } else if (this.state === 'waiting for czar to decide') {
         // If players are waiting on a czar to pick, auto pick.
-        /* eslint-disable */
-        this.sendNotification('The Czar left the game! First answer submitted wins!');
-        this.pickWinning(this.table[0]
-          .card[0].id, thisPlayer, true);
+        const msg = 'The Czar left the game! First answer submitted wins!';
+        this.sendNotification(msg);
+        this.pickWinning(this.table[0].card[0].id, thisPlayer, true);
       }
     } else {
       // Update the czar's position if the removed player is above
@@ -426,15 +425,22 @@ Game.prototype.pickWinning = function (thisCard, thisPlayer, autopicked) {
     });
     if (cardIndex !== -1) {
       this.winningCard = cardIndex;
-      const winnerIndex = this._findPlayerIndexBySocket(this.table[cardIndex].player);
-      this.sendNotification(`${this.players[winnerIndex].username} has won the round!`);
+      const winnerIndex = this._findPlayerIndexBySocket(this
+        .table[cardIndex].player);
+      this.sendNotification(`
+      ${this.players[winnerIndex].username} has won the round!
+      `);
       this.winningCardPlayer = winnerIndex;
       this.players[winnerIndex].points += 1;
       clearTimeout(this.judgingTimeout);
       this.winnerAutopicked = autopicked;
       this.stateResults(this);
     } else {
-      console.log('WARNING: czar', thisPlayer, 'picked a card that was not on the table.');
+      console.log(
+        'WARNING: czar',
+        thisPlayer,
+        'picked a card that was not on the table.'
+      );
     }
   } else {
     // TODO: Do something?
