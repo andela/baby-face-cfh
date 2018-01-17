@@ -1,5 +1,6 @@
 angular.module('mean.system')
   .controller('GameController', [
+    '$rootScope',
     '$scope',
     'game',
     '$timeout',
@@ -7,7 +8,10 @@ angular.module('mean.system')
     'MakeAWishFactsService',
     '$http',
     '$dialog',
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $http) => {
+    (
+      $rootScope, $scope, game, $timeout,
+      $location, MakeAWishFactsService, $http
+    ) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -16,6 +20,16 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
+
+
+      // Listen to the roomFilled event on the root scope
+      // then trigger a modal to tell the user that the room is filled..
+      $rootScope.$on('roomFilled', () => {
+        $('#roomFilled').modal();
+      });
+
+
+      /* eslint-disable */
       $scope.gameTour = introJs();
 
       $scope.pickCard = (card) => {
@@ -50,18 +64,25 @@ angular.module('mean.system')
         $scope.showTable = true;
       };
 
+
       $scope.searchUser = () => {
+        $scope.userNotFound = false;
+        $scope.searchResult = '';
         const { username } = $scope;
         if (username && username.length !== 0) {
           $http({
             method: 'GET',
             url: `/api/search/${username}`
           }).then((response) => {
+            $scope.username = null;
             if (response.data.user && response.data.email) {
               $('#searchControl').show();
               $scope.searchResult = response.data.user;
               $scope.email = response.data.email;
             }
+          }, () => {
+            $scope.username = null;
+            $scope.userNotFound = true;
           });
         } else {
           $scope.searchResult = [];
@@ -243,15 +264,18 @@ angular.module('mean.system')
       $scope.gameTour.setOptions({
         steps: [
           {
-            intro: 'Hello, I would like to take you on a quick tour of how this game is played.'
+            intro: 'Hello, I would like to take you on a quick'
+            + ' tour of how this game is played.'
           },
           {
             element: document.querySelector('#start-game-button'),
-            intro: 'This pane, also called the question box shows the number of players that have joined the game and also provides buttons with which you can start the game or invite your friends.'
+            intro: 'This pane, also called the question box shows '
+            + 'the number of players  that have joined.'
           },
           {
             element: document.querySelector('#abandon-game-button'),
-            intro: 'If you ever decide to the quit or leave the game, you can click this button.'
+            intro: 'If you ever decide to quit or leave the game,'
+            + ' you can click this button.'
           },
           {
             element: document.querySelector('#donate-game-button'),
@@ -259,26 +283,36 @@ angular.module('mean.system')
           },
           {
             element: document.querySelector('#players-online-onboarding'),
-            intro: 'This is the player card. It shows the username, avatar, and score of players that have joined the current game session..'
+            intro: 'This is the player card. It shows the username, avatar,'
+            + ' and score of players that have joined the current game session.'
           },
           {
-            element: document.querySelector('#start-game-button'),
+            element: '#play',
             intro: 'Click on the play button to start a new game.'
           },
           {
-            element: document.querySelector('#start-game-button'),
+            element: '#invite-players',
             intro: 'Use the Invite Players button to invite your friends.',
           },
           {
             element: document.querySelector('#timer-status-round'),
-            intro: 'A game session lasts for 20 seconds. This pane shows the number of seconds left for a game session to end.'
+            intro: 'A game session lasts for 20 seconds. This pane '
+            + 'shows the number of seconds left for a game session to end.'
+          },
+          {
+            element: '#h-t-p',
+            intro: 'This panel shows the instructions of the game. , '
+            + 'When the game starts the answers to the question in '
+            + 'the question box above will be shown here.'
           },
           {
             element: document.querySelector('#retake-tour-button'),
-            intro: 'If you feel like taking this tour again, you can always click here.'
+            intro: 'If you feel like taking this tour again,'
+            + ' you can always click here.'
           },
           {
-            intro: 'YES! We are done with the tour. Enjoy your game and remember to donate!.'
+            intro: 'YES! We are done with the tour.'
+            + ' Enjoy your game and remember to donate!.'
           }
         ]
       });

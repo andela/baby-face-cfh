@@ -9,6 +9,7 @@ angular.module('mean.system').controller('AuthenticationController', [
       const { data: { data } } = response,
         { token } = data;
       $window.localStorage.setItem('token', token);
+      $window.localStorage.setItem('tour_status', false);
       $location.path('/');
       $window.location.reload();
     };
