@@ -1,35 +1,56 @@
-angular.module('mean.directives', [])
+angular
+  .module('mean.directives', [])
   .directive('player', () => ({
     restrict: 'EA',
     templateUrl: '/views/player.html',
-    link(scope, elem, attr) {
+    link(scope) {
       scope.colors = [
-        '#7CE4E8', '#FFFFa5', '#FC575E', '#F2ADFF', '#398EC4', '#8CFF95'
+        '#7CE4E8',
+        '#FFFFa5',
+        '#FC575E',
+        '#F2ADFF',
+        '#398EC4',
+        '#8CFF95',
+        '#daa520',
+        '#da2020',
+        '#808080',
+        '#f1bc0c',
+        '#f10ce6',
+        '#cff10c'
       ];
-    },
+    }
   }))
   .directive('answers', () => ({
     restrict: 'EA',
     templateUrl: '/views/answers.html',
-    link(scope, elem, attr) {
+    link(scope) {
       scope.$watch('game.state', () => {
         if (scope.game.state === 'winner has been chosen') {
-          const curQ = scope.game.curQuestion,
-            curQuestionArr = curQ.text.split('_'),
-            startStyle = `<span style='color: ${scope.colors[scope.game
-              .players[scope.game.winningCardPlayer].color]}'>`,
-            endStyle = '</span>';
+          const curQ = scope.game.curQuestion;
+          const curQuestionArr = curQ.text.split('_');
+          const startStyle =
+              `<span style='color: ${
+                scope.colors[
+                  scope.game.players[scope.game.winningCardPlayer].color
+                ]
+              }'>`;
+          const endStyle = '</span>';
           let shouldRemoveQuestionPunctuation = false;
-          const removePunctuation = (cardIndex) => {
-            let cardText = scope.game.table[scope.game.winningCard]
-              .card[cardIndex].text;
-            if (cardText.indexOf('.', cardText.length - 2) ===
-              cardText.length - 1) {
+          const removePunctuation = function (cardIndex) {
+            let cardText =
+                scope.game.table[scope.game.winningCard].card[cardIndex].text;
+            if (
+              cardText.indexOf('.', cardText.length - 2) ===
+                cardText.length - 1
+            ) {
               cardText = cardText.slice(0, cardText.length - 1);
-            } else if ((cardText.indexOf('!', cardText.length - 2) ===
-                cardText.length - 1 ||
-                cardText.indexOf('?', cardText.length - 2) ===
-                cardText.length - 1) && cardIndex === curQ.numAnswers - 1) {
+            } else if (
+              (cardText.indexOf('!', cardText.length - 2) ===
+                  cardText.length - 1 ||
+                  cardText.indexOf('?', cardText.length - 2) ===
+                    cardText.length - 1) &&
+                cardIndex === curQ.numAnswers - 1
+            ) {
               shouldRemoveQuestionPunctuation = true;
             }
             return cardText;
@@ -42,18 +63,22 @@ angular.module('mean.directives', [])
               curQuestionArr.splice(3, 0, startStyle + cardText + endStyle);
             }
             curQ.text = curQuestionArr.join('');
-            // Clean up the last punctuation mark in the question
-            // if there already is one in the answer
+            // Clean up the last punctuation mark in the
+            // question if there already is one in the answer
             if (shouldRemoveQuestionPunctuation) {
-              if (curQ.text.indexOf('.', curQ.text.length - 2) ===
-                curQ.text.length - 1) {
+              if (
+                curQ.text.indexOf('.', curQ.text.length - 2) ===
+                  curQ.text.length - 1
+              ) {
                 curQ.text = curQ.text.slice(0, curQ.text.length - 2);
               }
             }
           } else {
-            curQ.text += ` ${startStyle}${scope.game.table[
-              scope.game.winningCard
-            ].card[0].text}${endStyle}`;
+            curQ.text +=
+                ` ${
+                  startStyle
+                }${scope.game.table[scope.game.winningCard].card[0].text
+                }${endStyle}`;
           }
         }
       });
@@ -62,21 +87,21 @@ angular.module('mean.directives', [])
   .directive('question', () => ({
     restrict: 'EA',
     templateUrl: '/views/question.html',
-    link(scope, elem, attr) {}
+    // link(scope, elem, attr) {}
   }))
   .directive('timer', () => ({
     restrict: 'EA',
     templateUrl: '/views/timer.html',
-    link(scope, elem, attr) {}
+    // link(scope, elem, attr) {}
   }))
   .directive('chat', () => ({
     restrict: 'EA',
     templateUrl: '/views/chat.html',
-    link(scope, elem, attr) {}
+    // link(scope, elem, attr) {}
   }))
   .directive('landing', ['$location', $location => ({
     restrict: 'EA',
-    link(scope, elem, attr) {
+    link(scope) {
       scope.showOptions = true;
       scope.signOut = () => {
         localStorage.removeItem('token');

@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .controller('chatController', [
+  .controller('ChatController', [
     '$scope', '$firebaseArray', 'socket', 'game',
     ($scope, $firebaseArray, socket, game) => {
       const ref = new Firebase(`https://baby-face-cfh.firebaseio.com/${
@@ -46,10 +46,10 @@ angular.module('mean.system')
         if (!chatMessagesPanelOpen) {
           newMessagesCount = $scope.chatMessages.length;
           unreadMessagesCount = newMessagesCount - oldMessagesCount;
-          $scope.unreadMessagesCount = unreadMessagesCount === 0 ? null : unreadMessagesCount;
+          $scope.unreadMessagesCount = unreadMessagesCount === 0 ?
+            null : unreadMessagesCount;
         } else {
           oldMessagesCount = $scope.chatMessages.length;
-          console.log('chat open');
           $scope.unreadMessagesCount = null;
         }
       });
