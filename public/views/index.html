@@ -58,19 +58,19 @@
                 <a href="#" class="btn btn-orange text-white btn-lg hvr-grow-shadow">Get Started</a>
               </span> -->
               <!-- <div class="col-lg-10 col-md-10 col-sm-10 p-5 mt-20 text-center" data-aos="zoom-in"> -->
-              <div ng-show="showOptions" data-aos="fade-right">
-                <button class="btn btn-lg col-6 btn-orange hvr-float-shadow text-white">
-                  <h5>Play as a guest</h5>
-                </button>
+              <div ng-show="showOptions" data-aos="fade-right" data-aos-offset="50">
+                <a href="/signup" class="btn btn-lg col-6 btn-orange hvr-float-shadow text-white">
+                  <h5>Get Started</h5>
+                </a>
               </div>
-              <div ng-hide="showOptions" data-aos="fade-right" >
+              <div ng-hide="showOptions" data-aos="fade-right" data-aos-offset="50">
                 <a href="/play">
-                  <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+                  <button class="btn btn-lg mt-3 mr-2 btn-orange hvr-float-shadow text-white">
                     <h5>Play with strangers</h5>
                   </button>
                 </a>
                 <a href="/play?custom">
-                  <button class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+                  <button class="btn btn-lg mt-3 btn-orange hvr-float-shadow text-white">
                     <h5>Play with friends</h5>
                   </button>
                 </a>
@@ -138,15 +138,12 @@
           </div>
           <div ng-show="showOptions" style="margin-top:3em;" class="col-lg-10 col-md-8 col-sm-6 text-center mb-20">
             <a href="/play" class="btn btn-lg ribbon-blue hvr-float-shadow text-white">
-              <h5>Play as a guest</h5>
+              <h5>Play as guest</h5>
             </a>
           </div>
           <div ng-hide="showOptions" class="col-lg-10 col-md-8 col-sm-6 text-center mb-20">
             <a href="/play" class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
-              <h5>Play with strangers</h5>
-            </a>
-            <a href="/play?custom" class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
-              <h5>Play with friends</h5>
+              <h5>Join Game</h5>
             </a>
           </div>
         </div>
