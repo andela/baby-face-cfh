@@ -1,6 +1,6 @@
 <script src="../js/custom/script.js"></script>
 
-<div id="app-container" ng-controller="GameController" class="game-wrapper">
+<div id="app-container" ng-controller="GameController" class="game-wrapper" ng-init="takeTour()">
   <nav class="navbar bg-not-sticky-navbar navbar-dark fixed-top custom-navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="/">
@@ -14,14 +14,15 @@
 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
-          <li>
+          <li id="donate-game-button">
             <button class="hovered btn ribbon-orange" >Donate</button>
           </li>
-          <li class="ml-2">
+          <li class="ml-2" id="abandon-game-button">           
             <button class="hovered btn btn-danger" ng-click="abandonGame()">Abandon Game</button>
+           
           </li>
-          <li class="ml-2">
-            <button class="hovered btn ribbon-orange">Start Tour</button>
+          <li class="ml-2" id="retake-tour-button">
+            <button class="hovered btn ribbon-orange" ng-click="retakeTour()">Start Tour</button>
           </li>
 
         </ul>
@@ -48,13 +49,12 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-7 col-md-7 col-sm-12 mt-80 p-0 text-dark">
+      <div class="col-lg-7 col-md-7 col-sm-12 mt-80 p-0 text-dark" id="start-game-button">
         <question></question>
       </div>
-      <div class="col-lg-3 col-md-2 col-sm-12 mt-80">
+      <div class="col-lg-3 col-md-2 col-sm-12 mt-80" id="players-online-onboarding">
         <answers></answers>
       </div>
-
     </div>
   </section>
   <!-- footer start -->
