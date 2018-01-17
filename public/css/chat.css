@@ -1,0 +1,87 @@
+.chat-panel {
+  width: 300px;
+  position: fixed;
+  right: 50px; }
+  .chat-panel .chat-panel-header {
+    background-color: #305d93; }
+    .chat-panel .chat-panel-header p {
+      color: #fff;
+      margin: 0px;
+      padding: 10px 0px; }
+    .chat-panel .chat-panel-header p:hover {
+      color: #fff;
+      cursor: pointer; }
+    .chat-panel .chat-panel-header .left-section p i {
+      margin-right: 10px; }
+    .chat-panel .chat-panel-header .right-section {
+      text-align: right; }
+      .chat-panel .chat-panel-header .right-section i {
+        color: #fff;
+        font-size: 15px;
+        padding: 12px 3px; }
+      .chat-panel .chat-panel-header .right-section i:hover {
+        color: #fff; }
+  .chat-panel .chat-panel-header:hover {
+    cursor: pointer; }
+  .chat-panel .chat-panel-border {
+    border: 1px solid #305d93;
+    margin: 0px; }
+
+.is-closed {
+  bottom: -350px;
+  transition: 1s; }
+
+.is-open {
+  bottom: 0px;
+  transition: 1s; }
+
+.chat-panel-body {
+  padding: 0px;
+  margin: 0px;
+  background-color: #F3F3F3;
+  height: 300px; }
+
+.chat-messages {
+  overflow-y: scroll;
+  height: 300px; }
+  .chat-messages ul {
+    padding: 0px; }
+    .chat-messages ul li {
+      list-style: none;
+      margin-top: 10px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      margin-left: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px dotted #B3A9A9;
+      position: relative; }
+      .chat-messages ul li img {
+        width: 30px;
+        height: 30px; }
+      .chat-messages ul li .chat-body {
+        margin-left: 40px; }
+        .chat-messages ul li .chat-body .fa-clock-o {
+          margin-right: 5px; }
+        .chat-messages ul li .chat-body .player-name {
+          font-size: 14px; }
+        .chat-messages ul li .chat-body .player-message {
+          font-size: 12px; }
+
+.chat-panel-footer {
+  background-color: #EEEEEE;
+  border-top: 1px solid #EEEEEE; }
+
+.message-bar input {
+  width: 90%;
+  margin-left: -15px;
+  padding: 10px 10px;
+  border: 1px solid #fff; }
+
+.message-bar a i {
+  background-color: #305d93;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  padding: 7px 0px;
+  border-radius: 50%;
+  text-align: center; }

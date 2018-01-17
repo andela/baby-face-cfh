@@ -69,6 +69,11 @@ angular.module('mean.directives', [])
     templateUrl: '/views/timer.html',
     link(scope, elem, attr) {}
   }))
+  .directive('chat', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/chat.html',
+    link(scope, elem, attr) {}
+  }))
   .directive('landing', ['$location', $location => ({
     restrict: 'EA',
     link(scope, elem, attr) {

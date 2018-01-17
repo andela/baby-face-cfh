@@ -175,7 +175,8 @@ gulp.task('move-json', () => {
 
 // Move files in public folder to dist folder
 gulp.task('move-public', ['sass'], () => {
-  gulp.src(['public/**/*', '!public/js/**']).pipe(gulp.dest('./dist/public'));
+  gulp.src(['public/**/*', '!public/js/**', '!public/css/*.scss'])
+    .pipe(gulp.dest('./dist/public'));
 });
 
 gulp.task('watch', () => {
