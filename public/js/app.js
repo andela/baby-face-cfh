@@ -1,5 +1,6 @@
 angular
   .module('mean', [
+    'firebase',
     'ngCookies',
     'ngResource',
     'ui.bootstrap',
