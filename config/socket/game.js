@@ -46,6 +46,7 @@ function Game(gameID, io) {
     stateJudging: 16,
     stateResults: 6
   };
+  this.regionId = 0;
   // setTimeout ID that triggers the czar judging state
   // Used to automatically run czar judging if players don't pick
   // before time limit
