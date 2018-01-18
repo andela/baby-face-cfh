@@ -459,7 +459,8 @@ class Game {
             }
             console.log('card', i, 'is at index', cardIndex);
             if (cardIndex !== null) {
-              tableCard.push(this.players[playerIndex].hand.splice(cardIndex, 1)[0]);
+              tableCard.push(this.players[playerIndex]
+                .hand.splice(cardIndex, 1)[0]);
             }
             console.log('table object at', cardIndex, ':', tableCard);
           }
@@ -531,11 +532,13 @@ class Game {
         // If players are currently picking a card, advance to a new round.
         if (this.state === 'waiting for players to pick') {
           clearTimeout(this.choosingTimeout);
-          this.sendNotification('The Czar left the game! Starting a new round.');
+          this
+            .sendNotification('The Czar left the game! Starting a new round.');
           return this.stateChoosing();
         } else if (this.state === 'waiting for czar to decide') {
           // If players are waiting on a czar to pick, auto pick.
-          this.sendNotification('The Czar left the game! First answer submitted wins!');
+          const notif = 'The Czar left the game! First answer submitted wins!';
+          this.sendNotification(notif);
           this.pickWinning(this.table[0].card[0].id, thisPlayer, true);
         }
       } else {
