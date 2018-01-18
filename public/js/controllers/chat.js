@@ -2,22 +2,16 @@ angular.module('mean.system')
   .controller('ChatController', [
     '$scope', '$firebaseArray', 'socket', 'game',
     ($scope, $firebaseArray, socket, game) => {
-      const ref = new Firebase(`https://baby-face-cfh.firebaseio.com/${
+      const chatRef = new Firebase(`https://baby-face-cfh.firebaseio.com/${
         game.gameID}`);
-      let chatOnboarding = true,
-        oldMessagesCount = 0,
+      let oldMessagesCount = 0,
         newMessagesCount = 0,
         unreadMessagesCount = 0,
         chatMessagesPanelOpen = false;
 
-      $scope.chatMessages = $firebaseArray(ref);
+      $scope.chatMessages = $firebaseArray(chatRef);
       $scope.message = '';
       $scope.unreadMessagesCount = null;
-
-      if (chatOnboarding) {
-        ref.remove();
-        chatOnboarding = false;
-      }
 
       $('.left-section').click(() => {
         if ($('.chat-panel').hasClass('is-closed')) {
@@ -46,7 +40,7 @@ angular.module('mean.system')
         if (!chatMessagesPanelOpen) {
           newMessagesCount = $scope.chatMessages.length;
           unreadMessagesCount = newMessagesCount - oldMessagesCount;
-          $scope.unreadMessagesCount = unreadMessagesCount === 0 ?
+          $scope.unreadMessagesCount = unreadMessagesCount <= 0 ?
             null : unreadMessagesCount;
         } else {
           oldMessagesCount = $scope.chatMessages.length;

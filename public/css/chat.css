@@ -1,7 +1,8 @@
 .chat-panel {
   width: 300px;
   position: fixed;
-  right: 50px; }
+  right: 50px;
+  z-index: 2000; }
   .chat-panel .chat-panel-header {
     background-color: #305d93; }
     .chat-panel .chat-panel-header p {

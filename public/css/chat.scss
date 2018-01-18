@@ -9,6 +9,7 @@ $chat-footer-color: #EEEEEE;
 	width: 300px;
 	position: fixed;
 	right:50px;
+	z-index: 2000;
 	
 	.chat-panel-header {
 		background-color: $blue-color;
