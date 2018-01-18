@@ -70,16 +70,16 @@ $chat-footer-color: #eeeeee;
   background-color: $chat-body-color;
   height: 300px;
   margin: 0;
-	padding: 0;
+  padding: 0;
 }
 
 .chat-messages {
   height:300px;
-	overflow-y:scroll;
+  overflow-y:scroll;
 
-	ul {
-		padding: 0;
-	}
+  ul {
+    padding: 0;
+  }
 }
 
 .chat-list {
@@ -115,17 +115,17 @@ $chat-footer-color: #eeeeee;
 }
 
 .chat-panel-footer {
-	background-color: $chat-footer-color;
-	border-top: 1px solid $chat-footer-color;
+  background-color: $chat-footer-color;
+  border-top: 1px solid $chat-footer-color;
 }
 
 .message-bar {
-	input {
+  input {
     border: 1px solid $white-color;
-		margin-left: -15px;
+    margin-left: -15px;
     padding: 10px;
     width: 90%;
-	}
+  }
 
   i {
     background-color: $blue-color;
