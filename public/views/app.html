@@ -15,11 +15,11 @@
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
           <li id="donate-game-button">
-            <button class="hovered btn ribbon-orange" >Donate</button>
+            <button class="hovered btn ribbon-orange">Donate</button>
           </li>
-          <li class="ml-2" id="abandon-game-button">           
+          <li class="ml-2" id="abandon-game-button">
             <button class="hovered btn btn-danger" ng-click="abandonGame()">Abandon Game</button>
-           
+
           </li>
           <li class="ml-2" id="retake-tour-button">
             <button class="hovered btn ribbon-orange" ng-click="retakeTour()">Start Tour</button>
@@ -142,7 +142,7 @@
                 <a class="btn ribbon-blue text-white hvr-bob" ng-click="searchUser()" id="name">Search</a>
               </div>
             </div>
-            <div ng-controller="GameController" id="searchControl">
+            <div id="searchControl">
               <div class="row">
                 <div class="col-md-12">
                   <p>{{searchResult}}</p>
@@ -201,24 +201,52 @@
     </div>
   </div>
   <!-- Incomplete Players notification -->
-  <div class="modal fade" id="incompletePlayersModal" tabindex="-1" role="dialog" aria-labelledby="incompletePlayersModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="incompletePlayersModalLabel">Notification</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Not enough players, return and invite more players
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+  <div class="modal fade" id="incompletePlayersModal" tabindex="-1" role="dialog" aria-labelledby="incompletePlayersModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="incompletePlayersModalLabel">Notification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Not enough players, return and invite more players
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-8 col-sm-12">
+        <div id="modal-container">
+          <div class="modal-background">
+            <div class="modal">
+              <p ng-show="isCzar()" style="margin-bottom:2rem;">You are the card czar, please choose a question card at random!</p>
+              <label class="" ng-repeat="i in [0, 1, 2, 3]" ng-show="isCzar()">
+                <input type="checkbox" />
+                <div class="card">
+                  <div class="front">
+                    <img ng-click="onPickRandomCard()" src="../img/czar-show-random.png" alt="">
+                  </div>
+                  <div class="back">
+                    <p></p>
+                  </div>
+                </div>
+              </label>
+              <div ng-hide="isCzar()" id="text-background">
+                <p>Please wait, card czar is picking a random - Horrible! - question card</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div>
-</div>
+  </div> -->
 
+</div>

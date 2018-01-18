@@ -26,7 +26,7 @@ angular.module('mean.system')
 
       const notificationQueue = [];
       let timeout = false;
-      /* eslint-disable no-unused-vars, no-undef */
+      /* eslint-disable */ // this variable will be useful below
       let joinOverrideTimeout = 0;
 
       const setNotification = () => {
@@ -49,12 +49,10 @@ angular.module('mean.system')
         }
       };
 
-      let timeSetViaUpdate = false;
+      let timeSetViaUpdate = true;
       const decrementTime = () => {
         if (game.time > 0 && !timeSetViaUpdate) {
           game.time -= 1;
-        } else {
-          timeSetViaUpdate = false;
         }
         $timeout(decrementTime, 950);
       };
@@ -96,15 +94,15 @@ angular.module('mean.system')
 
         // Handle updating game.time
         if (data.round !== game.round && data.state !== 'awaiting players' &&
-      data.state !== 'game ended' && data.state !== 'game dissolved') {
+            data.state !== 'game ended' && data.state !== 'game dissolved') {
           game.time = game.timeLimits.stateChoosing - 1;
           timeSetViaUpdate = true;
         } else if (newState && data.state === 'waiting for czar to decide') {
           game.time = game.timeLimits.stateJudging - 1;
-          timeSetViaUpdate = true;
+          timeSetViaUpdate = false;
         } else if (newState && data.state === 'winner has been chosen') {
           game.time = game.timeLimits.stateResults - 1;
-          timeSetViaUpdate = true;
+          timeSetViaUpdate = false;
         }
 
         // Set these properties on each update
@@ -152,7 +150,16 @@ angular.module('mean.system')
           game.state = data.state;
         }
 
-        if (data.state === 'waiting for players to pick') {
+        if (game.state === 'waiting for players to pick'
+          && game.czar !== game.playerIndex) {
+          if (game.curQuestion.numAnswers === 1) {
+            addToNotificationQueue('Select an answer!');
+          } else {
+            addToNotificationQueue('Select TWO answers!');
+          }
+        }
+
+        if (data.state === 'game in progress') {
           game.czar = data.czar;
           game.curQuestion = data.curQuestion;
           // Extending the underscore within the question
@@ -160,15 +167,11 @@ angular.module('mean.system')
             .replace(/_/g, '<u></u>');
 
           // Set notifications only when entering state
-          if (newState) {
-            if (game.czar === game.playerIndex) {
-              addToNotificationQueue('You\'re the Card Czar! Please wait!');
-            } else if (game.curQuestion.numAnswers === 1) {
-              addToNotificationQueue('Select an answer!');
-            } else {
-              addToNotificationQueue('Select TWO answers!');
-            }
-          }
+          // if (newState) {
+          //   if (game.czar === game.playerIndex) {
+          //     addToNotificationQueue('You\'re the Card Czar! Please choose a random question card!');
+          //   }
+          // }
         } else if (data.state === 'waiting for czar to decide') {
           if (game.czar === game.playerIndex) {
             addToNotificationQueue("Everyone's done. Choose the winner!");
@@ -208,7 +211,7 @@ angular.module('mean.system')
         mode = mode || 'joinGame';
         room = room || '';
         createPrivate = createPrivate || false;
-        const userID = window.user ? user._id : 'unauthenticated';
+        const userID = window.user ? window.user._id : 'unauthenticated';
         socket.emit(mode, {
           userID,
           room,
@@ -224,6 +227,15 @@ angular.module('mean.system')
         game.players = [];
         game.time = 0;
         socket.emit('leaveGame');
+      };
+
+      game.czarHasPickedRandCard = () => {
+        socket.emit('czar has picked a random card');
+      };
+
+      game.decrementTime = () => {
+        game.time = game.timeLimits.stateChoosing - 1;
+        timeSetViaUpdate = false;
       };
 
       game.pickCards = (cards) => {
