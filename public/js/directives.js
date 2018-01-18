@@ -86,7 +86,7 @@ angular
   }))
   .directive('question', () => ({
     restrict: 'EA',
-    templateUrl: '/views/question.html',
+    templateUrl: '/views/question.html'
     // link(scope, elem, attr) {}
   }))
   .directive('timer', () => ({
