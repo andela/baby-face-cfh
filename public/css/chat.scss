@@ -10,43 +10,6 @@ $chat-footer-color: #EEEEEE;
 	position: fixed;
 	right:50px;
 	z-index: 2000;
-	
-	.chat-panel-header {
-		background-color: $blue-color;
-
-		p {
-			color: $white-color;
-			margin:0px;
-			padding: 10px 0px;
-		}
-
-		p:hover {
-			color: $white-color;
-			cursor: pointer;
-		}
-
-		.left-section {
-			p {
-				i {
-					margin-right: 10px;
-				}
-			}
-		}
-
-		.right-section {
-			text-align: right;
-			
-			i {
-				color: $white-color;
-				font-size: 15px;
-				padding: 12px 3px;
-			}
-	
-			i:hover {
-				color: $white-color;
-			}
-		}
-	}
 
 	.chat-panel-header:hover {
 		cursor: pointer;
@@ -57,17 +20,53 @@ $chat-footer-color: #EEEEEE;
 		margin: 0px;
 	}
 }
+
+.chat-panel-header {
+  background-color: $blue-color;
+
+  p {
+    color: $white-color;
+    margin:0px;
+    padding: 10px 0px;
+  }
+
+  p:hover {
+    color: $white-color;
+    cursor: pointer;
+  }
+}
+
+.left-section {
+  i {
+    margin-right: 10px;
+  }
+}
+
+.right-section {
+  text-align: right;
+  
+  i {
+    color: $white-color;
+    font-size: 15px;
+    padding: 12px 3px;
+  }
+
+  i:hover {
+    color: $white-color;
+  }
+}
   
 .is-closed {
 	bottom: -350px;
 	transition: 1s;
 }
+
 .is-open {
 	bottom:0px;
 	transition: 1s;
 }
 
-.chat-panel-body{
+.chat-panel-body {
 	padding: 0px;
 	margin: 0px;
 	background-color: $chat-body-color;
@@ -80,63 +79,61 @@ $chat-footer-color: #EEEEEE;
 
 	ul {
 		padding: 0px;
-
-		li{
-			list-style: none;
-			margin-top: 10px;
-			margin-right: 10px;
-			margin-bottom: 5px;
-			margin-left: 5px;
-      padding-bottom: 5px;
-      border-bottom: 1px dotted $dotted-line-color;
-			position: relative;
-
-			img {
-				width: 30px;
-				height: 30px;
-			}
-
-			.chat-body {
-				margin-left: 40px;
-
-				.fa-clock-o {
-          margin-right: 5px;
-				}
-
-				.player-name {
-					font-size: 14px;
-				}
-	
-				.player-message {
-					font-size: 12px;
-				}
-			}
-		}
 	}
 }
 
-.chat-panel-footer{
+.chat-list {
+  list-style: none;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted $dotted-line-color;
+  position: relative;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.chat-body {
+  margin-left: 40px;
+
+  .fa-clock-o {
+    margin-right: 5px;
+  }
+
+  .player-name {
+    font-size: 14px;
+  }
+
+  .player-message {
+    font-size: 12px;
+  }
+}
+
+.chat-panel-footer {
 	background-color: $chat-footer-color;
 	border-top: 1px solid $chat-footer-color;
 }
 
 .message-bar {
-	input{
-		width:90%;
-		margin-left:-15px;
-		padding:10px 10px;
-		border:1px solid $white-color;
+	input {
+    border: 1px solid $white-color;
+		margin-left: -15px;
+    padding: 10px;
+    width: 90%;
 	}
 
-	a {
-		i {
-			background-color: $blue-color;
-			color: $white-color;
-			width:30px;
-			height:30px;
-			padding:7px 0px;
-			border-radius: 50%;
-			text-align: center;
-		}
-	}
+  i {
+    background-color: $blue-color;
+    color: $white-color;
+    width: 30px;
+    height: 30px;
+    padding: 7px 0px;
+    border-radius: 50%;
+    text-align: center;
+  }
 }
