@@ -1,23 +1,23 @@
 $white-color: #fff;
 $blue-color: #305d93;
-$red-color: red;
-$chat-body-color: #F3F3F3;
-$dotted-line-color: #B3A9A9;
-$chat-footer-color: #EEEEEE;
+$red-color: #ff0000;
+$chat-body-color: #f3f3f3;
+$dotted-line-color: #b3a9a9;
+$chat-footer-color: #eeeeee;
 
 .chat-panel {
-  width: 300px;
   position: fixed;
   right: 50px;
+  width: 300px;
   z-index: 2000;
 
   .chat-panel-header:hover {
-	  cursor: pointer;
+    cursor: pointer;
   }
 
   .chat-panel-border {
-	  border: 1px solid $blue-color;
-	  margin: 0;
+    border: 1px solid $blue-color;
+    margin: 0;
   }
 }
 
