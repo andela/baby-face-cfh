@@ -1,7 +1,8 @@
 .chat-panel {
   width: 300px;
   position: fixed;
-  right: 50px; }
+  right: 50px;
+  z-index: 2000; }
   .chat-panel .chat-panel-header {
     background-color: #305d93; }
     .chat-panel .chat-panel-header p {
@@ -24,7 +25,6 @@
   .chat-panel .chat-panel-header:hover {
     cursor: pointer; }
   .chat-panel .chat-panel-border {
-    border: 1px solid #305d93;
     margin: 0px; }
 
 .is-closed {
@@ -68,20 +68,27 @@
           font-size: 12px; }
 
 .chat-panel-footer {
-  background-color: #EEEEEE;
-  border-top: 1px solid #EEEEEE; }
+  background-color: #727272;
+  padding: 0; }
 
-.message-bar input {
-  width: 90%;
-  margin-left: -15px;
-  padding: 10px 10px;
-  border: 1px solid #fff; }
-
-.message-bar a i {
-  background-color: #305d93;
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  padding: 7px 0px;
-  border-radius: 50%;
-  text-align: center; }
+.message-bar {
+  height: 40px; }
+  .message-bar #emoji {
+    background: transparent;
+    width: 50%;
+    height: 30px;
+    border: none !important; }
+  .message-bar .message-bar-inner {
+    width: 85%;
+    height: 30px;
+    padding: 0;
+    margin: 0; }
+  .message-bar a i {
+    background-color: #305d93;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    padding-top: 7px;
+    padding-right: 2px;
+    border-radius: 50%;
+    text-align: center; }

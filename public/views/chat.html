@@ -45,9 +45,11 @@
     </div>
     <div class="row chat-panel-border">
       <div class="col-md-12 col-sm-12 col-xs-12 chat-panel-footer">
-        <div class="message-bar">
-          <input type="text" placeholder="Messege co-players" ng-model="message" ng-keypress="sendMessage($event)">
-          <a ng-click="sendMessage()">
+        <div class="message-bar p-3">
+          <div class="message-bar-inner float-left clearfix">
+            <input type="text" id="emoji" class="inputMsg" ng-model="message" ng-keypress="sendMessage($event)">
+          </div>
+          <a class="ml-2 mt-1 hovered" id="submitButton">
             <i class="fa fa-send-o" aria-hidden="true"></i>
           </a>
         </div>
