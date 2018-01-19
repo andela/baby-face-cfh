@@ -30,27 +30,29 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="p-10">
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 mr-auto ml-auto mt-100 mb-100 form-wrapper">
+              <div class="col-xl-7 col-lg-7 col-md-7 col-sm-8 mr-auto ml-auto mt-100 mb-100 form-wrapper">
                 <div class="text-danger" ng-show="showError() === 'invalid'">
                   Please check your username/password and try again.
                 </div>
                 <form ng-controller="AuthenticationController">
                   <ul class="form row p-3">
                     <li class="col-12">
-                      <button class="btn btn-block text-white ribbon-blue hovered">
+                      <a href="/auth/facebook" class="btn btn-block text-left pb-2 text-white ribbon-blue hovered">
                         <i class="fa fa-facebook-official float-left fa-2x" aria-hidden="true"></i>
-                        <span class="pt-5">Sign in with Facebook</span>
-                      </button>
+                        <span class="pl-3">Sign in with Facebook</span>
+                      </a>
                     </li>
                     <li class="col-12">
-                      <button class="btn btn-block text-white btn-info hovered">
-                        <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i> Sign in with Twitter
-                      </button>
+                      <a href="/auth/twitter" class="btn btn-block text-left text-white btn-info hovered">
+                        <i class="fa fa-twitter float-left fa-2x" aria-hidden="true"></i>
+                        <span class="pl-3">Sign in with Twitter</span>
+                      </a>
                     </li>
                     <li class="col-12">
-                      <button class="btn btn-block text-white btn-danger hovered">
-                        <i class="fa fa-google float-left fa-2x" aria-hidden="true"></i> Sign in with Google
-                      </button>
+                      <a href="/auth/google" class="btn btn-block text-left text-white btn-danger hovered">
+                        <i class="fa fa-google float-left fa-2x" aria-hidden="true"></i>
+                        <span class="pl-3">Sign in with Google</span>
+                      </a>
                     </li>
 
                     <li class="col-12">
@@ -62,8 +64,9 @@
                       <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
                     </li>
                     <li class="text-error text-center col-12 mb-20">
+                      <div ng-show="showLoader" class="auth-loader text-center"></div>
                       <p class=" text-danger" ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
-                      <input type="submit" ng-click="login()" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered" />
+                      <button type="submit" ng-click="login()" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered">Submit</button>
                     </li>
                   </ul>
                 </form>
@@ -101,7 +104,7 @@
                   <a href="https://twitter.com/Dheavyman" class="nav-link">Nebo Justin</a>
                 </li>
                 <li class="nav-item">
-                  <a href="https://twitter.com/Dammy" class="nav-link">Damilare Olatunbosun</a>
+                  <a href="https://twitter.com/Dammyy" class="nav-link">Damilare Olatunbosun</a>
                 </li>
                 <li class="nav-item">
                   <a href="https://twitter.com/michaelumanah" class="nav-link">Michael Umanah</a>

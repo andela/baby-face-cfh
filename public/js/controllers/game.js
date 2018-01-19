@@ -1,5 +1,6 @@
 angular.module('mean.system')
   .controller('GameController', [
+    '$rootScope',
     '$scope',
     'game',
     '$timeout',
@@ -7,7 +8,10 @@ angular.module('mean.system')
     'MakeAWishFactsService',
     '$http',
     '$dialog',
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $http) => {
+    (
+      $rootScope, $scope, game, $timeout,
+      $location, MakeAWishFactsService, $http
+    ) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -16,6 +20,17 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
+
+
+      // Listen to the roomFilled event on the root scope
+      // then trigger a modal to tell the user that the room is filled..
+      $rootScope.$on('roomFilled', () => {
+        $('#roomFilled').modal();
+      });
+
+
+      /* eslint-disable */
+      $scope.gameTour = introJs();
 
       $scope.pickCard = (card) => {
         if (!$scope.hasPickedCards) {
@@ -49,18 +64,25 @@ angular.module('mean.system')
         $scope.showTable = true;
       };
 
+
       $scope.searchUser = () => {
+        $scope.userNotFound = false;
+        $scope.searchResult = '';
         const { username } = $scope;
         if (username && username.length !== 0) {
           $http({
             method: 'GET',
             url: `/api/search/${username}`
           }).then((response) => {
+            $scope.username = null;
             if (response.data.user && response.data.email) {
               $('#searchControl').show();
               $scope.searchResult = response.data.user;
               $scope.email = response.data.email;
             }
+          }, () => {
+            $scope.username = null;
+            $scope.userNotFound = true;
           });
         } else {
           $scope.searchResult = [];
@@ -141,6 +163,53 @@ angular.module('mean.system')
 
       $scope.winnerPicked = () => game.winningCard !== -1;
 
+      // Catches changes to round to update when no players pick card
+      // (because game.state remains the same)
+      $scope.$watch('game.round', () => {
+        $scope.hasPickedCards = false;
+        $scope.showTable = false;
+        $scope.winningCardPicked = false;
+        $scope.makeAWishFact = makeAWishFacts.pop();
+        if (!makeAWishFacts.length) {
+          makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+        }
+        $scope.pickedCards = [];
+      });
+
+      $scope.showRandomCardModal = false;
+
+      $scope.onPickRandomCard = () => {
+        setTimeout(() => {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+          game.czarHasPickedRandCard();
+        }, 2000);
+      };
+
+      // In case player doesn't pick a card in time, show the table
+      $scope.$watch('game.state', () => {
+        if (game.state === 'waiting for czar to decide'
+          && $scope.showTable === false) {
+          $scope.showTable = true;
+        }
+        if (game.state === 'game in progress') {
+          $('#modal-container').removeAttr('class').addClass('five');
+          $('.modal label').prop('checked', false);
+          $('.modal input').prop('checked', false);
+          $('.back p').html(game.curQuestion.text);
+          // $('body').addClass('modal-active');
+        }
+        if (game.state === 'waiting for players to pick') {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+          game.decrementTime();
+        }
+        if (game.state === 'game dissolved') {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+        }
+      });
+
       $scope.startGame = () => {
         if (game.players.length >= game.playerMinLimit) {
           $('#startGameModal').modal({
@@ -161,27 +230,6 @@ angular.module('mean.system')
         game.leaveGame();
         $location.path('/');
       };
-
-      // Catches changes to round to update when no players pick card
-      // (because game.state remains the same)
-      $scope.$watch('game.round', () => {
-        $scope.hasPickedCards = false;
-        $scope.showTable = false;
-        $scope.winningCardPicked = false;
-        $scope.makeAWishFact = makeAWishFacts.pop();
-        if (!makeAWishFacts.length) {
-          makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-        }
-        $scope.pickedCards = [];
-      });
-
-      // In case player doesn't pick a card in time, show the table
-      $scope.$watch('game.state', () => {
-        if (game.state === 'waiting for czar to decide' &&
-          $scope.showTable === false) {
-          $scope.showTable = true;
-        }
-      });
 
       $scope.$watch('game.gameID', () => {
         if (game.gameID && game.state === 'awaiting players') {
@@ -213,6 +261,82 @@ angular.module('mean.system')
           }
         }
       });
+      $scope.gameTour.setOptions({
+        steps: [
+          {
+            intro: 'Hello, I would like to take you on a quick'
+            + ' tour of how this game is played.'
+          },
+          {
+            element: document.querySelector('#start-game-button'),
+            intro: 'This pane, also called the question box shows '
+            + 'the number of players  that have joined.'
+          },
+          {
+            element: document.querySelector('#abandon-game-button'),
+            intro: 'If you ever decide to quit or leave the game,'
+            + ' you can click this button.'
+          },
+          {
+            element: document.querySelector('#donate-game-button'),
+            intro: 'Click this button to make a donation'
+          },
+          {
+            element: document.querySelector('#players-online-onboarding'),
+            intro: 'This is the player card. It shows the username, avatar,'
+            + ' and score of players that have joined the current game session.'
+          },
+          {
+            element: '#play',
+            intro: 'Click on the play button to start a new game.'
+          },
+          {
+            element: '#invite-players',
+            intro: 'Use the Invite Players button to invite your friends.',
+          },
+          {
+            element: document.querySelector('#timer-status-round'),
+            intro: 'A game session lasts for 20 seconds. This pane '
+            + 'shows the number of seconds left for a game session to end.'
+          },
+          {
+            element: '#h-t-p',
+            intro: 'This panel shows the instructions of the game. , '
+            + 'When the game starts the answers to the question in '
+            + 'the question box above will be shown here.'
+          },
+          {
+            element: document.querySelector('#retake-tour-button'),
+            intro: 'If you feel like taking this tour again,'
+            + ' you can always click here.'
+          },
+          {
+            intro: 'YES! We are done with the tour.'
+            + ' Enjoy your game and remember to donate!.'
+          }
+        ]
+      });
+      // Take tour method: This will run on ng-init
+      $scope.takeTour = () => {
+        const tourStatus = localStorage.getItem('tour_status');
+        if (tourStatus === 'false') {
+          const timeout = setTimeout(() => {
+            $scope.gameTour.start();
+            clearTimeout(timeout);
+          }, 2000);
+          localStorage.removeItem('tour_status');
+        }
+        const guestTour = localStorage.getItem('token');
+        if (!guestTour) {
+          const timeout = setTimeout(() => {
+            $scope.gameTour.start();
+            clearTimeout(timeout);
+          }, 2000);
+        }
+      };
+      $scope.retakeTour = () => {
+        $scope.gameTour.start();
+      };
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
         console.log('joining custom game');

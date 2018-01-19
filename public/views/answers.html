@@ -1,10 +1,10 @@
-<div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
-  <div id="social-bar-container" class="col-lg-12">
-      <h6 class="bolder text-white">
-        Players Online
-      </h6>
-      <player></player>
-  </div>
+<div id="social-bar-container" class="col-lg-12" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
+    <h6 class="bolder text-white">
+      Players Online
+    </h6>
+    <player></player>
+</div>
+<div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'game in progress'">
   <!-- <div id="cards" class='hand col-lg-12'>
     <span ng-show="winnerPicked()"></span>
     <div ng-style="{'cursor':'pointer'}" class="card smallest" id='answers' ng-click="pickCard(card)" ng-hide="showTable || isCzar()"
@@ -71,6 +71,8 @@
     <!-- <a href="http://www.crowdrise.com" id="crowdriseStaticLink-project-36715" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a> --
     <!-- <script type="text/javascript" src="https://apisandbox.crowdrise.com/widgets/donate/project/36715/?callback=userDonationCb"></script> --
   </div>
+</div>
+<div id="czar-blank-container" ng-show="isCzar() && game.table.length===0 && game.state === 'waiting for players to pick' && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
 </div> -->
 <!-- <div id="czar-blank-container" ng-show="isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
   <div id="czar-blank-inner">
