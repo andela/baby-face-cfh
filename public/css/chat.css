@@ -1,14 +1,9 @@
 .chat-panel-footer {
-  background-color: #B3A9A9;
+  background-color: #b3a9a8;
   padding: 0; }
 
 .message-bar {
   height: 40px; }
-  .message-bar #emoji {
-    background: transparent;
-    width: 50%;
-    height: 30px;
-    border: none !important; }
   .message-bar .message-bar-inner {
     width: 87%;
     height: 30px;
@@ -67,7 +62,7 @@
   transition: 1s; }
 
 .chat-panel-body {
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   height: 300px;
   margin: 0;
   padding: 0; }
@@ -79,7 +74,7 @@
     padding: 0; }
 
 .chat-list {
-  border-bottom: 1px dotted #B3A9A9;
+  border-bottom: 1px dotted #b3a9a9;
   list-style: none;
   margin-bottom: 5px;
   margin-left: 5px;
@@ -101,5 +96,5 @@
     font-size: 12px; }
 
 .chat-panel-footer {
-  background-color: #B3A9A9;
-  border-top: 1px solid #B3A9A9; }
+  background-color: #b3a9a8;
+  border-top: 1px solid #b3a9a8; }
