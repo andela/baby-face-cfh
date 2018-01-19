@@ -221,7 +221,7 @@ exports.addDonation = (req, res) => {
         .exec((err, user) => {
         // Confirm that this object hasn't already been entered
           let duplicate = false;
-          for (let i = 0; i < user.donations.length; i++) {
+          for (let i = 0; i < user.donations.length; i += 1) {
             if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
               duplicate = true;
             }
@@ -332,6 +332,28 @@ exports.sendInvite = (req, res) => {
         message: 'Message sent successfully'
       });
     }
+  });
+};
+
+
+/**
+ *
+ * @returns {void}
+ * @param {any} req
+ * @param {any} res
+ */
+exports.getDonations = (req, res) => {
+  User.find({}, 'name donations', (error, users) => {
+    if (error) {
+      return res.status(500).send({
+        status: 'Error',
+        message: 'There was an error processing the request'
+      });
+    }
+    return res.status(200).send({
+      status: 'Success',
+      donations: users
+    });
   });
 };
 
