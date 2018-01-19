@@ -1,21 +1,17 @@
 $white-color: #fff;
 $blue-color: #305d93;
-$red-color: red;
+$red-color: #ff0000;
 $chat-body-color: #f3f3f3;
 $dotted-line-color: #b3a9a9;
 $chat-footer-color: #b3a9a8;
+
 .chat-panel-footer {
   background-color: $chat-footer-color;
   padding: 0;
 }
 
 .message-bar {
-  height: 40px; // #emoji {
-  //     background: transparent;
-  //     width: 50%;
-  //     height: 30px;
-  //     border: none !important;
-  // }
+  height: 40px; 
   .message-bar-inner {
     width: 87%;
     height: 30px;
