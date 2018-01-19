@@ -11,22 +11,24 @@ $chat-footer-color: #b3a9a8;
 
 .message-bar {
   height: 40px;
+
   .message-bar-inner {
     height: 30px;
     margin: 0;
     padding: 0;
     width: 87%;
   }
+
   i {
     background-color: $blue-color;
-    border-radius: 50%;    
+    border-radius: 50%;
     color: $white-color;
     height: 30px;
     margin-top: 2px;
-    padding-right: 2px;    
+    padding-right: 2px;
     padding-top: 7px;
     text-align: center;
-    width: 30px;    
+    width: 30px;
   }
 }
 
