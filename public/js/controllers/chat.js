@@ -62,45 +62,45 @@ angular.module('mean.system')
           message: $scope.message,
           timeSent: new Date(Date.now()).toLocaleTimeString('en-US')
         };
-      $scope.chatMessages.$add($scope.payLoad);
-      $scope.scrollDownPanel();
-      $scope.message = '';
-    };
+        $scope.chatMessages.$add($scope.payLoad);
+        $scope.scrollDownPanel();
+        $scope.message = '';
+      };
 
-    $scope.sendMessage = (event) => {
-      console.log($scope.message);
-      if (event) {
-        if (event.which === 13 && $scope.message !== '') {
+      $scope.sendMessage = (event) => {
+        console.log($scope.message);
+        if (event) {
+          if (event.which === 13 && $scope.message !== '') {
+            $scope.forwardMessage();
+          }
+        } else if ($scope.message !== '') {
           $scope.forwardMessage();
         }
-      } else if ($scope.message !== '') {
-        $scope.forwardMessage();
-      }
-    };
+      };
 
-    $(document).ready(() => {
-      const emoji = $('#emoji').emojioneArea({
-        autoHideFilters: true,
-        pickerPosition: 'top',
-        recentEmojis: true,
-        placeholder: 'Type a message',
-        events: {
-          keyup: (editor, event) => {
-            if (event.which === 13) {
-              $scope.message = emoji.data('emojioneArea').getText();
-              emoji.data('emojioneArea').setText('');
-              $scope.sendMessage(event);
-            } else {
-              $scope.message = emoji.data('emojioneArea').getText();
+      $(document).ready(() => {
+        const emoji = $('#emoji').emojioneArea({
+          autoHideFilters: true,
+          pickerPosition: 'top',
+          recentEmojis: true,
+          placeholder: 'Type a message',
+          events: {
+            keyup: (editor, event) => {
+              if (event.which === 13) {
+                $scope.message = emoji.data('emojioneArea').getText();
+                emoji.data('emojioneArea').setText('');
+                $scope.sendMessage(event);
+              } else {
+                $scope.message = emoji.data('emojioneArea').getText();
+              }
             }
           }
-        }
+        });
+        $('#submitButton').on('click', () => {
+          $scope.message = emoji.data('emojioneArea').getText();
+          emoji.data('emojioneArea').setText('');
+          $scope.sendMessage();
+        });
       });
-      $('#submitButton').on('click', () => {
-        $scope.message = emoji.data('emojioneArea').getText();
-        emoji.data('emojioneArea').setText('');
-        $scope.sendMessage();
-      });
-    });
-  }
-]);
+    }
+  ]);
