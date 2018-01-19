@@ -1,5 +1,6 @@
 angular
   .module('mean', [
+    'firebase',
     'ngCookies',
     'ngResource',
     'ui.bootstrap',
@@ -74,7 +75,7 @@ angular
       $location.hash(id);
       $anchorScroll();
       setTimeout(() => {
-        window.scrollTo(window.pageXOffset, window.pageYOffset - 55);
+        window.scrollTo(window.pageXOffset, window.pageYOffset - 70);
       }, 100);
     };
   });

@@ -223,13 +223,25 @@ body{
   .step-box{
     background-color: #ffffff;
     padding-top: 20px !important;
-    min-height: 150px;
+    min-height: 210px;
     text-align: center;
+    color: #305d93;
+    border-radius: 8px;
+    font-family: 'Helvetica neue';
+    font-weight: 300;
     -webkit-box-shadow: 0 10px 6px -6px #0000003d;
     -moz-box-shadow: 0 10px 6px -6px #0000003d;
          box-shadow: 0 10px 6px -6px #0000003d;
   }
-
+.step-box-footer{
+  position: absolute;
+  bottom: 1px;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  font-size: .5rem;
+}
   /* form */
 
   .form-wrapper{
@@ -461,3 +473,18 @@ height: 50%;
 position: relative;
 margin-top: 10px;
 font-size: 30px;}
+
+.login-button{
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.fontify{
+  font-size: 1rem;  
+  padding-top: 10px !important;
+}
+
+.hovered .fa-2x {
+  font-size: 1.7rem !important;
+}
+.introjs-helperLayer {opacity:0;}
