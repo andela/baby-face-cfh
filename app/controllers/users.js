@@ -221,7 +221,7 @@ exports.addDonation = (req, res) => {
         .exec((err, user) => {
         // Confirm that this object hasn't already been entered
           let duplicate = false;
-          for (let i = 0; i < user.donations.length; i++) {
+          for (let i = 0; i < user.donations.length; i += 1) {
             if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
               duplicate = true;
             }
@@ -298,7 +298,7 @@ exports.search = (req, res) => {
           message: `username ${req.params.username} is not found.`
         });
       }
-      return res.status(200).json({ user: user[0].name, email: user[0].email });
+      return res.status(200).json({ user, email: user[0].email });
     });
 };
 /**
@@ -340,15 +340,26 @@ exports.sendInvite = (req, res) => {
 exports.addFriend = (req, res) => {
   const { friendId, friendName, friendEmail } = req.body;
   const friendData = { friendId, friendName, friendEmail };
-  const userId = req.decoded.id;
+  console.log(req.decoded.user.id);
+  const userId = req.decoded.user.id;
+
+  // User.findOne(userId)
+  //   .then((foundUser) => {
+  //     console.log(foundUser);
+  //     foundUser.friends.push(friendData);
+  //     console.log('------------', foundUser);
+  //   }).catch(err => console.log(err));
+  console.log(req);
+
   User.findOneAndUpdate(
     {
       _id: userId
     },
     {
       $push: { friends: friendData }
-    }
+    },
   ).then(() => {
+    console.log('done');
     res.status(200).json({
       message: 'Friend Added Succesfully'
     });
@@ -359,10 +370,32 @@ exports.addFriend = (req, res) => {
         message: 'Internal Server Error'
       });
     });
+
+
+  // User.findOneAndUpdate(
+  //   {
+  //     _id: userId
+  //   },
+  //   {
+  //     $push: { friends: friendData }
+  //   }
+  // ).then(() => {
+  //   console.log('There is no error');
+  //   res.status(200).json({
+  //     message: 'Friend Added Succesfully'
+  //   });
+  // })
+  //   .catch((error) => {
+  //     console.log('error is this', error);
+  //     res.status(500).json({
+  //       error,
+  //       message: 'Internal Server Error'
+  //     });
+  //   });
 };
 
 exports.getFirendsList = (req, res) => {
-  const userId = req.decoded.id;
+  const userId = req.decoded.user.id;
 
   User.find({
     _id: userId
@@ -383,7 +416,7 @@ exports.getFirendsList = (req, res) => {
 };
 
 exports.deleteFriend = (req, res) => {
-  const userId = req.decoded.id;
+  const userId = req.decoded.user.id;
   const { friendId } = req.params;
   User.findOneAndUpdate(
     {

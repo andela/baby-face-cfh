@@ -239,6 +239,11 @@ module.exports = function (io) {
       exitGame(socket);
     });
 
+    socket.on('broadcastNotification', (userId) => {
+      const thisGame = allGames[socket.gameID];
+      thisGame.broadcastNotification(userId);
+    });
+
     socket.on('disconnect', () => {
       console.log('Rooms on Disconnect ', io.sockets.manager.rooms);
       exitGame(socket);

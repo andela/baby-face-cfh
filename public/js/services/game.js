@@ -216,6 +216,10 @@ angular.module('mean.system')
         });
       };
 
+      game.broadcastNotification = function (data) {
+        socket.emit('broadcastNotification', data);
+      };
+
       game.startGame = () => {
         socket.emit('startGame');
       };

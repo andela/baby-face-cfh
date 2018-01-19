@@ -8,6 +8,8 @@ import createGame from '../app/controllers/game';
 
 import { allJSON } from '../app/controllers/avatars';
 
+const notification = require('../app/controllers/notification');
+
 module.exports = (app, passport) => {
 // User Routes
   app.get('/signin', users.signin);
@@ -21,6 +23,16 @@ module.exports = (app, passport) => {
   app.post('/api/auth/login', users.login);
   app.post('/api/users/invite', users.sendInvite);
   app.get('/api/search/:username', users.search);
+
+  // Add friends
+  app.put('/api/user/friends', authenticate, users.addFriend);
+  app.get('/api/user/friends', authenticate, users.getFirendsList);
+  app.delete('/api/user/friends/:friendId', authenticate, users.deleteFriend);
+
+  // Notification routes
+  app.post('/api/notifications', authenticate, notification.addNotification);
+  app.get('/api/notifications', authenticate, notification.loadNotification);
+  app.put('/api/notification/:id', notification.readNotification);
 
   // Donation Routes
   app.post('/donations', users.addDonation);

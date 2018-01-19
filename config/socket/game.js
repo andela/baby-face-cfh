@@ -150,6 +150,10 @@ Game.prototype.startGame = function () {
   this.stateChoosing(this);
 };
 
+Game.prototype.broadcastNotification = function (userId) {
+  this.io.sockets.emit('notificationReceived', userId);
+};
+
 Game.prototype.sendUpdate = function () {
   this.io.sockets.in(this.gameID).emit('gameUpdate', this.payload());
 };
