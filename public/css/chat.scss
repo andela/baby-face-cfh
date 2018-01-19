@@ -1,10 +1,9 @@
 $white-color: #fff;
 $blue-color: #305d93;
 $red-color: red;
-$chat-body-color: #F3F3F3;
-$dotted-line-color: #B3A9A9;
-$chat-footer-color: #B3A9A9;
-
+$chat-body-color: #f3f3f3;
+$dotted-line-color: #b3a9a9;
+$chat-footer-color: #b3a9a8;
 .chat-panel-footer {
     background-color: $chat-footer-color;
     padding: 0;
@@ -12,16 +11,16 @@ $chat-footer-color: #B3A9A9;
 
 .message-bar {
     height: 40px;
-    #emoji {
-        background: transparent;
-        width: 50%;
-        height: 30px;
-        border: none !important;
-    }
+    // #emoji {
+    //     background: transparent;
+    //     width: 50%;
+    //     height: 30px;
+    //     border: none !important;
+    // }
     .message-bar-inner {
         width: 87%;
         height: 30px;
-        padding: 0; 
+        padding: 0;
         margin: 0;
     }
     a {
@@ -29,8 +28,8 @@ $chat-footer-color: #B3A9A9;
             background-color: $blue-color;
             color: $white-color;
             width: 30px;
-						height: 30px;
-						margin-top: 2px;
+            height: 30px;
+            margin-top: 2px;
             padding-top: 7px;
             padding-right: 2px;
             border-radius: 50%;
@@ -40,115 +39,104 @@ $chat-footer-color: #B3A9A9;
 }
 
 .chat-panel {
-  position: fixed;
-  right: 50px;
-  width: 300px;
-  z-index: 2000;
-
-  .chat-panel-header:hover {
-    cursor: pointer;
-  }
-
-  .chat-panel-border {
-    border: 1px solid $blue-color;
-    margin: 0;
-  }
+    position: fixed;
+    right: 50px;
+    width: 300px;
+    z-index: 2000;
+    .chat-panel-header:hover {
+        cursor: pointer;
+    }
+    .chat-panel-border {
+        border: 1px solid $blue-color;
+        margin: 0;
+    }
 }
 
 .chat-panel-header {
-  background-color: $blue-color;
-
-  p {
-    color: $white-color;
-    margin: 0;
-    padding: 10px 0;
-  }
-
-  p:hover {
-    color: $white-color;
-    cursor: pointer;
-  }
+    background-color: $blue-color;
+    p {
+        color: $white-color;
+        margin: 0;
+        padding: 10px 0;
+    }
+    p:hover {
+        color: $white-color;
+        cursor: pointer;
+    }
 }
 
 .left-section {
-  i {
-    margin-right: 10px;
-  }
+    i {
+        margin-right: 10px;
+    }
 }
 
 .right-section {
-  text-align: right;
-
-  i {
-    color: $white-color;
-    font-size: 15px;
-    padding: 12px 3px;
-  }
-
-  i:hover {
-    color: $white-color;
-  }
+    text-align: right;
+    i {
+        color: $white-color;
+        font-size: 15px;
+        padding: 12px 3px;
+    }
+    i:hover {
+        color: $white-color;
+    }
 }
 
 .is-closed {
-  bottom: -350px;
-  transition: 1s;
+    bottom: -350px;
+    transition: 1s;
 }
 
 .is-open {
-  bottom: 0;
-  transition: 1s;
+    bottom: 0;
+    transition: 1s;
 }
 
 .chat-panel-body {
-  background-color: $chat-body-color;
-  height: 300px;
-  margin: 0;
-  padding: 0;
+    background-color: $chat-body-color;
+    height: 300px;
+    margin: 0;
+    padding: 0;
 }
 
 .chat-messages {
-  height: 300px;
-  overflow-y: scroll;
-
-  ul {
-    padding: 0;
-  }
+    height: 300px;
+    overflow-y: scroll;
+    ul {
+        padding: 0;
+    }
 }
 
 .chat-list {
-  border-bottom: 1px dotted $dotted-line-color;
-  list-style: none;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 10px;
-  margin-top: 10px;
-  padding-bottom: 5px;
-  position: relative;
-
-  img {
-    height: 30px;
-    width: 30px;
-  }
+    border-bottom: 1px dotted $dotted-line-color;
+    list-style: none;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    position: relative;
+    img {
+        height: 30px;
+        width: 30px;
+    }
 }
 
 .chat-body {
-  margin-left: 40px;
-
-  .fa-clock-o {
-    margin-right: 5px;
-  }
-
-  .player-name {
-    font-size: 14px;
-  }
-
-  .player-message {
-    font-size: 12px;
-  }
+    margin-left: 40px;
+    .fa-clock-o {
+        margin-right: 5px;
+    }
+    .player-name {
+        font-size: 14px;
+    }
+    .player-message {
+        font-size: 12px;
+    }
 }
 
 .chat-panel-footer {
-  background-color: $chat-footer-color;
-  border-top: 1px solid $chat-footer-color;
+    background-color: $chat-footer-color;
+    border-top: 1px solid $chat-footer-color;
 }
