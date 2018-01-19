@@ -64,8 +64,9 @@
                       <input type="password" ng-model="user.password" required class="col-12" name="pass" placeholder="**********" />
                     </li>
                     <li class="text-error text-center col-12 mb-20">
+                      <div ng-show="showLoader" class="auth-loader text-center"></div>
                       <p class=" text-danger" ng-show="serverErrorExists()">{{ serverErrorMessage }}</p>
-                      <input type="submit" ng-click="login()" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered" />
+                      <button type="submit" ng-click="login()" value="Submit" id="submit" class="btn btn-block text-white ribbon-blue hovered">Submit</button>
                     </li>
                   </ul>
                 </form>

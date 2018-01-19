@@ -1,6 +1,7 @@
 {
   "root": true,
   "extends": "airbnb-base",
+  "parser": "babel-eslint",
   "env": {
     "node": true,
     "es6": true,
@@ -12,7 +13,8 @@
     "$": true,
     "window": true,
     "angular": true,
-    "AOS": true
+    "AOS": true,
+    "Firebase": true
   },
   "rules": {
     "max-len": [ 1, 80, 2],
