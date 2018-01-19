@@ -1,0 +1,57 @@
+<div class="container" ng-controller="ChatController">
+  <div class="chat-panel is-closed">
+    <div class="row chat-panel-border">
+      <div class="col-md-12 col-sm-12 col-xs-12 chat-panel-header">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-6 left-section">
+            <p>
+              <sup class="badge badge-danger rounded-circle">{{unreadMessagesCount}}</sup>
+              <i class="fa fa-comments-o" aria-hidden="true"></i>
+              Chat
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-6 right-section">
+            <a>
+              <i id="toggle-sign" class="fa fa-plus" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row chat-panel-border">
+      <div class="col-md-12 col-sm-12 col-xs-12 chat-panel-body">
+        <div class="chat-messages">
+          <ul>
+            <li class="clearfix chat-list" ng-repeat="chatMessage in chatMessages">
+              <span class="chat-img pull-left">
+                <img ng-src={{chatMessage.avatar}} alt="" class="rounded-circle" />
+              </span>
+              <div class="chat-body clearfix">
+                <div>
+                  <strong class="player-name">{{chatMessage.username}}</strong>
+                  <small class="pull-right text-muted">
+                    <span class="fa fa-clock-o"></span>
+                    {{chatMessage.timeSent}}
+                  </small>
+                </div>
+                <p class="player-message">
+                  {{chatMessage.message}}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row chat-panel-border">
+      <div class="col-md-12 col-sm-12 col-xs-12 chat-panel-footer">
+        <div class="message-bar">
+          <input type="text" placeholder="Messege co-players" ng-model="message" ng-keypress="sendMessage($event)">
+          <a ng-click="sendMessage()">
+            <i class="fa fa-send-o" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

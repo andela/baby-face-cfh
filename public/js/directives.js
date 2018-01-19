@@ -86,12 +86,17 @@ angular
   }))
   .directive('question', () => ({
     restrict: 'EA',
-    templateUrl: '/views/question.html',
+    templateUrl: '/views/question.html'
     // link(scope, elem, attr) {}
   }))
   .directive('timer', () => ({
     restrict: 'EA',
     templateUrl: '/views/timer.html'
+    // link(scope, elem, attr) {}
+  }))
+  .directive('chat', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/chat.html',
     // link(scope, elem, attr) {}
   }))
   .directive('landing', [

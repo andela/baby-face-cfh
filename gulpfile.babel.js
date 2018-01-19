@@ -22,7 +22,7 @@ const { reload } = browserSync,
       'app/**/*.js',
       '!node_modules/**'
     ],
-    sass: ['public/css/common.scss'],
+    sass: ['public/css/common.scss', 'public/css/chat.scss'],
     scripts: ['public/js/**', 'app/**/*.js'],
     test: ['./dist/test/**/*.js']
   };
@@ -182,7 +182,8 @@ gulp.task('move-json', () => {
 
 // Move files in public folder to dist folder
 gulp.task('move-public', ['sass'], () => {
-  gulp.src(['public/**/*', '!public/js/**']).pipe(gulp.dest('./dist/public'));
+  gulp.src(['public/**/*', '!public/js/**', '!public/css/*.scss'])
+    .pipe(gulp.dest('./dist/public'));
 });
 
 gulp.task('watch', () => {
