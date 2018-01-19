@@ -1,5 +1,6 @@
 angular.module('mean.system')
   .controller('GameController', [
+    '$rootScope',
     '$scope',
     'game',
     '$timeout',
@@ -7,7 +8,10 @@ angular.module('mean.system')
     'MakeAWishFactsService',
     '$http',
     '$dialog',
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $http) => {
+    (
+      $rootScope, $scope, game, $timeout,
+      $location, MakeAWishFactsService, $http
+    ) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -16,8 +20,18 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
+
+
+      // Listen to the roomFilled event on the root scope
+      // then trigger a modal to tell the user that the room is filled..
+      $rootScope.$on('roomFilled', () => {
+        $('#roomFilled').modal();
+      });
+
+
       /* eslint-disable */
       $scope.gameTour = introJs();
+
       $scope.pickCard = (card) => {
         if (!$scope.hasPickedCards) {
           if ($scope.pickedCards.indexOf(card.id) < 0) {
@@ -50,18 +64,25 @@ angular.module('mean.system')
         $scope.showTable = true;
       };
 
+
       $scope.searchUser = () => {
+        $scope.userNotFound = false;
+        $scope.searchResult = '';
         const { username } = $scope;
         if (username && username.length !== 0) {
           $http({
             method: 'GET',
             url: `/api/search/${username}`
           }).then((response) => {
+            $scope.username = null;
             if (response.data.user && response.data.email) {
               $('#searchControl').show();
               $scope.searchResult = response.data.user;
               $scope.email = response.data.email;
             }
+          }, () => {
+            $scope.username = null;
+            $scope.userNotFound = true;
           });
         } else {
           $scope.searchResult = [];
@@ -142,6 +163,53 @@ angular.module('mean.system')
 
       $scope.winnerPicked = () => game.winningCard !== -1;
 
+      // Catches changes to round to update when no players pick card
+      // (because game.state remains the same)
+      $scope.$watch('game.round', () => {
+        $scope.hasPickedCards = false;
+        $scope.showTable = false;
+        $scope.winningCardPicked = false;
+        $scope.makeAWishFact = makeAWishFacts.pop();
+        if (!makeAWishFacts.length) {
+          makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+        }
+        $scope.pickedCards = [];
+      });
+
+      $scope.showRandomCardModal = false;
+
+      $scope.onPickRandomCard = () => {
+        setTimeout(() => {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+          game.czarHasPickedRandCard();
+        }, 2000);
+      };
+
+      // In case player doesn't pick a card in time, show the table
+      $scope.$watch('game.state', () => {
+        if (game.state === 'waiting for czar to decide'
+          && $scope.showTable === false) {
+          $scope.showTable = true;
+        }
+        if (game.state === 'game in progress') {
+          $('#modal-container').removeAttr('class').addClass('five');
+          $('.modal label').prop('checked', false);
+          $('.modal input').prop('checked', false);
+          $('.back p').html(game.curQuestion.text);
+          // $('body').addClass('modal-active');
+        }
+        if (game.state === 'waiting for players to pick') {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+          game.decrementTime();
+        }
+        if (game.state === 'game dissolved') {
+          $('#modal-container').addClass('out');
+          $('body').removeClass('modal-active');
+        }
+      });
+
       $scope.startGame = () => {
         if (game.players.length >= game.playerMinLimit) {
           $('#startGameModal').modal({
@@ -162,27 +230,6 @@ angular.module('mean.system')
         game.leaveGame();
         $location.path('/');
       };
-
-      // Catches changes to round to update when no players pick card
-      // (because game.state remains the same)
-      $scope.$watch('game.round', () => {
-        $scope.hasPickedCards = false;
-        $scope.showTable = false;
-        $scope.winningCardPicked = false;
-        $scope.makeAWishFact = makeAWishFacts.pop();
-        if (!makeAWishFacts.length) {
-          makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-        }
-        $scope.pickedCards = [];
-      });
-
-      // In case player doesn't pick a card in time, show the table
-      $scope.$watch('game.state', () => {
-        if (game.state === 'waiting for czar to decide' &&
-          $scope.showTable === false) {
-          $scope.showTable = true;
-        }
-      });
 
       $scope.$watch('game.gameID', () => {
         if (game.gameID && game.state === 'awaiting players') {

@@ -21,4 +21,9 @@ angular.module('mean.system')
         $scope.avatars = data;
       });
 
+   $scope.regions = [{ regionId: 1, region: 'Africa' }, { regionId: 2, region: 'World' }];
+      $scope.changedValue = (item) => {
+        $window.localStorage.setItem('regionId', item.regionId);
+   };
+
 }]);
