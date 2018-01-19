@@ -68,7 +68,7 @@
           font-size: 12px; }
 
 .chat-panel-footer {
-  background-color: #727272;
+  background-color: #B3A9A9;
   padding: 0; }
 
 .message-bar {
@@ -79,7 +79,7 @@
     height: 30px;
     border: none !important; }
   .message-bar .message-bar-inner {
-    width: 85%;
+    width: 87%;
     height: 30px;
     padding: 0;
     margin: 0; }
@@ -88,6 +88,7 @@
     color: #fff;
     width: 30px;
     height: 30px;
+    margin-top: 2px;
     padding-top: 7px;
     padding-right: 2px;
     border-radius: 50%;

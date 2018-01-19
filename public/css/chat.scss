@@ -3,7 +3,7 @@ $blue-color: #305d93;
 $red-color: red;
 $chat-body-color: #F3F3F3;
 $dotted-line-color: #B3A9A9;
-$chat-footer-color: #727272;
+$chat-footer-color: #B3A9A9;
 .chat-panel {
     width: 300px;
     position: fixed;
@@ -116,7 +116,7 @@ $chat-footer-color: #727272;
     }
     .message-bar-inner {
         // background: rgba(48, 94, 147, 0.616);
-        width: 85%;
+        width: 87%;
         height: 30px;
         padding: 0; // padding-left: 1rem;
         // border-radius: 3rem;
@@ -127,7 +127,8 @@ $chat-footer-color: #727272;
             background-color: $blue-color;
             color: $white-color;
             width: 30px;
-            height: 30px;
+						height: 30px;
+						margin-top: 2px;
             padding-top: 7px;
             padding-right: 2px;
             border-radius: 50%;

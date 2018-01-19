@@ -111,6 +111,7 @@ angular.module('mean.system').controller('ChatController', [
         autoHideFilters: true,
         pickerPosition: 'top',
         recentEmojis: true,
+        placeholder: 'Type a message',
         events: {
           keyup: (editor, event) => {
             if (event.which === 13) {
