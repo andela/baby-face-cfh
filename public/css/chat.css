@@ -1,20 +1,42 @@
+.chat-panel-footer {
+  background-color: #b3a9a8;
+  padding: 0; }
+
+.message-bar {
+  height: 40px; }
+  .message-bar .message-bar-inner {
+    width: 87%;
+    height: 30px;
+    padding: 0;
+    margin: 0; }
+  .message-bar a i {
+    background-color: #305d93;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    margin-top: 2px;
+    padding-top: 7px;
+    padding-right: 2px;
+    border-radius: 50%;
+    text-align: center; }
+
 .chat-panel {
-  width: 300px;
   position: fixed;
   right: 50px;
+  width: 300px;
   z-index: 2000; }
   .chat-panel .chat-panel-header:hover {
     cursor: pointer; }
   .chat-panel .chat-panel-border {
     border: 1px solid #305d93;
-    margin: 0px; }
+    margin: 0; }
 
 .chat-panel-header {
   background-color: #305d93; }
   .chat-panel-header p {
     color: #fff;
-    margin: 0px;
-    padding: 10px 0px; }
+    margin: 0;
+    padding: 10px 0; }
   .chat-panel-header p:hover {
     color: #fff;
     cursor: pointer; }
@@ -36,33 +58,33 @@
   transition: 1s; }
 
 .is-open {
-  bottom: 0px;
+  bottom: 0;
   transition: 1s; }
 
 .chat-panel-body {
-  padding: 0px;
-  margin: 0px;
-  background-color: #F3F3F3;
-  height: 300px; }
+  background-color: #f3f3f3;
+  height: 300px;
+  margin: 0;
+  padding: 0; }
 
 .chat-messages {
-  overflow-y: scroll;
-  height: 300px; }
+  height: 300px;
+  overflow-y: scroll; }
   .chat-messages ul {
-    padding: 0px; }
+    padding: 0; }
 
 .chat-list {
+  border-bottom: 1px dotted #b3a9a9;
   list-style: none;
-  margin-top: 10px;
-  margin-right: 10px;
   margin-bottom: 5px;
   margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
   padding-bottom: 5px;
-  border-bottom: 1px dotted #B3A9A9;
   position: relative; }
   .chat-list img {
-    width: 30px;
-    height: 30px; }
+    height: 30px;
+    width: 30px; }
 
 .chat-body {
   margin-left: 40px; }
@@ -74,20 +96,5 @@
     font-size: 12px; }
 
 .chat-panel-footer {
-  background-color: #EEEEEE;
-  border-top: 1px solid #EEEEEE; }
-
-.message-bar input {
-  border: 1px solid #fff;
-  margin-left: -15px;
-  padding: 10px;
-  width: 90%; }
-
-.message-bar i {
-  background-color: #305d93;
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  padding: 7px 0px;
-  border-radius: 50%;
-  text-align: center; }
+  background-color: #b3a9a8;
+  border-top: 1px solid #b3a9a8; }

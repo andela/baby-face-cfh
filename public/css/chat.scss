@@ -1,20 +1,45 @@
+/* eslint-disable */
+
 $white-color: #fff;
 $blue-color: #305d93;
 $red-color: #ff0000;
 $chat-body-color: #f3f3f3;
 $dotted-line-color: #b3a9a9;
-$chat-footer-color: #eeeeee;
+$chat-footer-color: #b3a9a8;
+.chat-panel-footer {
+  background-color: $chat-footer-color;
+  padding: 0;
+}
+
+.message-bar {
+  height: 40px;
+  .message-bar-inner {
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    width: 87%;
+  }
+  i {
+    background-color: $blue-color;
+    border-radius: 50%;
+    color: $white-color;
+    height: 30px;
+    margin-top: 2px;
+    padding-right: 2px;
+    padding-top: 7px;
+    text-align: center;
+    width: 30px;
+  }
+}
 
 .chat-panel {
   position: fixed;
   right: 50px;
   width: 300px;
   z-index: 2000;
-
   .chat-panel-header:hover {
     cursor: pointer;
   }
-
   .chat-panel-border {
     border: 1px solid $blue-color;
     margin: 0;
@@ -23,13 +48,11 @@ $chat-footer-color: #eeeeee;
 
 .chat-panel-header {
   background-color: $blue-color;
-
   p {
     color: $white-color;
     margin: 0;
     padding: 10px 0;
   }
-
   p:hover {
     color: $white-color;
     cursor: pointer;
@@ -44,13 +67,11 @@ $chat-footer-color: #eeeeee;
 
 .right-section {
   text-align: right;
-
   i {
     color: $white-color;
     font-size: 15px;
     padding: 12px 3px;
   }
-
   i:hover {
     color: $white-color;
   }
@@ -76,7 +97,6 @@ $chat-footer-color: #eeeeee;
 .chat-messages {
   height: 300px;
   overflow-y: scroll;
-
   ul {
     padding: 0;
   }
@@ -91,7 +111,6 @@ $chat-footer-color: #eeeeee;
   margin-top: 10px;
   padding-bottom: 5px;
   position: relative;
-
   img {
     height: 30px;
     width: 30px;
@@ -100,15 +119,12 @@ $chat-footer-color: #eeeeee;
 
 .chat-body {
   margin-left: 40px;
-
   .fa-clock-o {
     margin-right: 5px;
   }
-
   .player-name {
     font-size: 14px;
   }
-
   .player-message {
     font-size: 12px;
   }
@@ -117,23 +133,4 @@ $chat-footer-color: #eeeeee;
 .chat-panel-footer {
   background-color: $chat-footer-color;
   border-top: 1px solid $chat-footer-color;
-}
-
-.message-bar {
-  input {
-    border: 1px solid $white-color;
-    margin-left: -15px;
-    padding: 10px;
-    width: 90%;
-  }
-
-  i {
-    background-color: $blue-color;
-    border-radius: 50%;
-    color: $white-color;
-    height: 30px;
-    padding: 7px 0;
-    text-align: center;
-    width: 30px;
-  }
 }
