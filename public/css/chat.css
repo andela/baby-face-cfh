@@ -1,3 +1,4 @@
+/* eslint-disable */
 .chat-panel-footer {
   background-color: #b3a9a8;
   padding: 0; }
@@ -5,20 +6,20 @@
 .message-bar {
   height: 40px; }
   .message-bar .message-bar-inner {
-    width: 87%;
     height: 30px;
+    margin: 0;
     padding: 0;
-    margin: 0; }
-  .message-bar a i {
+    width: 87%; }
+  .message-bar i {
     background-color: #305d93;
+    border-radius: 50%;
     color: #fff;
-    width: 30px;
     height: 30px;
     margin-top: 2px;
-    padding-top: 7px;
     padding-right: 2px;
-    border-radius: 50%;
-    text-align: center; }
+    padding-top: 7px;
+    text-align: center;
+    width: 30px; }
 
 .chat-panel {
   position: fixed;
