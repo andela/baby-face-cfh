@@ -21,7 +21,7 @@ angular.module('mean.system')
           if (error.status === 401) {
             // if the user is not signed in, or token has expired,
             // redirect user to sign in page
-            window.location = '/signin';
+            window.location = '/#!/signin';
           }
         });
 
@@ -46,7 +46,7 @@ angular.module('mean.system')
               if (error.status === 401) {
                 // if the user is not signed in, or token has expired,
                 // redirect user to sign in page
-                window.location = '/signin';
+                window.location = '/#!/signin';
               }
             });
           }
