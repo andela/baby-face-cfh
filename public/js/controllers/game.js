@@ -429,10 +429,10 @@ angular.module('mean.system')
             if (!$scope.modalShown) {
               setTimeout(() => {
                 const link = document.URL;
-                const txt =
-                'Give the following link to your friends' +
-                 'so they can join your game: ';
-                $('#lobby-how-to-play').text(txt);
+                const txt = '<p style="font-family: Helvetica; font-size: 20px;">\
+                Give the following link to your friends so they can join your\
+                game: </p>'
+                $('#lobby-how-to-play').html(txt);
                 $('#oh-el').css({
                   'text-align': 'center',
                   'font-size': '22px',
