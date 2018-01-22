@@ -7,6 +7,20 @@ angular.module('mean.system')
       $location.path('/app');
     };
 
+    $scope.openRegionSelectAsGuest = () => {
+      window.gameMode = 'guest';
+      $('#regionModal').modal();
+    };
+
+    $scope.openRegionSelectWithFriends = () => {
+      window.gameMode = 'friends';
+      $('#regionModal').modal();
+    };
+
+    $scope.startGameByRegion = () => {
+      window.location.href  = window.gameMode === 'friends' ? '/play?custom' : '/play';
+    };
+
     $scope.showError = function() {
       if ($location.search().error) {
         return $location.search().error;
@@ -21,9 +35,10 @@ angular.module('mean.system')
         $scope.avatars = data;
       });
 
-   $scope.regions = [{ regionId: 1, region: 'Africa' }, { regionId: 2, region: 'World' }];
-      $scope.changedValue = (item) => {
-        $window.localStorage.setItem('regionId', item.regionId);
-   };
+   $scope.selectedRegion = "59b90186ad7d37a9fb7d3630";
+
+   $scope.$watch('selectedRegion', () => {
+    localStorage.setItem('regionId', $scope.selectedRegion);
+   });
 
 }]);

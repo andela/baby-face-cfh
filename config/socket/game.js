@@ -172,8 +172,7 @@ class Game {
         if (err) {
           console.log(err);
         }
-        this.questions = results[0].filter(question =>
-          question.regionId === parseInt(this.regionId, 10));
+        this.questions = results[0];
         this.answers = results[1];
 
         this.startGame();
@@ -355,7 +354,7 @@ class Game {
   getQuestions = (cb) => {
     questions.allQuestionsForGame((data) => {
       cb(null, data);
-    });
+    }, this.regionId);
   }
 
   /**

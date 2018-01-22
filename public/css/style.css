@@ -488,3 +488,18 @@ font-size: 30px;}
   font-size: 1.7rem !important;
 }
 .introjs-helperLayer {opacity:0;}
+select {
+  width:205px;
+  height:35px;
+  margin-top:5px;
+}
+.btn-s-modal {
+  margin-left: 18px;
+  margin-top: 20px;
+}
+.r-modal-dialog {
+  width: 280px;
+}
+.r-modal-title {
+  margin-left: 45px;
+}

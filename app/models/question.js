@@ -30,7 +30,7 @@ var QuestionSchema = new Schema({
         trim: true
     },
     regionId: {
-      type: Number
+      type: String
     }
 });
 

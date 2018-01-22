@@ -43,7 +43,7 @@
             </div>
           </div>
         </nav>
-        <div class="container mt-200">
+        <div class="container mt-200" ng-controller="IndexController">
           <div class="row justify-content-center">
             <div class="col-10 mt-100 text-white">
               <p class="title text-capitalize" data-aos="fade-right">
@@ -64,13 +64,13 @@
                 </a>
               </div>
               <div ng-hide="showOptions" data-aos="fade-right" data-aos-offset="50">
-                <a data-toggle="modal" data-target="#regionModal">
-                  <button class="btn btn-lg mt-3 mr-2 btn-orange hvr-float-shadow text-white">
+                <a href="#" ng-click="openRegionSelectAsGuest()">
+                  <button  class="btn btn-lg mt-3 mr-2 btn-orange hvr-float-shadow text-white">
                     <h5>Play with strangers</h5>
                   </button>
                 </a>
-                <a href="/play?custom">
-                  <button class="btn btn-lg mt-3 btn-orange hvr-float-shadow text-white">
+                <a href="" ng-click="openRegionSelectWithFriends()">
+                  <button ng-click="openRegionSelectWithFriends()" class="btn btn-lg mt-3 btn-orange hvr-float-shadow text-white">
                     <h5>Play with friends</h5>
                   </button>
                 </a>
@@ -83,8 +83,10 @@
   </section>
   <!-- Fixed Logo & Menu Bar End -->
 
-  <!--   How to play start -->
-  <section class="container-fluid " id="howToPlay" ng-controller="IndexController">
+  <div ng-controller="IndexController">
+
+    <!--   How to play start -->
+  <section class="container-fluid " id="howToPlay">
     <div class="row justify-content-center how-to-play">
       <div class="ribbon text-white text-center p-3 ribbon-orange">
         How To Play
@@ -136,13 +138,13 @@
               </p>
             </div>
           </div>
-          <div ng-show="showOptions" style="margin-top:3em;" class="col-lg-10 col-md-8 col-sm-6 text-center mb-20">
-            <a href="#" data-toggle="modal" data-target="#regionModal" class="btn btn-lg ribbon-blue hvr-float-shadow text-white">
+          <div ng-show="showOptions"  style="margin-top:3em;" class="col-lg-10 col-md-8 col-sm-6 text-center mb-20">
+            <a href="#" ng-click="openRegionSelectAsGuest()" class="btn btn-lg ribbon-blue hvr-float-shadow text-white">
               <h5>Play as guest</h5>
             </a>
           </div>
           <div ng-hide="showOptions" class="col-lg-10 col-md-8 col-sm-6 text-center mb-20">
-            <a href="/play" class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
+            <a href="#" ng-click="openRegionSelectAsGuest()" class="btn btn-lg mt-3 ribbon-blue hvr-float-shadow text-white">
               <h5>Join Game</h5>
             </a>
           </div>
@@ -189,31 +191,27 @@
   </section>
   <!-- charity ends -->
   <!-- Modal to select region for play with strangers and as guests -->
-  <div id="regionModal" class="modal fade" role="dialog" ng-controller="IndexController">
-    <div class="modal-dialog">
+  <div id="regionModal" class="modal fade" role="dialog">
+    <div class="r-modal-dialog modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Select Region</h4>
+          <h4 class="r-modal-title modal-title">Select Region</h4>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-12">
-              <p>Select your region</p>
-            </div>
-            <div class="col-md-8 col-md-offset-2" id="regionSelectWrapper">
-              <select name="region" id="regionSelectGuest" ng-model="regionSelectGuest" ng-change ="changedValue(regionSelectGuest)"
-                      data-ng-options="location as location.country for location in locations"
-              >
-                <option value="">Select Region</option>
+            <div class="col-md-12 col-md-offset-2" id="regionSelectWrapper">
+              <select ng-model="selectedRegion">
+                <option value="59b91ad4605e234f4555a4de">Africa</option>
+                <option value="59b8ffde28650f1362ca5941">World</option>
               </select>
             </div>
-            <div class="col-md-3 col-md-offset-3" id="regionGameStartClick">
-              <a href="/play" disabled type="button" id="regionGameStartGuest" class="btn btn-block btn-cfh-green">
+            <div class="btn-s-modal" id="regionGameStartClick">
+              <a href="javascript:;" id="regionGuestGameStart" ng-click="startGameByRegion()" class="btn text-white btn-orange">
                 Play Game
               </a>
             </div>
-            <div class="col-md-3">
-              <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">
+            <div class="btn-s-modal">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
                 Cancel
               </button>
             </div>
@@ -223,56 +221,8 @@
   
     </div>
   </div>
-  
-  <!-- Modal to select region for play with friends -->
-  <div id="regionModalFriends" class="modal fade" role="dialog" ng-controller="IndexController">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Select Region</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
-              <p>Select your region</p>
-            </div>
-            <div class="col-md-8 col-md-offset-2" id="regionSelectWrapper">
-              <select name="region" id="regionSelectFriends" ng-model="regionSelectFriends" ng-change ="changedValue(regionSelectFriends)"
-              data-ng-options="location as location.country for location in locations"
-              >
-                <option value="">Select Region</option>
-              </select>
-            </div>
-            <div class="col-md-3 col-md-offset-3">
-              <a href="/play?custom" disabled type="button" id="regionGameStartFriends" class="btn btn-block btn-cfh-green">
-                Play Game
-              </a>
-            </div>
-            <div class="col-md-3">
-              <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-    </div>
+
   </div>
-  
-  <script>
-    $(document).ready(() => {
-      $('#regionSelectGuest').change((event) => {
-        event.preventDefault();
-        $('#regionGameStartGuest').removeAttr('disabled');
-      });
-  
-      $('#regionSelectFriends').change((event) => {
-        event.preventDefault();
-        $('#regionGameStartFriends').removeAttr('disabled');
-      });
-    });
-  </script>
   <!-- footer start -->
   <footer class="container-fluid text-white">
     <div class="row footer p-10">
