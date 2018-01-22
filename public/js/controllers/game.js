@@ -2,6 +2,8 @@ angular.module('mean.system')
   .controller('GameController', [
     '$rootScope',
     '$scope',
+    'socket',
+    '$window',
     'game',
     '$timeout',
     '$location',
@@ -9,7 +11,7 @@ angular.module('mean.system')
     '$http',
     '$dialog',
     (
-      $rootScope, $scope, game, $timeout,
+      $rootScope, $scope, socket, $window, game, $timeout,
       $location, MakeAWishFactsService, $http
     ) => {
       $scope.hasPickedCards = false;
@@ -20,6 +22,12 @@ angular.module('mean.system')
       $scope.pickedCards = [];
       let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
       $scope.makeAWishFact = makeAWishFacts.pop();
+
+      $scope.inviteCounter = 0;
+      $scope.invited = [];
+      $scope.inviteList = [];
+      $scope.notifications = [];
+      $scope.inviteMsg = '';
 
 
       // Listen to the roomFilled event on the root scope
@@ -83,14 +91,20 @@ angular.module('mean.system')
           }, () => {
             $scope.username = null;
             $scope.userNotFound = true;
+            setTimeout(()=>{
+              $scope.userNotFound = false;
+            }, 2000);
+            
           });
         } else {
           $scope.searchResult = [];
+          
         }
       };
+
       $scope.popModal = () => {
         $('#searchControl').hide();
-        $('#invite-players-modal').modal('show');
+        $('#search').modal('show');
       };
       $scope.sendInvite = (email) => {
         $('#searchControl').hide();
@@ -99,6 +113,176 @@ angular.module('mean.system')
           gameLink: document.URL
         });
       };
+
+      $scope.sendInvite = (email, username) => {
+        if (email) {
+  
+          $http.post('/api/users/invite', {
+            recipient: email,
+            gameLink: document.URL 
+          }).then((response, err) => {
+            $scope.inviteMsg = `You have sent an invite to ${username}`;
+            setTimeout(()=>{
+              $scope.inviteMsg = '';
+            }, 2000);
+          }, function(err) {
+            $scope.inviteMsg = err.data.message;
+          });
+        } else {
+          $scope.inviteMsg = 'An error occured while sending the message.';
+        }
+      };
+
+      // Set http header
+    $scope.setHttpHeader = () => {
+      const token = $window.localStorage.getItem('token');
+      $http.defaults.headers.common.token = token;
+    };
+
+    // add friends
+
+    $scope.addFriend = (friendName, friendId, friendEmail) => {
+      const payload = {
+        friendId,
+        friendName,
+        friendEmail
+      };
+
+      $scope.setHttpHeader();
+      $http.put('/api/user/friends', payload, {
+        headers: {
+          'x-access-token': `${localStorage.getItem('token')}`
+        }
+      })
+        .then(
+        (response, error) => {
+          $scope.getFriendsList();
+          $scope.inviteMsg = 'Friend added to list';
+          setTimeout(()=>{
+            $scope.inviteMsg = '';
+          }, 2000);
+        },
+        (error) => {
+          console.log('here is the error', error)
+          $scope.getFriendsList();
+        });
+
+    };
+
+    // get Friends list
+    $scope.getFriendsList = () => {
+      $scope.setHttpHeader();
+      $http.get('/api/user/friends', {
+        headers: {
+          'x-access-token': `${localStorage.getItem('token')}`
+        }
+      })
+        .then(
+        (response) => {
+          $scope.friendsList = response.data;
+          console.log(response.data);
+          $scope.friendsId = response.data.map(friend => friend.friendId);
+          
+        },
+        (error) => {
+          $scope.friendsList = [];
+        });
+    };
+
+    // remove friend
+    $scope.removeFriend = (friendId) => {
+      $scope.setHttpHeader();
+      $http.delete(`/api/user/friends/${friendId}`, {
+        headers: {
+          'x-access-token': `${localStorage.getItem('token')}`
+        }
+      }).then((response) => {
+        $scope.getFriendsList();
+        $scope.friendMsg = 'Friend delete from your list'
+        setTimeout(()=>{
+          $scope.friendMsg = '';
+        }, 2000);
+      }, (error) => {
+        $scope.getFriendsList();
+      });
+    };
+
+    // send notifications
+    $scope.sendNotification =  (friendId, friendEmail) => {
+      const payload = {
+        link: document.URL,
+        friendId
+      };
+      let userID;
+      $scope.setHttpHeader();
+      $http.post('/api/notifications', payload, {
+        headers: {
+          'x-access-token': `${localStorage.getItem('token')}`
+        }
+      } ).then(
+        (response) => {
+          $scope.inviteList.push(friendId);
+          userID = game.players.filter(e => e.email === friendEmail);
+          if (userID.length > 0) {
+            game.broadcastNotification(userID[0].socketID);
+          }
+          $scope.friendMsg = `Notification sent to friend`
+          setTimeout(()=>{
+            $scope.friendMsg = '';
+          }, 2000);
+        });
+    };
+
+    socket.on('notificationReceived', (userId) => {
+      userID = game.players[game.playerIndex].socketID;
+      if (userId === userID) {
+        $scope.loadNotifications();
+      }
+    });
+
+    
+
+    $scope.loadNotifications = () => {
+      $scope.setHttpHeader();
+      $http.get('/api/notifications', {
+        headers: {
+          'x-access-token': `${localStorage.getItem('token')}`
+        }
+      })
+        .then(
+        (response) => {
+          $scope.notifications = response.data.notifications.sort(function(a, b){ return b.id - a.id; });
+          if ($scope.notifications.length >= 1) {
+            toastr.success(`You have ${$scope.notifications.length} new Notification${$scope.notifications.length >1?'s': ''}!`);
+          }
+        },
+        (error) => {
+          $scope.notifications = $scope.notifications;
+        }
+        );
+    };
+
+    $scope.loadNotifications();
+
+    $scope.readNotifications = (id) => {
+      $http.put(`/api/notification/${id}`, {
+        headers: {
+          'x-access-token': `${localStorage.getItem('token')}`
+        }
+      } ).then((response) => {
+          $scope.loadNotifications();
+          },
+          (error) => {
+          $scope.loadNotifications();
+        });
+    };
+
+
+      $scope.viewNotification = function() {
+        $('#notify').modal('show');
+      };
+
+
 
       $scope.cardIsFirstSelected = (card) => {
         if (game.curQuestion.numAnswers > 1) {

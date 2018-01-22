@@ -12,8 +12,29 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <div class="collapse navbar-collapse " id="gameOptions">
         <ul class="navbar-nav ml-auto ">
+            <li ng-hide="showOptions">
+                <button 
+                  ng-click="viewNotification()"
+                  class="dropdown show"
+                  style="
+                  border: 0;
+                  color: #FFF;
+                  font-family: cursive;
+                  font-size: 1.5rem;
+                  cursor: pointer;
+                  background: none;
+                  margin-right: 10px;
+                  width: 50px;
+                  margin-right: 10px;"
+                  >
+                    <span class="badge1" data-badge={{notifications.length}} >{{showOptions}}<i class="fa fa-bell" aria-hidden="true"></i> 
+                      <sub style="font-size: 1rem"></sub></span>
+                  </button>            
+                </li> 
+          
+        
           <li id="donate-game-button" class="ml-2 mb-1">
             <button class="hovered btn ribbon-orange">Donate</button>
           </li>
@@ -124,8 +145,9 @@
   <!-- footer ends -->
   <!-- <div id="gameplay-container">
       <answers></answers>
+      invite-players-modal
     </div> -->
-  <div id="invite-players-modal" class="modal fade" role="dialog">
+  <div id="search" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -133,29 +155,71 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <div class="search-box">
-            <div class="row">
-              <div class="col-md-8">
-                <input ng-model="username" class="form-control" placeholder="Player's Username">
-                <p ng-show="userNotFound" style="color:red;">User not found</p>
-              </div>
-              <div class="col-md-4">
-                <a class="btn ribbon-blue text-white hvr-bob" ng-click="searchUser()" id="name">Search</a>
-              </div>
-            </div>
-            <div id="searchControl">
-              <div class="row">
-                <div class="col-md-12">
-                  <p>{{searchResult}}</p>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" ng-click="getFriendsList()" id="friends-tab" data-toggle="tab" href="#friends" role="tab" aria-controls="home" aria-selected="true">Friends</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Search</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent" style="margin-top: 20px;">
+                <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
+                    <div>
+                        <div>
+                            <p style="color: red;"> {{ friendMsg }} </p>
+                        </div>
+                      <div ng-hide="friendsList" style="min-height: 120px;"> You have no friends yet</div>
+                      <table class="table table-striped">
+                        {{friendId}}
+                        <tr ng-repeat="friend in friendsList">
+                          <td>{{friend.friendName}}</td>
+                          <td style="width: 100px;"><button ng-disabled="inviteList.includes(friend.friendId)" style="background: #FF8800; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="sendNotification(friend.friendId, friend.friendEmail);">Invite</button></td>
+                          <td style="width: 100px;"><button style="background: #256188; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="removeFriend(friend.friendId);">Remove</button></td> 
+                        </tr>
+                      </table>
+                    </div>
+                    <div style="text-align: left; padding: 1%;">Friends: {{friendsList.length}}</div>
+                </div>
+                <div class="tab-pane fade show active" role="tabpanel" id="profile" aria-labelledby="search-tab">
+                    <div class="search-box">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <input ng-model="username" class="form-control" placeholder="Player's Username">
+                            
+
+                              <p ng-show="userNotFound" style="color:red;">User not found.</p>
+                            
+                          </div>
+                          <div class="col-md-4">
+                            <a class="btn ribbon-blue text-white hvr-bob" ng-click="searchUser()" id="name">Search</a>
+                          </div>
+                        </div>
+                        <div ng-controller="GameController" id="searchControl" style="padding-top: 20px;">
+                          <div class="row">
+                            <div class="col-md-12" >
+                              <div>
+                                  <p style="color: red;"> {{ inviteMsg }} </p>
+                              </div>
+                                <table style="width: 100%;" class="table table-striped">
+                                    <tr ng-repeat="user in searchResult">
+                                      <td>{{user.name}}</td>
+                                      <td style="width: 100px;"><button ng-disabled="friendsId.includes(user._id)" style="background: #FF8800; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="addFriend(user.name, user._id, user.email);">Add Friend</button></td>
+                                      <td style="width: 100px;"><button ng-disabled="invited.includes(user._id)" style="background: #256188; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="sendInvite(user.email, user.name);">Invite user</button></td>
+                                    </tr>
+                                    </table>
+                            </div>
+                          </div>
+                          <!-- <div class="row invite-btn-row">
+                            <div class="col-md-12">
+                              <button class="btn btn-cfh-green btn-block" ng-click="sendInvite(email)" data-dismiss="modal">invite</button>
+                            </div>
+                          </div> -->
+                        </div>  
+                      </div>
                 </div>
               </div>
-              <div class="row invite-btn-row">
-                <div class="col-md-12">
-                  <button class="btn btn-cfh-green btn-block" ng-click="sendInvite(email)" data-dismiss="modal">invite</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -201,6 +265,33 @@
       </div>
     </div>
   </div>
+
+  <!-- Notification modal -->
+  <div>
+      <div id="notify" class="modal fade" role="dialog" >
+        <div class="modal-dialog">
+          <div class="modal-content" style="margin-left: auto; margin-right: auto; text-align:center">
+            <div class="modal-header" style="background-color: #395D8F; color: #FFF; border-top-right-radius: unset; border-top-left-radius: unset">
+              <h4 class="modal-title" style="margin-right:auto; margin-left:auto; margin-top: .5rem; line-height: 1">Cards For Humanity</h4>
+            </div>
+            <div class="modal-body" style="height: 200px; overflow: scroll;">
+                <div ng-hide="notifications" style="min-height: 100px;"> You have no Notifications</div>
+              <table class="table table-striped">
+                  <tr ng-repeat="user in searchResult">
+                <tr ng-repeat="notice in notifications">
+                  <td ng-click="readNotifications(notice._id)">{{notice.message}}</td>
+                  <td><a target="_blank" href="{{notice.link}}"><button>join</button></a></td>
+                </tr>
+              </table>
+            </div>
+            <div class="modal-footer" style="background-color: #395D8F; color: #FFF; padding-top: 10px; padding-bottom: 10px">
+              <button class="hovered btn ribbon-orange" style="color: white" type="button" class="btn btn-sm" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- Incomplete Players notification -->
   <div class="modal fade" id="incompletePlayersModal" tabindex="-1" role="dialog" aria-labelledby="incompletePlayersModalLabel"
     aria-hidden="true">

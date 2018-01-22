@@ -298,7 +298,7 @@ exports.search = (req, res) => {
           message: `username ${req.params.username} is not found.`
         });
       }
-      return res.status(200).json({ user: user[0].name, email: user[0].email });
+      return res.status(200).json({ user, email: user[0].email });
     });
 };
 /**
@@ -332,6 +332,78 @@ exports.sendInvite = (req, res) => {
         message: 'Message sent successfully'
       });
     }
+  });
+};
+
+// Add Friends
+
+exports.addFriend = (req, res) => {
+  const { friendId, friendName, friendEmail } = req.body;
+  const friendData = { friendId, friendName, friendEmail };
+  console.log(req.decoded.user.id);
+  const userId = req.decoded.user.id;
+  User.findOneAndUpdate(
+    {
+      _id: userId
+    },
+    {
+      $push: { friends: friendData }
+    },
+  ).then(() => {
+    console.log('done');
+    res.status(200).json({
+      message: 'Friend Added Succesfully'
+    });
+  })
+    .catch((error) => {
+      res.status(500).json({
+        error,
+        message: 'Internal Server Error'
+      });
+    });
+};
+
+exports.getFirendsList = (req, res) => {
+  const userId = req.decoded.user.id;
+
+  User.find({
+    _id: userId
+  }).then((user) => {
+    if (!user) {
+      return res.status(404).json({
+        message: 'User not found'
+      });
+    }
+    return res.status(200).json(user[0].friends);
+  })
+    .catch((error) => {
+      res.status(500).json({
+        error,
+        message: 'Internal Server Error'
+      });
+    });
+};
+
+exports.deleteFriend = (req, res) => {
+  const userId = req.decoded.user.id;
+  const { friendId } = req.params;
+  User.findOneAndUpdate(
+    {
+      _id: userId
+    },
+    {
+      $pull: { friends: { friendId } }
+    },
+    { multi: true }
+  ).then(() => {
+    res.status(200).json({
+      message: 'Friend removed sucessfully!'
+    });
+  }).catch((error) => {
+    res.status(500).json({
+      error,
+      message: 'Internal Server Error'
+    });
   });
 };
 
