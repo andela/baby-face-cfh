@@ -172,8 +172,7 @@ class Game {
         if (err) {
           console.log(err);
         }
-        this.questions = results[0];
-        this.answers = results[1];
+        [this.questions, this.answers] = results;
 
         this.startGame();
       }

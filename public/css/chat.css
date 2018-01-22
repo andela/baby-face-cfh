@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     width: 87%; }
-  .message-bar i {
+  .message-bar .fa-send-o {
     background-color: #305d93;
     border-radius: 50%;
     color: #fff;
