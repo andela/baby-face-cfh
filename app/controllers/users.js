@@ -415,7 +415,8 @@ exports.deleteFriend = (req, res) => {
  * @param {any} res
  */
 exports.getDonations = (req, res) => {
-  User.find({}, 'name donations', (error, users) => {
+  const userId = req.decoded.user.id;
+  User.findOne({ _id: userId }, 'name donations', (error, user) => {
     if (error) {
       return res.status(500).send({
         status: 'Error',
@@ -424,7 +425,7 @@ exports.getDonations = (req, res) => {
     }
     return res.status(200).send({
       status: 'Success',
-      donations: users
+      user
     });
   });
 };
