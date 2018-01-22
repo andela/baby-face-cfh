@@ -155,6 +155,11 @@ gulp.task('introJs', () => {
     .pipe(gulp.dest('./dist/public/lib/intro.js'));
 });
 
+gulp.task('emoji', () => {
+  gulp
+    .src('bower_components/emojionearea/dist/**/*')
+    .pipe(gulp.dest('./dist/public/lib/emojionarea'));
+});
 // Move bower component files into dist/public folder
 gulp.task('move-bower', [
   'angular',
@@ -167,7 +172,8 @@ gulp.task('move-bower', [
   'underscore',
   'angularUiUtils',
   'angularBootstrap',
-  'introJs'
+  'introJs',
+  'emoji'
 ]);
 
 // Move jade files into dist folder

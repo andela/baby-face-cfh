@@ -1,3 +1,26 @@
+/* eslint-disable */
+.chat-panel-footer {
+  background-color: #b3a9a8;
+  padding: 0; }
+
+.message-bar {
+  height: 40px; }
+  .message-bar .message-bar-inner {
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    width: 87%; }
+  .message-bar i {
+    background-color: #305d93;
+    border-radius: 50%;
+    color: #fff;
+    height: 30px;
+    margin-top: 2px;
+    padding-right: 2px;
+    padding-top: 7px;
+    text-align: center;
+    width: 30px; }
+
 .chat-panel {
   position: fixed;
   right: 50px;
@@ -74,20 +97,5 @@
     font-size: 12px; }
 
 .chat-panel-footer {
-  background-color: #eeeeee;
-  border-top: 1px solid #eeeeee; }
-
-.message-bar input {
-  border: 1px solid #fff;
-  margin-left: -15px;
-  padding: 10px;
-  width: 90%; }
-
-.message-bar i {
-  background-color: #305d93;
-  border-radius: 50%;
-  color: #fff;
-  height: 30px;
-  padding: 7px 0;
-  text-align: center;
-  width: 30px; }
+  background-color: #b3a9a8;
+  border-top: 1px solid #b3a9a8; }

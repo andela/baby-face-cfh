@@ -429,6 +429,24 @@ exports.deleteFriend = (req, res) => {
   ).then(() => {
     res.status(200).json({
       message: 'Friend removed sucessfully!'
+
+/**
+ *
+ * @returns {void}
+ * @param {any} req
+ * @param {any} res
+ */
+exports.getDonations = (req, res) => {
+  User.find({}, 'name donations', (error, users) => {
+    if (error) {
+      return res.status(500).send({
+        status: 'Error',
+        message: 'There was an error processing the request'
+      });
+    }
+    return res.status(200).send({
+      status: 'Success',
+      donations: users
     });
   });
 };

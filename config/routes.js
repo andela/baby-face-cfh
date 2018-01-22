@@ -4,7 +4,9 @@ import answers from '../app/controllers/answers';
 import * as questions from '../app/controllers/questions';
 import index from '../app/controllers/index';
 import { authenticate } from './middlewares/authorization';
-import createGame from '../app/controllers/game';
+import createGame,
+{ getUserGamesHistory, getLeaderBoard }
+  from '../app/controllers/game';
 
 import { allJSON } from '../app/controllers/avatars';
 
@@ -23,6 +25,7 @@ module.exports = (app, passport) => {
   app.post('/api/auth/login', users.login);
   app.post('/api/users/invite', users.sendInvite);
   app.get('/api/search/:username', users.search);
+  app.get('/api/donations', authenticate, users.getDonations);
 
   // Add friends
   app.put('/api/user/friends', authenticate, users.addFriend);
@@ -96,6 +99,8 @@ module.exports = (app, passport) => {
 
   // Game Routes
   app.post('/api/games/:id/start', authenticate, createGame);
+  app.get('/api/games/history', authenticate, getUserGamesHistory);
+  app.get('/api/leaderboard', authenticate, getLeaderBoard);
 
   // Answer Routes
   app.get('/answers', answers.all);
