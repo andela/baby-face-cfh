@@ -342,15 +342,6 @@ exports.addFriend = (req, res) => {
   const friendData = { friendId, friendName, friendEmail };
   console.log(req.decoded.user.id);
   const userId = req.decoded.user.id;
-
-  // User.findOne(userId)
-  //   .then((foundUser) => {
-  //     console.log(foundUser);
-  //     foundUser.friends.push(friendData);
-  //     console.log('------------', foundUser);
-  //   }).catch(err => console.log(err));
-  console.log(req);
-
   User.findOneAndUpdate(
     {
       _id: userId
@@ -370,28 +361,6 @@ exports.addFriend = (req, res) => {
         message: 'Internal Server Error'
       });
     });
-
-
-  // User.findOneAndUpdate(
-  //   {
-  //     _id: userId
-  //   },
-  //   {
-  //     $push: { friends: friendData }
-  //   }
-  // ).then(() => {
-  //   console.log('There is no error');
-  //   res.status(200).json({
-  //     message: 'Friend Added Succesfully'
-  //   });
-  // })
-  //   .catch((error) => {
-  //     console.log('error is this', error);
-  //     res.status(500).json({
-  //       error,
-  //       message: 'Internal Server Error'
-  //     });
-  //   });
 };
 
 exports.getFirendsList = (req, res) => {
@@ -429,6 +398,15 @@ exports.deleteFriend = (req, res) => {
   ).then(() => {
     res.status(200).json({
       message: 'Friend removed sucessfully!'
+    });
+  }).catch((error) => {
+    res.status(500).json({
+      error,
+      message: 'Internal Server Error'
+    });
+  });
+};
+
 
 /**
  *
