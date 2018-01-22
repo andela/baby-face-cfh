@@ -10,6 +10,9 @@ const GameSchema = new Schema({
   round: {
     type: Number,
   },
+  userId: {
+    type: String,
+  },
   winner: {
     type: String,
     default: '',

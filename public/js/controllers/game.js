@@ -306,6 +306,11 @@ angular.module('mean.system')
             + 'the question box above will be shown here.'
           },
           {
+            element: '#chat-on-b',
+            intro: 'Feel free to chat with other players... , '
+          },
+          
+          {
             element: document.querySelector('#retake-tour-button'),
             intro: 'If you feel like taking this tour again,'
             + ' you can always click here.'

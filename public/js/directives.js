@@ -94,6 +94,11 @@ angular
     templateUrl: '/views/timer.html'
     // link(scope, elem, attr) {}
   }))
+  .directive('chat', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/chat.html',
+    // link(scope, elem, attr) {}
+  }))
   .directive('landing', [
     '$http',
     function ($http) {

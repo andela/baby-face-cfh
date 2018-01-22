@@ -13,7 +13,8 @@
     "$": true,
     "window": true,
     "angular": true,
-    "AOS": true
+    "AOS": true,
+    "Firebase": true
   },
   "rules": {
     "max-len": [ 1, 80, 2],

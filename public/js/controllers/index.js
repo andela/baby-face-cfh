@@ -35,7 +35,7 @@ angular.module('mean.system')
         $scope.avatars = data;
       });
 
-   $scope.selectedRegion = "59b90186ad7d37a9fb7d3630";
+   $scope.selectedRegion = "59b91ad4605e234f4555a4de";
 
    $scope.$watch('selectedRegion', () => {
     localStorage.setItem('regionId', $scope.selectedRegion);

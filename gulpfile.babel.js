@@ -22,7 +22,7 @@ const { reload } = browserSync,
       'app/**/*.js',
       '!node_modules/**'
     ],
-    sass: ['public/css/common.scss'],
+    sass: ['public/css/common.scss', 'public/css/chat.scss'],
     scripts: ['public/js/**', 'app/**/*.js'],
     test: ['./dist/test/**/*.js']
   };
@@ -155,6 +155,11 @@ gulp.task('introJs', () => {
     .pipe(gulp.dest('./dist/public/lib/intro.js'));
 });
 
+gulp.task('emoji', () => {
+  gulp
+    .src('bower_components/emojionearea/dist/**/*')
+    .pipe(gulp.dest('./dist/public/lib/emojionarea'));
+});
 // Move bower component files into dist/public folder
 gulp.task('move-bower', [
   'angular',
@@ -167,7 +172,8 @@ gulp.task('move-bower', [
   'underscore',
   'angularUiUtils',
   'angularBootstrap',
-  'introJs'
+  'introJs',
+  'emoji'
 ]);
 
 // Move jade files into dist folder
@@ -182,7 +188,8 @@ gulp.task('move-json', () => {
 
 // Move files in public folder to dist folder
 gulp.task('move-public', ['sass'], () => {
-  gulp.src(['public/**/*', '!public/js/**']).pipe(gulp.dest('./dist/public'));
+  gulp.src(['public/**/*', '!public/js/**', '!public/css/*.scss'])
+    .pipe(gulp.dest('./dist/public'));
 });
 
 gulp.task('watch', () => {

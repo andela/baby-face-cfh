@@ -14,14 +14,13 @@
 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
-          <li id="donate-game-button">
+          <li id="donate-game-button" class="ml-2 mb-1">
             <button class="hovered btn ribbon-orange">Donate</button>
           </li>
-          <li class="ml-2" id="abandon-game-button">
+          <li class="ml-2 mb-1" id="abandon-game-button">
             <button class="hovered btn btn-danger" ng-click="abandonGame()">Abandon Game</button>
-
           </li>
-          <li class="ml-2" id="retake-tour-button">
+          <li class="ml-2 mb-1" id="retake-tour-button">
             <button class="hovered btn ribbon-orange" ng-click="retakeTour()">Start Tour</button>
           </li>
 
@@ -54,8 +53,10 @@
       </div>
       <div class="col-lg-3 col-md-2 col-sm-12 mt-80" id="players-online-onboarding">
         <answers></answers>
+        <div>
+          <chat></chat>
+        </div>
       </div>
-    </div>
   </section>
   <!-- footer start -->
   <footer class="container-fluid text-white mt-20">
@@ -161,23 +162,23 @@
   </div>
   <!-- Game already started modal -->
   <div class="modal fade" id="roomFilled" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">		        
-        <div class="modal-content">		          
-            <div class="modal-header">		            
-              <h4 class="modal-title">Room Filled</h4>	
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>	        
-          </div>		            
-          <div class="modal-body">		            
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Room Filled</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
           <p>Sorry Maximum number of players reached. Only 12 people are allowed in a game.</p>
           <h4>What do you want to do now?</h4>
-          </div>		            
-          <div class="modal-footer">
-              <a href="/play" class="btn ribbon-blue text-white btn-lg hvr-bob">Play with strangers</a>
-              <a href="/play?custom" class="btn ribbon-blue text-white btn-lg hvr-bob">Play with friends</a>	            		              
-          </div>		            
-        </div>        
+        </div>
+        <div class="modal-footer">
+          <a href="/play" class="btn ribbon-blue text-white btn-lg hvr-bob">Play with strangers</a>
+          <a href="/play?custom" class="btn ribbon-blue text-white btn-lg hvr-bob">Play with friends</a>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Start Game Modal -->
@@ -220,33 +221,5 @@
       </div>
     </div>
   </div>
-
-  <!-- <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-md-8 col-sm-12">
-        <div id="modal-container">
-          <div class="modal-background">
-            <div class="modal">
-              <p ng-show="isCzar()" style="margin-bottom:2rem;">You are the card czar, please choose a question card at random!</p>
-              <label class="" ng-repeat="i in [0, 1, 2, 3]" ng-show="isCzar()">
-                <input type="checkbox" />
-                <div class="card">
-                  <div class="front">
-                    <img ng-click="onPickRandomCard()" src="../img/czar-show-random.png" alt="">
-                  </div>
-                  <div class="back">
-                    <p></p>
-                  </div>
-                </div>
-              </label>
-              <div ng-hide="isCzar()" id="text-background">
-                <p>Please wait, card czar is picking a random - Horrible! - question card</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-</div>
+  <div>
+  </div>

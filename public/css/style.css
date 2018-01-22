@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC|Luckiest+Guy|Sigmar+One');
-body{
-  background: #ffffff;
+body {
+    background: #ffffff;
 }
-  .custom-navbar {
+
+.custom-navbar {
     background-color: transparent;
     margin-bottom: 0;
     color: #e3e3e3;
-  }
-  .custom-navbar .navbar-brand,
-  .custom-navbar .navbar-nav > li > a {
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .navbar-nav>li>a {
     color: #e3e3e3;
-  }
-  .custom-navbar .btn {
+}
+
+.custom-navbar .btn {
     color: #f3f3f3;
-  }
-  
-  .sticky.navbar {
+}
+
+.sticky.navbar {
     border-radius: 0;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -23,9 +26,10 @@ body{
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-  }
-  .sticky .show-is-sticky,
-  .sticky .show-not-sticky {
+}
+
+.sticky .show-is-sticky,
+.sticky .show-not-sticky {
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
@@ -33,67 +37,74 @@ body{
     opacity: 0;
     /* visibility: hidden; */
     display: none;
-  }
-  .sticky .show-not-sticky {
+}
+
+.sticky .show-not-sticky {
     opacity: 1;
     display: block;
     /* visibility: visible; */
-  }
-  .sticky.is-sticky {
+}
+
+.sticky.is-sticky {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     z-index: 1000;
     width: 100%;
-  }
-  .sticky.is-sticky.navbar {
+}
+
+.sticky.is-sticky.navbar {
     background-color: #305d93;
-  }
-  .sticky.is-sticky .show-is-sticky {
+}
+
+.sticky.is-sticky .show-is-sticky {
     opacity: 1;
     display: block;
-  }
-  .sticky.is-sticky .show-not-sticky {
+}
+
+.sticky.is-sticky .show-not-sticky {
     opacity: 0;
     display: none;
-  }
-.bg-not-sticky-navbar {
-  background-color: #305d93;
 }
-  .btn-orange {
-    background-color: #ef9113;
-  }
 
-  .pl-100 {
+.bg-not-sticky-navbar {
+    background-color: #305d93;
+}
+
+.btn-orange {
+    background-color: #ef9113;
+}
+
+.pl-100 {
     padding-left: 100px;
-  }
-  
-  .header {
-    background:linear-gradient(90deg, rgba(37, 26, 2, 0.7), rgba(39, 27, 2, 0.5)),
-    url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/1.jpg') no-repeat center center;
+}
+
+.header {
+    background: linear-gradient(90deg, rgba(37, 26, 2, 0.7), rgba(39, 27, 2, 0.5)), url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/1.jpg') no-repeat center center;
     background-size: cover;
     padding-top: 50px;
     min-height: 450px;
     max-width: 100%;
     padding-bottom: 50px;
-  }
+}
 
-  .warning{
+.warning {
     font-size: 1rem;
-  }
-  .btn {
+}
+
+.btn {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.315);
     -webkit-transition: 500ms ease-in-out;
     -moz-transition: 500ms ease-in-out;
     transition: 500ms ease-in-out;
-  }
+}
 
-  .btn:hover {
+.btn:hover {
     box-shadow: none;
-  }
+}
 
-  .subtitle {
+.subtitle {
     /* font-family: 'Luckiest Guy', cursive; */
     font-family: 'Sigmar One', cursive;
     /* font-family: 'Bowlby One SC', cursive;  */
@@ -103,10 +114,10 @@ body{
     padding: 0;
     margin: 0;
     color: #000;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
-  }
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
 
-  .subtitle-impact {
+.subtitle-impact {
     /* font-family: 'Luckiest Guy', cursive; */
     font-family: 'Sigmar One', cursive;
     /* font-family: 'Bowlby One SC', cursive;  */
@@ -116,84 +127,91 @@ body{
     padding: 0;
     margin: 0;
     color: #000;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
-  }
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
 
-  .little {
+.little {
     font-size: 1rem;
-    
-  }
+}
 
-  .navbar-brand {
+.navbar-brand {
     font-family: 'Sigmar One', cursive;
     font-size: 1rem;
-  }
+}
 
-  .footer {
+.footer {
     background-color: #666
     /* width: 100%; */
-  }
-.legal{
-  color: rgb(197, 195, 195);
 }
-  .footer .nav .nav-link {
+
+.legal {
+    color: rgb(197, 195, 195);
+}
+
+.footer .nav .nav-link {
     color: rgb(197, 195, 195);
     line-height: 1rem;
-  }
-  .footer .nav .nav-link:hover {
+}
+
+.footer .nav .nav-link:hover {
     color: white;
-  }
-  .footer .social-icons {
+}
+
+.footer .social-icons {
     word-spacing: .5rem;
-  }
+}
 
-  .footer .social-icons .social-link {
+.footer .social-icons .social-link {
     color: white;
-  }
+}
 
-  .footer .social-icons .social-link:hover {
+.footer .social-icons .social-link:hover {
     color: rgb(180, 179, 179);
-  }
+}
 
-  body, .container-fluid {
+body,
+.container-fluid {
     margin: 0;
     padding: 0;
-  }
+}
 
-  .donate{
-    background:linear-gradient(180deg, rgba(48, 94, 147, 0.9), rgba(48, 94, 147, 0.8), rgba(48, 94, 147, 0.6), rgba(48, 94, 147, 0.5)),
-    url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/general_water.jpg') no-repeat center center;
+.donate {
+    background: linear-gradient(180deg, rgba(48, 94, 147, 0.9), rgba(48, 94, 147, 0.8), rgba(48, 94, 147, 0.6), rgba(48, 94, 147, 0.5)), url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/general_water.jpg') no-repeat center center;
     background-size: cover;
-  }
-  .ribbon {
-    font-family: 'Bowlby One SC', cursive; 
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+}
+
+.ribbon {
+    font-family: 'Bowlby One SC', cursive;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     font-size: 1.5rem;
     width: 100%;
-  }
+}
 
-  .hovered {
+.hovered {
     cursor: pointer;
-  }
-  .ribbon-blue {
-    background-color: #305d93;
-  }
-  .ribbon-orange {
-    background-color: #ef9113;
-  }
+}
 
-  .text-orange{
+.ribbon-blue {
+    background-color: #305d93;
+}
+
+.ribbon-orange {
+    background-color: #ef9113;
+}
+
+.text-orange {
     color: #ef9113;
-  }
-  .cash {
+}
+
+.cash {
     /* font-family: 'Sigmar One', cursive;     */
-    font-family: 'Luckiest Guy', cursive;    
+    font-family: 'Luckiest Guy', cursive;
     font-size: 5rem;
     font-style: italic;
     line-height: 6rem;
-  }
+}
 
-  .charity{
+.charity {
     /* font-family: 'Bowlby One SC', cursive;  */
     /* font-family: 'Luckiest Guy', cursive; */
     font-size: 1rem;
@@ -201,26 +219,27 @@ body{
     font-weight: 700;
     /* font-family: Roboto; */
     background-color: rgba(255, 255, 255, 0.9)
-  }
+}
 
-  .title {
-    font-family: 'Bowlby One SC', cursive; 
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+.title {
+    font-family: 'Bowlby One SC', cursive;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     font-size: 2rem;
-  }
-  .charity-inner{
+}
+
+.charity-inner {
     /* background-color: #ffffff */
-  }
-  .how-to-play{
-    background:linear-gradient(180deg, rgba(41, 25, 4, 0.8),rgba(41, 25, 4, 0.8), rgba(239, 144, 19, 0.65), rgba(239, 144, 19, 0.6), rgba(239, 144, 19, 0.5)),
-    url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/pick_a_card.jpg') no-repeat center center;
+}
+
+.how-to-play {
+    background: linear-gradient(180deg, rgba(41, 25, 4, 0.8), rgba(41, 25, 4, 0.8), rgba(239, 144, 19, 0.65), rgba(239, 144, 19, 0.6), rgba(239, 144, 19, 0.5)), url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/pick_a_card.jpg') no-repeat center center;
     background-size: cover;
     padding-bottom: 20px;
     /* width: 100%; */
     /* min-height: 500px; */
-  }
+}
 
-  .step-box{
+.step-box {
     background-color: #ffffff;
     padding-top: 20px !important;
     min-height: 210px;
@@ -231,57 +250,63 @@ body{
     font-weight: 300;
     -webkit-box-shadow: 0 10px 6px -6px #0000003d;
     -moz-box-shadow: 0 10px 6px -6px #0000003d;
-         box-shadow: 0 10px 6px -6px #0000003d;
-  }
-.step-box-footer{
-  position: absolute;
-  bottom: 1px;
-  left: 0; 
-  right: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
-  font-size: .5rem;
+    box-shadow: 0 10px 6px -6px #0000003d;
 }
-  /* form */
 
-  .form-wrapper{
+.step-box-footer {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: .5rem;
+}
+
+
+/* form */
+
+.form-wrapper {
     -webkit-box-shadow: 0 10px 6px -6px #00000080;
     -moz-box-shadow: 0 10px 6px -6px #00000080;
-         box-shadow: 0 10px 6px -6px #00000080;
+    box-shadow: 0 10px 6px -6px #00000080;
     border-radius: 10px;
     background: white;
     margin-bottom: 100px;
-  }
-  .signup-wrapper {
-    background:linear-gradient(90deg, rgba(207, 160, 5, 0.9), rgba(207, 160, 5, 0.8), rgba(207, 160, 5, 0.7)),
-    url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/pick_a_card.jpg') center center;
+}
+
+.signup-wrapper {
+    background: linear-gradient(90deg, rgba(207, 160, 5, 0.9), rgba(207, 160, 5, 0.8), rgba(207, 160, 5, 0.7)), url('https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/pick_a_card.jpg') center center;
     background-size: cover;
-  }
-  .form {
+}
+
+.form {
     margin: 10px auto;
     max-width: 550px;
     padding: 20px 12px 10px 20px;
     font: 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-  }
-  .form li {
+}
+
+.form li {
     padding: 0;
     display: block;
     list-style: none;
     margin: 10px 0 0 0;
-  }
-  
-  .form label {
+}
+
+.form label {
     margin: 20px 0 3px 0;
     padding: 0px;
     display: block;
     font-weight: 600;
     color: #353333;
-  }
-  .form input[type='text'],
-  .form input[type='password'],
-  .form input[type='email'],
-  textarea,
-  select {
+}
+
+.form input[type='text'],
+.form input[type='password'],
+.form input[type='email'],
+textarea,
+select {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -295,19 +320,20 @@ body{
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     outline: none;
-  }
-  
-  .form input[type='text']:focus,
-  .form input[type='password']:focus,
-  .form input[type='email']:focus,
-  textarea:focus,
-  select:focus {
+}
+
+.form input[type='text']:focus,
+.form input[type='password']:focus,
+.form input[type='email']:focus,
+textarea:focus,
+select:focus {
     border: 2px solid #1e7ebe;
-  }
+}
 
-  /* Game play screen */
 
-  .lcd-bg{
+/* Game play screen */
+
+.lcd-bg {
     background: rgb(26, 0, 0);
     min-height: 10rem;
     min-width: 10rem;
@@ -315,105 +341,111 @@ body{
     font-size: 10rem;
     color: rgb(255, 0, 0);
     box-sizing: border-box;
-    -moz-box-shadow:    inset 0 0 40px #000000;
+    -moz-box-shadow: inset 0 0 40px #000000;
     -webkit-box-shadow: inset 0 0 40px #000000;
-    box-shadow:         inset 0 0 40px #000000;
+    box-shadow: inset 0 0 40px #000000;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
-  }
+}
 
-  .game-wrapper{
-    background:linear-gradient(180deg, rgba(3, 8, 14, 0.9), rgba(3, 8, 14, 0.89), rgba(3, 8, 14, 0.8), rgba(3, 8, 14, 0.79)),
-    url('http://p1.pichost.me/i/68/1928865.jpg') repeat center center;
+.game-wrapper {
+    background: linear-gradient(180deg, rgba(3, 8, 14, 0.9), rgba(3, 8, 14, 0.89), rgba(3, 8, 14, 0.8), rgba(3, 8, 14, 0.79)), url('http://p1.pichost.me/i/68/1928865.jpg') repeat center center;
     /* background-size: cover; */
-  }
+}
 
-  .text-blue {
+.text-blue {
     color: #305d93
-  }
-  .waiting{
+}
+
+.waiting {
     position: absolute;
     top: -20px;
     /* right: 11; */
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     width: 20rem;
     background: #305d93;
     padding: 10px;
-    font-family: 'Bowlby One SC', cursive; 
+    font-family: 'Bowlby One SC', cursive;
     font-size: .8rem;
-  }
-  .play-btn{
-    
-  }
-  .play-btn:active{
-    margin-top: -5px; 
-  }
-  .no-players{
+}
+
+.play-btn {}
+
+.play-btn:active {
+    margin-top: -5px;
+}
+
+.no-players {
     font-size: 1rem;
-    font-family: 'Bowlby One SC', cursive; 
-  }
-  .question-wrapper {
+    font-family: 'Bowlby One SC', cursive;
+}
+
+.question-wrapper {
     background: rgb(255, 255, 255);
     min-height: 330px;
     color: black;
-  }
+}
 
-  .notification{
+.notification {
     position: absolute;
     top: 17rem;
     left: 1rem;
-  }
+}
 
-  .row, .container-fluid, body {
+.row,
+.container-fluid,
+body {
     margin: 0;
     padding: 0;
-  }
+}
 
-  .player-container{
+.player-container {
     position: relative;
     min-width: 7rem;
     padding: 0;
     max-width: 7rem;
     box-sizing: border-box;
     overflow: hidden;
-    overflow-wrap: break-word;    
-  }
+    overflow-wrap: break-word;
+}
 
-  .player-name{
+.player-name {
     font-size: .7rem;
     line-height: .1rem;
     /* max-width: 4rem; */
-  }
+}
 
-  .charity-widget-container{
+.charity-widget-container {
     width: 100%;
-    max-height: 200px; 
-  }
+    max-height: 200px;
+}
 
-  .player-notif{
+.player-notif {
     font-size: .7rem;
-  }
+}
 
-  .czar {
+.czar {
     /* display: inline; */
     font-size: .7rem;
     vertical-align: middle;
     /* border: 2px solid #305d93; */
     /* border-radius: 10px; */
-  }
-  u{
-    width: 1rem;
-  }
-  u:after{
-    content: '_____________';
-  }
+}
 
-  .card {
+u {
+    width: 1rem;
+}
+
+u:after {
+    content: '_____________';
+}
+
+.card {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
@@ -430,15 +462,15 @@ body{
     /* -moz-box-shadow:    0 4px 8px 0 rgba(0,0,0,0.2);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     box-shadow:         0 4px 8px 0 rgba(0,0,0,0.2); */
-  }
-  .card:hover{
+}
+
+.card:hover {
     /* -moz-box-shadow:    0 8px 16px 0 rgba(0,0,0,0.2);
     -webkit-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     box-shadow:         0 8px 16px 0 rgba(0,0,0,0.2); */
-    
-  }
+}
 
-  .questions{
+.questions {
     background: #070d14;
     padding: 50px;
     height: 330px;
@@ -446,60 +478,92 @@ body{
     text-align: left;
     font-size: 1rem;
     line-height: 1rem;
-  }
-
- .instructions{
-   font-size: 1.2rem;
-   line-height: 2.3rem;
- }
-.czar-container{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(1, 25, 54, 0.849);
 }
 
-#czar-blank-container{color: white;
-width: 100%;
-background: #252525;
--webkit-border-radius: 8px;
--moz-border-radius: 8px;
-border-radius: 8px;
-text-align: center;
-overflow: hidden;
-height: 50%;
-position: relative;
-margin-top: 10px;
-font-size: 30px;}
-
-.login-button{
-  font-size: 1rem;
-  line-height: 1rem;
+.instructions {
+    font-size: 1.2rem;
+    line-height: 2.3rem;
 }
 
-.fontify{
-  font-size: 1rem;  
-  padding-top: 10px !important;
+.czar-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 25, 54, 0.849);
+}
+
+#czar-blank-container {
+    color: white;
+    width: 100%;
+    background: #252525;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    height: 50%;
+    position: relative;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.login-button {
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.fontify {
+    font-size: 1rem;
+    padding-top: 10px !important;
 }
 
 .hovered .fa-2x {
-  font-size: 1.7rem !important;
+    font-size: 1.7rem !important;
 }
-.introjs-helperLayer {opacity:0;}
+
+.introjs-helperLayer {
+    opacity: 0;
+}
+
+.fa-send-o{
+  box-shadow: 2px 2px 2px rgb(54, 54, 54);
+  color: white;
+  -webkit-transition:  400ms ease-in;
+  -moz-transition:  400ms ease-in;
+  transition:  400ms ease-in;
+}
+
+.fa-send-o:hover {
+  box-shadow: none;
+    -webkit-transform: rotateZ(60deg);
+    -ms-transform: rotateZ(60deg);
+    transform: rotateZ(60deg);
+    -webkit-transition:  400ms ease-in;
+    -moz-transition:  400ms ease-in;
+    transition:  400ms ease-in;
+}
+
+.introjs-helperLayer {
+  opacity: 0;
+}
+
 select {
-  width:205px;
-  height:35px;
-  margin-top:5px;
+  width: 205px;
+  height: 35px;
+  margin-top: 5px;
 }
+
 .btn-s-modal {
   margin-left: 18px;
   margin-top: 20px;
 }
+
 .r-modal-dialog {
   width: 280px;
 }
+
 .r-modal-title {
   margin-left: 45px;
 }

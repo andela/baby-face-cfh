@@ -1,5 +1,6 @@
 angular
   .module('mean', [
+    'firebase',
     'ngCookies',
     'ngResource',
     'ui.bootstrap',
@@ -31,6 +32,9 @@ angular
         })
         .when('/choose-avatar', {
           templateUrl: '/views/choose-avatar.html'
+        })
+        .when('/dashboard', {
+          templateUrl: '/views/dashboard.html'
         })
         .otherwise({
           redirectTo: '/'
