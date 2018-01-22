@@ -178,6 +178,25 @@ class Game {
       }
     );
   }
+  /**
+   *
+   * @param {string} userId
+   * @returns {void}
+   * @memberOf Game
+   */
+  broadcastNotification = (userId) => {
+    this.io.sockets.emit('notificationReceived', userId);
+  };
+
+  /**
+   *
+   * @param {string} userId
+   * @returns {void}
+   * @memberOf Game
+   */
+  broadcastNotification = (userId) => {
+    this.io.sockets.emit('notificationReceived', userId);
+  };
 
   /**
    *
