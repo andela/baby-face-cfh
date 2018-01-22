@@ -83,6 +83,7 @@ angular.module('mean.system')
           autoHideFilters: true,
           pickerPosition: 'top',
           recentEmojis: true,
+          search: false,
           placeholder: 'Type a message',
           events: {
             keyup: (editor, event) => {
