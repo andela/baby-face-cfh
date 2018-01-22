@@ -535,11 +535,10 @@ u:after {
   transition:  400ms ease-in;
 }
 
-.introjs-helperLayer {opacity:0;}
-
 .badge1 {
   position:relative;
 }
+
 .badge1[data-badge]:after {
   content:attr(data-badge);
   position:absolute;
@@ -555,10 +554,33 @@ u:after {
 
 .fa-send-o:hover {
   box-shadow: none;
-    -webkit-transform: rotateZ(60deg);
-    -ms-transform: rotateZ(60deg);
-    transform: rotateZ(60deg);
-    -webkit-transition:  400ms ease-in;
-    -moz-transition:  400ms ease-in;
-    transition:  400ms ease-in;
+  -webkit-transform: rotateZ(60deg);
+  -ms-transform: rotateZ(60deg);
+  transform: rotateZ(60deg);
+  -webkit-transition:  400ms ease-in;
+  -moz-transition:  400ms ease-in;
+  transition:  400ms ease-in;
+}
+
+.introjs-helperLayer {
+  opacity: 0;
+}
+
+select {
+  width: 205px;
+  height: 35px;
+  margin-top: 5px;
+}
+
+.btn-s-modal {
+  margin-left: 18px;
+  margin-top: 20px;
+}
+
+.r-modal-dialog {
+  width: 280px;
+}
+
+.r-modal-title {
+  margin-left: 45px;
 }
