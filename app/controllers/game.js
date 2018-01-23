@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Game from '../models/game';
 
 const guestNames = [
@@ -51,6 +52,13 @@ export const getUserGamesHistory = (req, res) => {
         message: 'An error occured while fetching the games history',
       });
     }
+    userGamesHistory = userGamesHistory.map((gameHistory) => {
+      gameHistory = gameHistory.toObject();
+      return {
+        ...gameHistory,
+        createdAt: moment(gameHistory.createdAt).format('MMM D, h:mm a'),
+      };
+    });
     return res.status(200).send({
       status: 'Success',
       userGamesHistory

@@ -51,7 +51,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="record in leaderboard">
-                <th scope="row"> {{ $index + 1 }}</th>                
+                <th scope="row"> {{ $index + 1 }}</th>
                 <td>{{ record[0] }}</td>
                 <td>{{ record[1] }}</td>
               </tr>
@@ -62,7 +62,11 @@
         <div ng-show="activeTab === 'donations-board'">
           <h5>Donations History</h5>
           <hr />
-          <table class="table table-striped">
+          <div ng-show="showLoader" class="mx-auto">Loading...</div>
+          <div ng-hide="!userDonations || userDonations.length > 0">
+            <p>You have not made any donations yet.</p>
+          </div>
+          <table ng-show="userDonations.length > 0" class="table table-striped">
             <thead class="ribbon-blue text-white">
               <tr>
                 <th scope="col">#</th>
@@ -90,7 +94,8 @@
             <thead class="ribbon-blue text-white">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Friends/Users</th>
+                <th scope="col">Date</th>
+                <th scope="col">Friends/Players</th>
                 <th scope="col"># Rounds</th>
                 <th scope="col">Winner</th>
               </tr>
@@ -98,6 +103,7 @@
             <tbody>
               <tr ng-repeat="record in userGamesHistory">
                 <th scope="row"> {{ $index + 1 }}</th>
+                <td scope="row">{{ record.createdAt }}</td>
                 <td>
                   <ul class="nav flex-column">
                     <li ng-repeat="player in record.players track by $index">{{ player }}</li>

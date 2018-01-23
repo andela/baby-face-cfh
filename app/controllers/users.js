@@ -319,7 +319,11 @@ exports.sendInvite = (req, res) => {
     to: req.body.recipient,
     subject: 'Invitation to join a current game session',
     text: `Click this link to join game: ${req.body.gameLink}`,
-    html: `<b>click this link to join game: ${req.body.gameLink}</b>`
+    html: `<p>Hello,</p>
+      <p>Your friend has invited you to join a game of Cards For Humanities.</p>
+      <p>Click on this link to join game:
+      <a href='${req.body.gameLink}'>${req.body.gameLink}</a></p>
+          <p>baby-face CFH Team</p>`
   };
 
   transporter.sendMail(mailOptions, (error) => {
@@ -340,27 +344,29 @@ exports.sendInvite = (req, res) => {
 exports.addFriend = (req, res) => {
   const { friendId, friendName, friendEmail } = req.body;
   const friendData = { friendId, friendName, friendEmail };
-  console.log(req.decoded.user.id);
   const userId = req.decoded.user.id;
-  User.findOneAndUpdate(
-    {
-      _id: userId
-    },
-    {
-      $push: { friends: friendData }
-    },
-  ).then(() => {
-    console.log('done');
-    res.status(200).json({
-      message: 'Friend Added Succesfully'
-    });
-  })
-    .catch((error) => {
-      res.status(500).json({
-        error,
-        message: 'Internal Server Error'
+  User.findById({ _id: userId }, 'friends', (error, user) => {
+    if (user.friends
+      .some(friend => friend.friendEmail === friendEmail)) {
+      return res.status(409).json({
+        message: 'Already Added As Friend',
       });
-    });
+    }
+    User.update({
+      _id: userId,
+    }, {
+      $push: {
+        friends: friendData,
+      },
+    })
+      .then(() => res.status(200).json({
+        message: 'Friend Added Successfully',
+      }))
+      .catch(() => res.status(500).json({
+        status: 'Error',
+        message: 'Internal Server Error',
+      }));
+  });
 };
 
 exports.getFirendsList = (req, res) => {
@@ -415,7 +421,8 @@ exports.deleteFriend = (req, res) => {
  * @param {any} res
  */
 exports.getDonations = (req, res) => {
-  User.find({}, 'name donations', (error, users) => {
+  const userId = req.decoded.user.id;
+  User.findOne({ _id: userId }, 'name donations', (error, user) => {
     if (error) {
       return res.status(500).send({
         status: 'Error',
@@ -424,8 +431,7 @@ exports.getDonations = (req, res) => {
     }
     return res.status(200).send({
       status: 'Success',
-      donations: users
+      user
     });
   });
 };
-

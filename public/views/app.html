@@ -7,7 +7,7 @@
         <img src="https://raw.githubusercontent.com/andela/baby-face-cfh/gh-pages/card222.png" class="show-is-sticky" width="30"
           height="30" alt="logo"> Cards For Humanity
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gameOptions" aria-controls="gameOptions"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -195,7 +195,7 @@
                             <a class="btn ribbon-blue text-white hvr-bob" ng-click="searchUser()" id="name">Search</a>
                           </div>
                         </div>
-                        <div ng-controller="GameController" id="searchControl" style="padding-top: 20px;">
+                        <div id="searchControl" style="padding-top: 20px;">
                           <div class="row">
                             <div class="col-md-12" >
                               <div>
@@ -204,7 +204,7 @@
                                 <table style="width: 100%;" class="table table-striped">
                                     <tr ng-repeat="user in searchResult">
                                       <td>{{user.name}}</td>
-                                      <td style="width: 100px;"><button ng-disabled="friendsId.includes(user._id)" style="background: #FF8800; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="addFriend(user.name, user._id, user.email);">Add Friend</button></td>
+                                      <td style="width: 100px;"><button style="background: #FF8800; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="addFriend(user.name, user._id, user.email);">Add Friend</button></td>
                                       <td style="width: 100px;"><button ng-disabled="invited.includes(user._id)" style="background: #256188; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="sendInvite(user.email, user.name);">Invite user</button></td>
                                     </tr>
                                     </table>

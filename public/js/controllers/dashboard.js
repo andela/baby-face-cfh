@@ -50,6 +50,23 @@ angular.module('mean.system')
               }
             });
           }
+
+          if ($scope.activeTab === 'donations-board' &&
+            !$scope.userDonations) {
+            $scope.showLoader = true;
+            $http.get('/api/donations', {
+              headers: { 'x-access-token': `${userToken}` }
+            }).then((response) => {
+              $scope.showLoader = false;
+              $scope.userDonations = response.data.user.donations;
+            }, (error) => {
+              if (error.status === 401) {
+                // if the user is not signed in, or token has expired,
+                // redirect user to sign in page
+                window.location = '/#!/signin';
+              }
+            });
+          }
         });
       }]
   );
