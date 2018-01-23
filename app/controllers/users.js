@@ -347,7 +347,7 @@ exports.addFriend = (req, res) => {
   const userId = req.decoded.user.id;
   User.findById({ _id: userId }, 'friends', (error, user) => {
     if (user.friends
-      .filter(friend => friend.friendEmail === friendEmail).length !== 0) {
+      .some(friend => friend.friendEmail === friendEmail)) {
       return res.status(409).json({
         message: 'Already Added As Friend',
       });
