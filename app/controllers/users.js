@@ -319,7 +319,11 @@ exports.sendInvite = (req, res) => {
     to: req.body.recipient,
     subject: 'Invitation to join a current game session',
     text: `Click this link to join game: ${req.body.gameLink}`,
-    html: `<b>click this link to join game: ${req.body.gameLink}</b>`
+    html: `<p>Hello,</p>
+      <p>Your friend has invited you to join a game of Cards For Humanities.</p>
+      <p>Click on this link to join game:
+      <a href='${req.body.gameLink}'>${req.body.gameLink}</a></p>
+          <p>baby-face CFH Team</p>`
   };
 
   transporter.sendMail(mailOptions, (error) => {
