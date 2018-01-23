@@ -344,27 +344,29 @@ exports.sendInvite = (req, res) => {
 exports.addFriend = (req, res) => {
   const { friendId, friendName, friendEmail } = req.body;
   const friendData = { friendId, friendName, friendEmail };
-  console.log(req.decoded.user.id);
   const userId = req.decoded.user.id;
-  User.findOneAndUpdate(
-    {
-      _id: userId
-    },
-    {
-      $push: { friends: friendData }
-    },
-  ).then(() => {
-    console.log('done');
-    res.status(200).json({
-      message: 'Friend Added Succesfully'
-    });
-  })
-    .catch((error) => {
-      res.status(500).json({
-        error,
-        message: 'Internal Server Error'
+  User.findById({ _id: userId }, 'friends', (error, user) => {
+    if (user.friends
+      .filter(friend => friend.friendEmail === friendEmail).length !== 0) {
+      return res.status(409).json({
+        message: 'Already Added As Friend',
       });
-    });
+    }
+    User.update({
+      _id: userId,
+    }, {
+      $push: {
+        friends: friendData,
+      },
+    })
+      .then(() => res.status(200).json({
+        message: 'Friend Added Successfully',
+      }))
+      .catch(() => res.status(500).json({
+        status: 'Error',
+        message: 'Internal Server Error',
+      }));
+  });
 };
 
 exports.getFirendsList = (req, res) => {
@@ -433,4 +435,3 @@ exports.getDonations = (req, res) => {
     });
   });
 };
-

@@ -10,8 +10,7 @@ angular.module('mean.system').controller('AuthenticationController', [
         { token } = data;
       $window.localStorage.setItem('token', token);
       $window.localStorage.setItem('tour_status', false);
-      $location.path('/');
-      $window.location.reload();
+      $window.location = '/';
     };
 
     const onError = (error) => {

@@ -160,6 +160,10 @@ angular.module('mean.system')
             (error) => {
               console.log('here is the error', error);
               $scope.getFriendsList();
+              $scope.inviteMsg = error.data.message;
+              setTimeout(() => {
+                $scope.inviteMsg = '';
+              }, 2000);
             }
           );
       };

@@ -204,7 +204,7 @@
                                 <table style="width: 100%;" class="table table-striped">
                                     <tr ng-repeat="user in searchResult">
                                       <td>{{user.name}}</td>
-                                      <td style="width: 100px;"><button ng-disabled="friendsId.includes(user._id)" style="background: #FF8800; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="addFriend(user.name, user._id, user.email);">Add Friend</button></td>
+                                      <td style="width: 100px;"><button style="background: #FF8800; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="addFriend(user.name, user._id, user.email);">Add Friend</button></td>
                                       <td style="width: 100px;"><button ng-disabled="invited.includes(user._id)" style="background: #256188; color: #FFF; border-radius: 12px; font-family: cursive; font-size: 0.7rem; cursor:pointer" ng-click="sendInvite(user.email, user.name);">Invite user</button></td>
                                     </tr>
                                     </table>
